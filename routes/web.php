@@ -17,3 +17,7 @@ Route::get('/', function () {
 Route::get('/tes', function () {
     return view('webpage.login');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
