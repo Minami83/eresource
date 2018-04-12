@@ -1,4 +1,4 @@
-<div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left" style="width:300px;height:calc(100%-2000px);display:none;z-index:5;overflow: auto;" id="mySidebar">
+<div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left" id="mySidebar">
 	<a class="w3-bar-item w3-button active">ASCE Library</a>
 	<a class="w3-bar-item w3-button">ASME Digital Collection</a>
 	<a class="w3-bar-item w3-button">Maritime Economics & Logistics Palgrave</a>
