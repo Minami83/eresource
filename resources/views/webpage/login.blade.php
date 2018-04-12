@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.master2')
 @section('title')
 	Home
 @endsection()
@@ -82,7 +82,7 @@
 
 	<script type="text/javascript">
 		$(document).ready(function(){
-			$('#signup').removeClass('signup');
+			$('#signup').css("display","none");
 			$('#changesign').click(function(){
 				var dest = $(this).attr('href');
 				$('#login').css("display","none");
