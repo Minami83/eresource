@@ -23,8 +23,10 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $request->user()->authorizeRoles(['sudent','admin']);
-        return view('home');
+        $request->user()->authorizeRoles(['student','admin']);
+        $data = Auth()->user();
+        // dd($data);
+        return view('webpage/mastercourse')->with('user',$data);
     }
     public function adminIndex(Request $request)
     {
