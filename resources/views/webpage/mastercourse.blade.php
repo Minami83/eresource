@@ -9,15 +9,20 @@
 		text-decoration:none;
 	}
 
+	.w3-sidebar{
+		height:calc(100% - 60px);
+		width:300px;
+		display:none;
+		z-index:5;
+		overflow: auto;
+	}
+
 	.active {
-		background-color: #666;
-	    color: white;
+	    color: #ffc410;
 	}
 
 	.accordion {
-	    background-color: #eee;
-	    color: #444;
-	    cursor: pointer;
+		background-color:white;
 	    padding: 18px;
 	    width: 100%;
 	    border: none;
@@ -28,7 +33,6 @@
 	}
 
 	.active2, .accordion:hover {
-	    background-color: #ccc;
 	}
 
 	.accordion:after {
@@ -39,8 +43,8 @@
 	    margin-left: 5px;
 	}
 
-	.active2:after {
-	    content: "\2212";
+	.active2:after{
+			content: '\2212';
 	}
 
 	.panel {
@@ -51,13 +55,7 @@
 	    transition: max-height 0.2s ease-out;
 	}
 
-	.w3-sidebar{
-		height:calc(100% - 60px);
-		width:300px;
-		display:none;
-		z-index:5;
-		overflow: auto;
-	}
+
 
 @endsection
 
