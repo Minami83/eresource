@@ -21,3 +21,4 @@ Route::get('/tes', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/course/{courseName}', 'CourseController@index')->name('course');

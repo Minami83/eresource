@@ -23,6 +23,7 @@ class UserTableSeeder extends Seeder
         $student->phone = '08122467882';
         $student->email = 'budi@gmail.com';
         $student->password = bcrypt('budibudi');
+        $student->progress = 1;
         $student->save();
         $student->roles()->attach($role_student);
 
@@ -33,6 +34,7 @@ class UserTableSeeder extends Seeder
         $admin->phone = '08122446882';
         $admin->email = 'badu@gmail.com';
         $admin->password = bcrypt('badubadu');
+        $admin->progress = 20;
         $admin->save();
         $admin->roles()->attach($role_admin);
 
