@@ -44,7 +44,7 @@
 	}
 
 	.active2:after{
-			content: '\2212';
+		content: '\2212';
 	}
 
 	.panel {
@@ -55,7 +55,17 @@
 	    transition: max-height 0.2s ease-out;
 	}
 
-
+	.takkebuka{
+		color:white!important;
+		background-color:#ccc!important;
+		cursor:not-allowed;
+		text-decoration:none
+	}
+	.kebuka{
+		color:black!important;
+		background-color:none!important;
+		cursor:pointer;
+	}
 
 @endsection
 
@@ -65,15 +75,15 @@
 	<div class="w3-overlay w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
 
 	<div class="w3-main" style="margin-left:300px">
-		<button class="accordion">How to:</button>
+		<button class="accordion" id="accord1" onclick="accordionfunc(this.id)">How to:</button>
 		<div class="panel">asd
 	  		@yield('howto')
 		</div>
-		<button class="accordion">Video</button>
+		<button class="accordion" id="accord2" onclick="accordionfunc(this.id)">Video</button>
 		<div class="panel">
 	  		@yield('video')
 		</div>
-		<button class="accordion">Tutorial</button>
+		<button class="accordion" id="accord3" onclick="accordionfunc(this.id)">Tutorial</button>
 		<div class="panel">
 	  		@yield('tutorial')
 		</div>
@@ -81,28 +91,40 @@
 
 	<script type="text/javascript">
 		
-		var acc = document.getElementsByClassName("accordion");
-		var i;
-
-		for (i = 0; i < acc.length; i++) {
-		  acc[i].addEventListener("click", function() {
-		    this.classList.toggle("active2");
-		    var panel = this.nextElementSibling;
+		function accordionfunc(accordid){
+			var accord=document.getElementById(accordid);
+		    accord.classList.toggle("active2");
+		    var panel = accord.nextElementSibling;
 		    if (panel.style.maxHeight){
 		      panel.style.maxHeight = null;
 		    } else {
 		      panel.style.maxHeight = panel.scrollHeight + "px";
-		    } 
-		  });
+		    }
 		}
 
 		function w3_open() {
-		    document.getElementById("mySidebar").style.display = "block";
-		    document.getElementById("myOverlay").style.display = "block";
+		    var sidebardisplay=document.getElementById("mySidebar");
+			var overlaydisplay=document.getElementById("myOverlay");
+		    sidebardisplay.style.display = "block";
+		    overlaydisplay.style.display = "block";
 		}
 		function w3_close() {
-		    document.getElementById("mySidebar").style.display = "none";
-		    document.getElementById("myOverlay").style.display = "none";
+			var sidebardisplay=document.getElementById("mySidebar");
+			var overlaydisplay=document.getElementById("myOverlay");
+		    sidebardisplay.style.display = "none";
+		    overlaydisplay.style.display = "none";
+		}
+		function w3_toggle() {
+			var sidebardisplay=document.getElementById("mySidebar");
+			var overlaydisplay=document.getElementById("myOverlay");
+		    if($("#mySidebar").css('display')=='block' && $("#myOverlay").css('display')=='block'){
+		    	sidebardisplay.style.display='none';
+		    	overlaydisplay.style.display='none';
+		    }
+		    else if($("#mySidebar").css('display')=='none' && $("#myOverlay").css('display')=='none'){
+		    	sidebardisplay.style.display='block';
+		    	overlaydisplay.style.display='block';
+		    }
 		}
 		
 		var header = document.getElementById("mySidebar");
@@ -114,5 +136,7 @@
 				this.className += " active";
 			});
 		}
+
+		@yield('morescript')
 	</script>
 @endsection
