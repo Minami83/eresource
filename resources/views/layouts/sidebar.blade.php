@@ -1,5 +1,5 @@
 <div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left" id="mySidebar">
-	<a id="1" class="w3-bar-item w3-button w3-hover-none w3-hover-text-amber">ASCE Library</a>
+	<a id="1" href="/asce" class="w3-bar-item w3-button w3-hover-none w3-hover-text-amber">ASCE Library</a>
 	<a id="2" class="w3-bar-item w3-button w3-hover-none w3-hover-text-amber">ASME Digital Collection</a>
 	<a id="3" class="w3-bar-item w3-button w3-hover-none w3-hover-text-amber">Maritime Economics & Logistics Palgrave</a>
 	<a id="4" class="w3-bar-item w3-button w3-hover-none w3-hover-text-amber">The Naval Architect - RINA</a>
