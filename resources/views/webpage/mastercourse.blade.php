@@ -1,9 +1,5 @@
 @extends('layouts.master')
 
-@section('title')
-	Home
-@endsection
-
 @section('style')
 	a:hover {
 		text-decoration:none;
@@ -55,7 +51,7 @@
 	    transition: max-height 0.2s ease-out;
 	}
 
-	.takkebuka{
+	.takkebuka, .takkebuka:hover{
 		color:white!important;
 		background-color:#ccc!important;
 		cursor:not-allowed;
@@ -75,8 +71,13 @@
 	<div class="w3-overlay w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
 
 	<div class="w3-main" style="margin-left:300px">
+		<br>	
+		<div class="w3-light-grey w3-round-xlarge" style="margin-left: 50px; margin-right: 50px">
+			<div id="myBar" class="w3-container w3-dropdownnavbar w3-round-xlarge w3-center" ></div>
+		</div>
+		<br>
 		<button class="accordion" id="accord1" onclick="accordionfunc(this.id)">How to:</button>
-		<div class="panel">asd
+		<div class="panel">
 	  		@yield('howto')
 		</div>
 		<button class="accordion" id="accord2" onclick="accordionfunc(this.id)">Video</button>
@@ -87,10 +88,94 @@
 		<div class="panel">
 	  		@yield('tutorial')
 		</div>
+		<br><br><br>	
+		<div>
+			<a class="w3-button w3-dropdownnavbar w3-right" id="nextbutton" style="display:;margin-right: 70px" onclick="increase()">Next</a> 
+		</div>
 	</div>
 
 	<script type="text/javascript">
-		
+		$(document).ready(function(){
+			var elem = document.getElementById("myBar");
+		    var width=({{$user->progress}}/19)*100;
+		    elem.style.width = width + '%'; 
+		    elem.innerHTML = parseFloat(width).toFixed(0) + '%';
+		});
+
+		$(document).ready(function(){
+			var header = document.getElementById("mySidebar");
+			var btn = header.getElementsByClassName("w3-bar-item");
+			var temp={{$user->progress}};
+			for (var i = temp; i < btn.length; i++) {
+				btn[i].className+=' takkebuka'
+			}
+		});
+
+		$(document).ready(function(){
+			var temp={{$user->progress}}
+			if(temp>=1){
+				$("#1").attr('href','asce');
+			}
+			if(temp>=2){
+				$("#2").attr('href','asme');
+			}
+			if(temp>=3){
+				$("#3").attr('href','melp');
+			}
+			if(temp>=4){
+				$("#4").attr('href','tnarina');
+			}
+			if(temp>=5){
+				$("#5").attr('href','sbidrina');
+			}
+			if(temp>=6){
+				$("#6").attr('href','smdrina');
+			}
+			if(temp>=7){
+				$("#7").attr('href','ijme');
+			}
+			if(temp>=8){
+				$("#8").attr('href','ijsct');
+			}
+			if(temp>=9){
+				$("#9").attr('href','jspd');
+			}
+			if(temp>=10){
+				$("#10").attr('href','jsr');
+			}
+			if(temp>=11){
+				$("#11").attr('href','marinetech');
+			}
+			if(temp>=12){
+				$("#12").attr('href','springerlink');
+			}
+			if(temp>=13){
+				$("#13").attr('href','emerald');
+			}
+			if(temp>=14){
+				$("#14").attr('href','gale');
+			}
+			if(temp>=15){
+				$("#15").attr('href','ieee');
+			}
+			if(temp>=16){
+				$("#16").attr('href','ebsco');
+			}
+			if(temp>=17){
+				$("#17").attr('href','proquest');
+			}
+			if(temp>=18){
+				$("#18").attr('href','sciencedir');
+			}
+			if(temp>=19){
+				$("#19").attr('href','nature');
+			}
+		});
+
+		function increase() {
+			// Increment database progress
+		}
+
 		function accordionfunc(accordid){
 			var accord=document.getElementById(accordid);
 		    accord.classList.toggle("active2");
@@ -127,15 +212,15 @@
 		    }
 		}
 		
-		var header = document.getElementById("mySidebar");
-		var btn = header.getElementsByClassName("w3-bar-item w3-button");
-		for (var i = 0; i < btn.length; i++) {
-			btn[i].addEventListener("click", function() {
-				var current = document.getElementsByClassName("active");
-				current[0].className = current[0].className.replace(" active", "");
-				this.className += " active";
-			});
-		}
+		// var header = document.getElementById("mySidebar");
+		// var btn = header.getElementsByClassName("w3-bar-item w3-button");
+		// for (var i = 0; i < btn.length; i++) {
+		// 	btn[i].addEventListener("click", function() {
+		// 		var current = document.getElementsByClassName("active");
+		// 		current[0].className = current[0].className.replace(" active", "");
+		// 		this.className += " active";
+		// 	});
+		// }
 
 		@yield('morescript')
 	</script>
