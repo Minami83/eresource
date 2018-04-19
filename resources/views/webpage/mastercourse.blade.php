@@ -71,7 +71,7 @@
 	<div class="w3-overlay w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
 
 	<div class="w3-main" style="margin-left:300px">
-		<br>	
+		<br>
 		<div class="w3-light-grey w3-round-xlarge" style="margin-left: 50px; margin-right: 50px">
 			<div id="myBar" class="w3-container w3-dropdownnavbar w3-round-xlarge w3-center" ></div>
 		</div>
@@ -88,9 +88,9 @@
 		<div class="panel">
 	  		@yield('tutorial')
 		</div>
-		<br><br><br>	
+		<br><br><br>
 		<div>
-			<a class="w3-button w3-dropdownnavbar w3-right" id="nextbutton" style="display:;margin-right: 70px" onclick="increase()">Next</a> 
+			<a class="w3-button w3-dropdownnavbar w3-right" id="nextbutton" style="display:;margin-right: 70px" href="{{action('CourseController@increaseProgress',substr(Request::path(),7) ) }}">Next</a>
 		</div>
 	</div>
 
@@ -98,7 +98,7 @@
 		$(document).ready(function(){
 			var elem = document.getElementById("myBar");
 		    var width=({{$user->progress}}/19)*100;
-		    elem.style.width = width + '%'; 
+		    elem.style.width = width + '%';
 		    elem.innerHTML = parseFloat(width).toFixed(0) + '%';
 		});
 
@@ -211,7 +211,7 @@
 		    	overlaydisplay.style.display='block';
 		    }
 		}
-		
+
 		// var header = document.getElementById("mySidebar");
 		// var btn = header.getElementsByClassName("w3-bar-item w3-button");
 		// for (var i = 0; i < btn.length; i++) {

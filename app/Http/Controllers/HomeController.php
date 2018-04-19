@@ -26,6 +26,7 @@ class HomeController extends Controller
         $request->user()->authorizeRoles(['student','admin']);
         $data = Auth()->user();
         // dd($data);
+        // dd($data);
         return redirect('course/asce')->with('user',$data);
         return view('webpage/mastercourse')->with('user',$data);
     }

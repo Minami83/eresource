@@ -28,7 +28,7 @@ class UserTableSeeder extends Seeder
         $student->roles()->attach($role_student);
 
         $admin = new User();
-        $admin->nrp = '51151000555';
+        $admin->nrp = '51151000556';
         $admin->name = 'Badu';
         $admin->faculty = 'Fakultas Teknologi Informasi dan Komunikasi';
         $admin->phone = '08122446882';

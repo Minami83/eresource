@@ -34,13 +34,26 @@ class CourseController extends Controller
         'nature' => 19]);
     }
 
-    public function index(Request $request)
+    public function index(string $courseName)
     {
-        $url = Request::path();
         $user = Auth()->user();
-        if($user->progress < $this->progressRecord->get(substr($url,7)))
+        if($user->progress < $this->progressRecord->get($courseName))
           return redirect('course/asce');
-        $url = 'jurnal/'.substr($url,7);
+        $url = 'jurnal/'.$courseName;
         return view($url)->with('user',$user);
+    }
+
+    public function increaseProgress(string $courseName)
+    {
+        $user = Auth()->user();
+        $currentProgress = $this->progressRecord->get($courseName);
+        if($user->progress == $currentProgress)
+        {
+            $user->progress = $user->progress + 1;
+            $user->save();
+            $url = 'course/'.$this->progressRecord->search($user->progress);
+        }
+        else $url = 'course/'.$this->progressRecord->search($currentProgress+1);
+        return redirect($url)->with('user',$user);
     }
 }
