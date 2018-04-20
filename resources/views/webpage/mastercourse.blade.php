@@ -90,7 +90,7 @@
 		</div>
 		<br><br><br>
 		<div>
-			<a class="w3-button w3-dropdownnavbar w3-right" id="nextbutton" style="display:;margin-right: 70px" href="{{action('CourseController@increaseProgress',substr(Request::path(),7) ) }}">Next</a>
+			<a class="w3-button w3-dropdownnavbar w3-right" id="nextbutton" style="display:;margin-right: 70px" href="{{action('CourseController@nextPage', substr(Request::path(),7) ) }}">Next</a>
 		</div>
 	</div>
 
@@ -174,6 +174,7 @@
 
 		function increase() {
 			// Increment database progress
+			// wes pindah nde controller hapusen ae iki
 		}
 
 		function accordionfunc(accordid){

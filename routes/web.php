@@ -21,5 +21,5 @@ Route::get('/tes', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/course/{courseName}/next', 'CourseController@increaseProgress');
+Route::get('/course/{courseName}/next', 'CourseController@nextPage');
 Route::get('/course/{courseName}', 'CourseController@index')->name('course');

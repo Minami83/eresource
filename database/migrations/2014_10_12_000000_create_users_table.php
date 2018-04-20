@@ -22,6 +22,9 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->integer('progress');
+            $table->integer('how_to');
+            $table->integer('video');
+            $table->integer('tutorial');
             $table->rememberToken();
             $table->timestamps();
         });

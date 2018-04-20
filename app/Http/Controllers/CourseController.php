@@ -34,18 +34,20 @@ class CourseController extends Controller
         'nature' => 19]);
     }
 
-    public function index(string $courseName)
+    public function index(string $courseName, $howto=0, $video=0, $tutorial=0)
     {
         $user = Auth()->user();
+        $this->incAction($howto,$video,$tutorial,$user);
         if($user->progress < $this->progressRecord->get($courseName))
           return redirect('course/asce');
         $url = 'jurnal/'.$courseName;
         return view($url)->with('user',$user);
     }
 
-    public function increaseProgress(string $courseName)
+    public function nextPage($courseName, $howto=0, $video=0, $tutorial=0)
     {
         $user = Auth()->user();
+        $this->incAction($howto,$video,$tutorial,$user);
         $currentProgress = $this->progressRecord->get($courseName);
         if($user->progress == $currentProgress)
         {
@@ -55,5 +57,17 @@ class CourseController extends Controller
         }
         else $url = 'course/'.$this->progressRecord->search($currentProgress+1);
         return redirect($url)->with('user',$user);
+    }
+
+    public function incAction( $howto,  $video,  $tutorial, $user)
+    {
+
+        if($howto!=0 or $video!=0 or $tutorial!=0)
+        {
+            $user->how_to = $user->how_to + $howto;
+            $user->video = $user->video + $video;
+            $user->tutorial = $user->tutorial + $tutorial;
+            $user->save();
+        }
     }
 }

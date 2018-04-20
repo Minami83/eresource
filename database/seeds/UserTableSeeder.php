@@ -24,6 +24,9 @@ class UserTableSeeder extends Seeder
         $student->email = 'budi@gmail.com';
         $student->password = bcrypt('budibudi');
         $student->progress = 4;
+        $student->how_to = 0;
+        $student->video = 0;
+        $student->tutorial = 0;
         $student->save();
         $student->roles()->attach($role_student);
 
@@ -35,6 +38,9 @@ class UserTableSeeder extends Seeder
         $admin->email = 'badu@gmail.com';
         $admin->password = bcrypt('badubadu');
         $admin->progress = 20;
+        $admin->how_to = 0;
+        $admin->video = 0;
+        $admin->tutorial = 0;
         $admin->save();
         $admin->roles()->attach($role_admin);
 
