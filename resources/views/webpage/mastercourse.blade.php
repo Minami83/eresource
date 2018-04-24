@@ -90,7 +90,7 @@
 		</div>
 		<br><br><br>
 		<div>
-			<a class="w3-button w3-dropdownnavbar w3-right" id="nextbutton" style="display:;margin-right: 70px" href="{{action('CourseController@nextPage', substr(Request::path(),7) ) }}">Next</a>
+			<a class="w3-button w3-dropdownnavbar w3-right" id="nextbutton" style="display:none;margin-right: 70px" href="{{action('CourseController@nextPage', substr(Request::path(),7) ) }}">Next</a>
 		</div>
 	</div>
 

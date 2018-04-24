@@ -16,18 +16,26 @@
 	});
 
 	$(document).ready(function(){
-	    $("#accord1").click(function(){
-	        $("#nextbutton").fadeIn();
-	        $("#nextbutton").attr('href','asme');
-	        $("#2").attr('href','asme');
-	    });
+		var temp={{$user->progress}};
+		if(temp>=1){
+			$("#nextbutton").css('display','block');
+		}
+		else{
+		    $("#accord1").click(function(){
+		        $("#nextbutton").fadeIn();
+		    });
+		}
 	});
 
 	document.getElementById('vid1').addEventListener('ended',myHandler,false);
     function myHandler(e) {
-        $("#nextbutton").fadeIn();
-        $("#nextbutton").attr('href','asme');
-        $("#2").attr('href','asme');
+    	var temp={{$user->progress}};
+		if(temp>=1){
+			$("#nextbutton").css('display','block');
+		}
+		else{	
+	        $("#nextbutton").fadeIn();
+	    }
     }
 
 @endsection()
