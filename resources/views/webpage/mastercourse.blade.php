@@ -89,15 +89,15 @@
 	  		@yield('tutorial')
 		</div>
 		<br><br><br>
-		<form id="formstatistik" method="POST" action="">
+		<form id="formstatistik" method="post" action="{{substr(Request::path(),7)}}/next">
 			@csrf
 			<input id="accord1input" type="text" name="accord1input" value="0">
-			<input id="accord2input" type="text" name="accord2input" value="0">
-			<input id="accord3input" type="text" name="accord3input" value="0">
-		</form>
+			<input id="accord2input" type="hidden" name="accord2input" value="0">
+			<input id="accord3input" type="hidden" name="accord3input" value="0">
 			<div>
-				<a class="w3-button w3-dropdownnavbar w3-right" id="nextbutton" style="display:none;margin-right: 70px" href="{{action('CourseController@nextPage', substr(Request::path(),7) ) }}">Next</a>
+				<button class="w3-button w3-dropdownnavbar w3-right" id="nextbutton" style="display:none;margin-right: 70px" type=submit>Next</button>
 			</div>
+		</form>
 	</div>
 
 	<script type="text/javascript">
