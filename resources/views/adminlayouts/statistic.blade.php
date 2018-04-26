@@ -11,9 +11,9 @@
 		function drawChart() {
 		  var data = google.visualization.arrayToDataTable([
 		  ['Method', 'Count'],
-		  ['How to:', 8],
-		  ['Video', 2],
-		  ['Tutorial', 4]
+		  ['How to:', {{$data['howto']}}],
+		  ['Video', {{$data['video']}}],
+		  ['Tutorial', {{$data['tutorial']}}]
 		]);
 
 		  // Optional; add a title and set the width and height of the chart

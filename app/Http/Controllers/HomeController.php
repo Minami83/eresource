@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\User;
+use Illuminate\Support\Facades\DB;
 class HomeController extends Controller
 {
     /**
@@ -33,6 +34,12 @@ class HomeController extends Controller
     public function adminIndex(Request $request)
     {
         $request->user()->authorizeRoles('admin');
-        return view('adminlayouts/statistic');
+        $data = Auth()->user();
+        $howto = DB::table('users')->sum('how_to');
+        $video = DB::table('users')->sum('video');
+        $tutorial = DB::table('users')->sum('tutorial');
+        $chartData = collect(['howto' => $howto, 'video' => $video, 'tutorial' => $tutorial]);
+        // dd($chartData);
+        return view('adminlayouts/statistic')->with('user',$data)->with('data',$chartData);
     }
 }
