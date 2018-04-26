@@ -3,7 +3,21 @@
 @section('title')ASCE Library
 @endsection()
 
+@section('howto')
+<video width="320" height="240" controls id="vid1">
+  <source src="/video/vid1.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+@endsection()
+
 @section('video')
+<video width="320" height="240" controls id="vid1">
+  <source src="/video/vid1.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+@endsection()
+
+@section('tutorial')
 <video width="320" height="240" controls id="vid1">
   <source src="/video/vid1.mp4" type="video/mp4">
   Your browser does not support the video tag.

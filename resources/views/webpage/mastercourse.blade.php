@@ -89,9 +89,15 @@
 	  		@yield('tutorial')
 		</div>
 		<br><br><br>
-		<div>
-			<a class="w3-button w3-dropdownnavbar w3-right" id="nextbutton" style="display:none;margin-right: 70px" href="{{action('CourseController@nextPage', substr(Request::path(),7) ) }}">Next</a>
-		</div>
+		<form id="formstatistik" method="POST" action="">
+			@csrf
+			<input id="accord1input" type="text" name="accord1input" value="0">
+			<input id="accord2input" type="text" name="accord2input" value="0">
+			<input id="accord3input" type="text" name="accord3input" value="0">
+		</form>
+			<div>
+				<a class="w3-button w3-dropdownnavbar w3-right" id="nextbutton" style="display:none;margin-right: 70px" href="{{action('CourseController@nextPage', substr(Request::path(),7) ) }}">Next</a>
+			</div>
 	</div>
 
 	<script type="text/javascript">
@@ -185,6 +191,15 @@
 		      panel.style.maxHeight = null;
 		    } else {
 		      panel.style.maxHeight = panel.scrollHeight + "px";
+		    }
+		    if(accordid=='accord1'){
+		    	$('#accord1input').attr('value', '1')
+		    }
+		    else if(accordid=='accord2'){
+		    	$('#accord2input').attr('value', '1')
+		    }
+		    else if(accordid=='accord3'){
+		    	$('#accord3input').attr('value', '1')
 		    }
 		}
 
