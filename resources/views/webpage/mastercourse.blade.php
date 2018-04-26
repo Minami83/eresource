@@ -70,7 +70,7 @@
 
 	<div class="w3-overlay w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
 
-	<div class="w3-main" style="margin-left:300px">
+	<div class="w3-main" style="margin-left:300px; margin-top: 60px">
 		<br>
 		<div class="w3-light-grey w3-round-xlarge" style="margin-left: 50px; margin-right: 50px">
 			<div id="myBar" class="w3-container w3-dropdownnavbar w3-round-xlarge w3-center" ></div>
@@ -96,7 +96,7 @@
 			<input id="accord3input" type="hidden" name="accord3input" value="0">
 			<input name="url" value="{{substr(Request::path(),7)}}" type="hidden">
 			<div>
-				<button class="btn btn-primary" type=submit>Next</button>
+				<button id="nextbutton" class="btn btn-primary" type=submit style="display: none;">Next</button>
 			</div>
 		</form>
 	</div>
