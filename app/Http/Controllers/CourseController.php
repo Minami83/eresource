@@ -47,7 +47,7 @@ class CourseController extends Controller
     public function nextPage(Request $request, $courseName)
     {
         $user = Auth()->user();
-        // dd($request);
+        dd($request);
         // $this->incAction($howto,$video,$tutorial,$user);
         $currentProgress = $this->progressRecord->get($courseName);
         if($user->progress == $currentProgress)

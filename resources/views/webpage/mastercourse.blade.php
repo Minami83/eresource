@@ -95,7 +95,7 @@
 			<input id="accord2input" type="hidden" name="accord2input" value="0">
 			<input id="accord3input" type="hidden" name="accord3input" value="0">
 			<div>
-				<button class="w3-button w3-dropdownnavbar w3-right" id="nextbutton" style="display:none;margin-right: 70px" type=submit>Next</button>
+				<button type=submit>Next</button>
 			</div>
 		</form>
 	</div>
