@@ -96,7 +96,7 @@
 			<input id="accord3input" type="hidden" name="accord3input" value="0">
 			<input name="url" value="{{substr(Request::path(),7)}}" type="hidden">
 			<div>
-				<button id="nextbutton" class="btn btn-primary" type=submit style="display: none;">Next</button>
+				<button id="nextbutton" class="w3-button w3-right w3-dropdownnavbar w3-hover-dropdownnavbar" type=submit style="display: none;margin-right: 70px">Next</button>
 			</div>
 		</form>
 	</div>

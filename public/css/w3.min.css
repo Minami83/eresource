@@ -236,4 +236,4 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 .w3-highway-yellow{color:#fff;background-color:#ffab00}
 .w3-highway-green{color:#fff;background-color:#004d33}
 .w3-highway-blue{color:#fff;background-color:#00477e}
-.w3-dropdownnavbar{color:#ffc107!important;background-color: #00748d!important}
+.w3-dropdownnavbar, .w3-hover-dropdownnavbar:hover{color:#ffc107!important;background-color: #00748d!important}
