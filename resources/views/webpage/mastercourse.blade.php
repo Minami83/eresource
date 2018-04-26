@@ -89,13 +89,14 @@
 	  		@yield('tutorial')
 		</div>
 		<br><br><br>
-		<form id="formstatistik" method="post" action="{{substr(Request::path(),7)}}/next">
+		<form id="formstatistik" method="post" action="/next">
 			@csrf
-			<input id="accord1input" type="text" name="accord1input" value="0">
+			<input id="accord1input" type="hidden" name="accord1input" value="0">
 			<input id="accord2input" type="hidden" name="accord2input" value="0">
 			<input id="accord3input" type="hidden" name="accord3input" value="0">
+			<input name="url" value="{{substr(Request::path(),7)}}" type="hidden">
 			<div>
-				<button type=submit>Next</button>
+				<button class="btn btn-primary" type=submit>Next</button>
 			</div>
 		</form>
 	</div>

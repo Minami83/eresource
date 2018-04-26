@@ -44,12 +44,12 @@ class CourseController extends Controller
         return view($url)->with('user',$user);
     }
 
-    public function nextPage(Request $request, $courseName)
+    public function nextPage(Request $request)
     {
         $user = Auth()->user();
-        dd($request);
-        // $this->incAction($howto,$video,$tutorial,$user);
-        $currentProgress = $this->progressRecord->get($courseName);
+        // dd(request('url'));
+        $this->incAction(request('accord1input'),request('accord2input'),request('accord3input'),$user);
+        $currentProgress = $this->progressRecord->get(request('url'));
         if($user->progress == $currentProgress)
         {
             $user->progress = $user->progress + 1;
@@ -60,7 +60,7 @@ class CourseController extends Controller
         return redirect($url)->with('user',$user);
     }
 
-    public function incAction( $howto,  $video,  $tutorial, $user)
+    public function incAction(int $howto, int $video, int $tutorial, $user)
     {
 
         if($howto!=0 or $video!=0 or $tutorial!=0)

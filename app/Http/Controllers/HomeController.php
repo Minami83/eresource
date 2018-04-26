@@ -33,6 +33,6 @@ class HomeController extends Controller
     public function adminIndex(Request $request)
     {
         $request->user()->authorizeRoles('admin');
-        // return view('adminHome');
+        return view('adminlayouts/statistic');
     }
 }

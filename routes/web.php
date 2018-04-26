@@ -21,5 +21,6 @@ Route::get('/tes', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::post('/course/{courseName}/next', 'CourseController@nextPage')->name('changePage');
+Route::post('/next', 'CourseController@nextPage')->name('changePage');
 Route::get('/course/{courseName}', 'CourseController@index')->name('course');
+Route::get('/admin', 'HomeController@adminIndex');
