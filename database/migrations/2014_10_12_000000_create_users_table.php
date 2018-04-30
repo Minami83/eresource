@@ -18,13 +18,12 @@ class CreateUsersTable extends Migration
             $table->string('nrp')->unique();
             $table->string('name');
             $table->string('faculty');
+            $table->string('department');
             $table->string('phone');
             $table->string('email')->unique();
             $table->string('password');
             $table->integer('progress');
-            $table->integer('how_to');
-            $table->integer('video');
-            $table->integer('tutorial');
+            $table->boolean('verified');
             $table->rememberToken();
             $table->timestamps();
         });

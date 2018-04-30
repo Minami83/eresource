@@ -53,6 +53,7 @@ class RegisterController extends Controller
             'nrp' => 'required|string|max:14',
             'name' => 'required|string|max:255',
             'faculty' => 'required|string',
+            'department' => 'required|string',
             'phone' => 'required|string',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
@@ -71,12 +72,11 @@ class RegisterController extends Controller
             'nrp' => $data['nrp'],
             'name' => $data['name'],
             'faculty' => $data['faculty'],
+            'department' => $data['department'],
             'phone' => $data['phone'],
             'email' => $data['email'],
             'progress' => 1,
-            'how_to' => 0,
-            'video' => 0,
-            'tutorial' => 0,
+            'verified' => True, //nanti ubah jadi False
             'password' => bcrypt($data['password']),
         ]);
         $user

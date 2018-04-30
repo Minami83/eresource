@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'nrp','name', 'faculty', 'phone' , 'email', 'password', 'progress', 'how_to', 'video', 'tutorial'
+        'nrp','name', 'faculty', 'phone' , 'email', 'password', 'progress', 'department', 'verified'
     ];
 
     /**
@@ -58,6 +58,14 @@ class User extends Authenticatable
 
       return null !== $this->roles()->where('name', $role)->first();
 
+    }
+
+    public function jurnals(){
+        return $this->belongsToMany(Jurnal::class);
+    }
+
+    public function takenJurnalList(){
+        return $this->jurnals()->all();
     }
 
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 // use Illuminate\Http\Request;
 use Request;
+use App\Jurnal;
+use App\Log;
 class CourseController extends Controller
 {
     //
@@ -37,18 +39,20 @@ class CourseController extends Controller
     public function index(string $courseName, $howto=0, $video=0, $tutorial=0)
     {
         $user = Auth()->user();
-        $this->incAction($howto,$video,$tutorial,$user);
+        // $this->incAction($howto,$video,$tutorial,$user);
         if($user->progress < $this->progressRecord->get($courseName))
           return redirect('course/asce');
         $url = 'jurnal/'.$courseName;
-        return view($url)->with('user',$user);
+        $myJurnal = $user->takenJurnalList();
+        return view($url)->with('user',$user)->with('myJurnal',$myJurnal);
     }
 
     public function nextPage(Request $request)
     {
         $user = Auth()->user();
+        $callerJurnal = Jurnal::where('name', request('url'))->first();
         // dd(request('url'));
-        $this->incAction(request('accord1input'),request('accord2input'),request('accord3input'),$user);
+        $this->incAction(request('accord1input'),request('accord2input'),request('accord3input'),$user, $callerJurnal);
         $currentProgress = $this->progressRecord->get(request('url'));
         if($user->progress == $currentProgress)
         {
@@ -57,18 +61,32 @@ class CourseController extends Controller
             $url = 'course/'.$this->progressRecord->search($user->progress);
         }
         else $url = 'course/'.$this->progressRecord->search($currentProgress+1);
-        return redirect($url)->with('user',$user);
+        $myJurnal = $user->takenJurnalList();
+        return redirect($url)->with('user',$user)->with('myJurnal',$myJurnal);
     }
 
-    public function incAction(int $howto, int $video, int $tutorial, $user)
+    public function incAction(int $howto, int $video, int $tutorial, $user, $jurnal)
     {
-
-        if($howto!=0 or $video!=0 or $tutorial!=0)
-        {
-            $user->how_to = $user->how_to + $howto;
-            $user->video = $user->video + $video;
-            $user->tutorial = $user->tutorial + $tutorial;
-            $user->save();
+        if($howto==1){
+            $log = new Log();
+            $log->user_id = $user->id;
+            $log->jurnal_id = $jurnal->id;
+            $log->activity = 'How to';
+            $log->save();
+        }
+        if($video==1){
+            $log = new Log();
+            $log->user_id = $user->id;
+            $log->jurnal_id = $jurnal->id;
+            $log->activity = 'Video';
+            $log->save();
+        }
+        if($tutorial==1){
+            $log = new Log();
+            $log->user_id = $user->id;
+            $log->jurnal_id = $jurnal->id;
+            $log->activity = 'Tutorial';
+            $log->save();
         }
     }
 }

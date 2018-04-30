@@ -20,13 +20,12 @@ class UserTableSeeder extends Seeder
         $student->nrp = '51151000555';
         $student->name = 'Budi';
         $student->faculty = 'Fakultas Teknologi Informasi dan Komunikasi';
+        $student->department = 'Informatika';
         $student->phone = '08122467882';
         $student->email = 'budi@gmail.com';
         $student->password = bcrypt('budibudi');
         $student->progress = 4;
-        $student->how_to = 0;
-        $student->video = 0;
-        $student->tutorial = 0;
+        $student->verified = True;
         $student->save();
         $student->roles()->attach($role_student);
 
@@ -34,13 +33,12 @@ class UserTableSeeder extends Seeder
         $admin->nrp = '51151000556';
         $admin->name = 'Badu';
         $admin->faculty = 'Fakultas Teknologi Informasi dan Komunikasi';
+        $admin->department = 'Informatika';
         $admin->phone = '08122446882';
         $admin->email = 'badu@gmail.com';
         $admin->password = bcrypt('badubadu');
         $admin->progress = 20;
-        $admin->how_to = 0;
-        $admin->video = 0;
-        $admin->tutorial = 0;
+        $admin->verified = True;
         $admin->save();
         $admin->roles()->attach($role_admin);
 

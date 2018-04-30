@@ -26,20 +26,18 @@ class HomeController extends Controller
     {
         $request->user()->authorizeRoles(['student','admin']);
         $data = Auth()->user();
+        $myJurnal = $user->takenJurnalList();
         // dd($data);
         // dd($data);
-        return redirect('course/asce')->with('user',$data);
+        return redirect('course/asce')->with('user',$data)->with('myJurnal',$myJurnal);
         return view('webpage/mastercourse')->with('user',$data);
     }
     public function adminIndex(Request $request)
     {
         $request->user()->authorizeRoles('admin');
         $data = Auth()->user();
-        $howto = DB::table('users')->sum('how_to');
-        $video = DB::table('users')->sum('video');
-        $tutorial = DB::table('users')->sum('tutorial');
-        $chartData = collect(['howto' => $howto, 'video' => $video, 'tutorial' => $tutorial]);
+
         // dd($chartData);
-        return view('adminlayouts/statistic')->with('user',$data)->with('data',$chartData);
+        return view('adminlayouts/statistic')->with('user',$data);
     }
 }
