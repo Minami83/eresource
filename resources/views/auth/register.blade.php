@@ -12,7 +12,7 @@
                         @csrf
                         <div class="form-group">
                     <label for="username">NRP</label><br>
-                    <input id="nrp" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="nrp" value="{{ old('name') }}" required autofocus>
+                    <input id="nrp" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="nrp" value="{{ old('nrp') }}" required autofocus>
                     @if ($errors->has('name'))
                         <span class="invalid-feedback">
                             <strong>{{ $errors->first('name') }}</strong>
@@ -46,7 +46,7 @@
                 </div>
                 <div class="form-group">
                     <label for="phone">Phone</label><br>
-                    <input type="text" id="phone" class="form-control" name="phone" required>
+                    <input type="text" id="phone" class="form-control" value="{{ old('phone') }}" name="phone" required>
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label><br>

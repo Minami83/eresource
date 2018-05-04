@@ -65,7 +65,7 @@ class User extends Authenticatable
     }
 
     public function takenJurnalList(){
-        return $this->jurnals()->all();
+        return $this->jurnals();
     }
 
 }

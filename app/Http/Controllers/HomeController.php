@@ -26,7 +26,8 @@ class HomeController extends Controller
     {
         $request->user()->authorizeRoles(['student','admin']);
         $data = Auth()->user();
-        $myJurnal = $user->takenJurnalList();
+        if($data->verified==0) return redirect('adminlayout/dummy');
+        $myJurnal = $data->takenJurnalList();
         // dd($data);
         // dd($data);
         return redirect('course/asce')->with('user',$data)->with('myJurnal',$myJurnal);

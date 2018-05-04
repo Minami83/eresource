@@ -39,6 +39,7 @@ class CourseController extends Controller
     public function index(string $courseName, $howto=0, $video=0, $tutorial=0)
     {
         $user = Auth()->user();
+        if($user->verified==0) return redirect('adminlayout/dummy');
         // $this->incAction($howto,$video,$tutorial,$user);
         if($user->progress < $this->progressRecord->get($courseName))
           return redirect('course/asce');
@@ -50,6 +51,7 @@ class CourseController extends Controller
     public function nextPage(Request $request)
     {
         $user = Auth()->user();
+        if($user->verified==0) return redirect('adminlayout/dummy');
         $callerJurnal = Jurnal::where('name', request('url'))->first();
         // dd(request('url'));
         $this->incAction(request('accord1input'),request('accord2input'),request('accord3input'),$user, $callerJurnal);
