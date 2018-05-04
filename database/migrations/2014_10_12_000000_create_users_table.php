@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->integer('progress');
-            $table->boolean('verified');
+            $table->integer('verified');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -76,7 +76,7 @@ class RegisterController extends Controller
             'phone' => $data['phone'],
             'email' => $data['email'],
             'progress' => 1,
-            'verified' => True, //nanti ubah jadi False
+            'verified' => 1, //nanti ubah jadi 0(unverified)
             'password' => bcrypt($data['password']),
         ]);
         $user

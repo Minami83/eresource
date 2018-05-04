@@ -25,7 +25,7 @@ class UserTableSeeder extends Seeder
         $student->email = 'budi@gmail.com';
         $student->password = bcrypt('budibudi');
         $student->progress = 4;
-        $student->verified = True;
+        $student->verified = 1; //0-> not verified, 1->verified, 2->complete course
         $student->save();
         $student->roles()->attach($role_student);
 
@@ -38,7 +38,7 @@ class UserTableSeeder extends Seeder
         $admin->email = 'badu@gmail.com';
         $admin->password = bcrypt('badubadu');
         $admin->progress = 20;
-        $admin->verified = True;
+        $admin->verified = 2;
         $admin->save();
         $admin->roles()->attach($role_admin);
 
