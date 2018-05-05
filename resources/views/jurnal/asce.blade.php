@@ -1,6 +1,11 @@
 @extends('webpage.mastercourse')
 
-@section('title')ASCE Library
+@section('title')
+	ASCE Library
+@endsection()
+
+@section('titlejurnal')
+	American Society of Civil Engineers (ASCE)
 @endsection()
 
 @section('howto')

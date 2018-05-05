@@ -1,5 +1,13 @@
 @extends('webpage.mastercourse')
 
+@section('title')
+	IEEE
+@endsection()
+
+@section('titlejurnal')
+	IEEE Xplore
+@endsection()
+
 @section('howto')
 ini how to
 @endsection()

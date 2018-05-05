@@ -1,5 +1,13 @@
 @extends('webpage.mastercourse')
 
+@section('title')
+	Nature
+@endsection()
+
+@section('titlejurnal')
+	Nature
+@endsection()
+
 @section('howto')
 ini how to
 @endsection()

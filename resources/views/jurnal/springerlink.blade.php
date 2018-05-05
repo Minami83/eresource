@@ -1,5 +1,13 @@
 @extends('webpage.mastercourse')
 
+@section('title')
+	SpringerLink
+@endsection()
+
+@section('titlejurnal')
+	SpringerLink
+@endsection()
+
 @section('howto')
 ini how to
 @endsection()

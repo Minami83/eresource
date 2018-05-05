@@ -1,5 +1,13 @@
 @extends('webpage.mastercourse')
 
+@section('title')
+	Journal of Ship Research
+@endsection()
+
+@section('titlejurnal')
+	Journal of Ship Research
+@endsection()
+
 @section('howto')
 ini how to
 @endsection()

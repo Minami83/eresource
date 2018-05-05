@@ -1,5 +1,13 @@
 @extends('webpage.mastercourse')
 
+@section('title')
+	GALE - Cencage Learning
+@endsection()
+
+@section('titlejurnal')
+	Cangage Learning (GALE)
+@endsection()
+
 @section('howto')
 ini how to
 @endsection()

@@ -30,18 +30,23 @@
                 </div>
                 <div class="form-group">
                     <label for="faculty">Faculty</label>
-                    <select class="form-control" name="faculty" required>
-                        <option disabled="true" selected="true">-- Please select your faculty --</option>
-                        <option value="FAKULTAS TEKNOLOGI INDUSTRI">FAKULTAS TEKNOLOGI INDUSTRI</option>
-                        <option value="FAKULTAS TEKNOLOGI KELAUTAN">FAKULTAS TEKNOLOGI KELAUTAN</option>
-                        <option value="FAKULTAS TEKNOLOGI ELEKTRO">FAKULTAS TEKNOLOGI ELEKTRO</option>
-                        <option value="FAKULTAS TEKNIK SIPIL, LINGKUNGAN, DAN KEBUMIAN">FAKULTAS TEKNIK SIPIL, LINGKUNGAN, DAN KEBUMIAN</option>
-                        <option value="FAKULTAS TEKNOLOGI INFORMASI DAN KOMUNIKASI">FAKULTAS TEKNOLOGI INFORMASI DAN KOMUNIKASI</option>
-                        <option value="FAKULTAS ARSITEKTUR, DESAIN, DAN PERENCANAAN">FAKULTAS ARSITEKTUR, DESAIN, DAN PERENCANAAN</option>
-                        <option value="FAKULTAS SAINS">FAKULTAS SAINS</option>
-                        <option value="FAKULTAS MATEMATIKA, KOMPUTASI, DAN SAINS DATA">FAKULTAS MATEMATIKA, KOMPUTASI, DAN SAINS DATA</option>
-                        <option value="FAKULTAS VOKASI">FAKULTAS VOKASI</option>
-                        <option value="FAKULTAS BISNIS DAN MANAJEMEN TEKNOLOGI">FAKULTAS BISNIS DAN MANAJEMEN TEKNOLOGI</option>
+                    <select class="form-control" name="faculty" id="facultyoption" required>
+                    <option disabled="true" selected>-- Please select your faculty --</option>
+                    <option value="FAKULTAS TEKNOLOGI INDUSTRI">FAKULTAS TEKNOLOGI INDUSTRI</option>
+                    <option value="FAKULTAS TEKNOLOGI KELAUTAN">FAKULTAS TEKNOLOGI KELAUTAN</option>
+                    <option value="FAKULTAS TEKNOLOGI ELEKTRO">FAKULTAS TEKNOLOGI ELEKTRO</option>
+                    <option value="FAKULTAS TEKNIK SIPIL, LINGKUNGAN, DAN KEBUMIAN">FAKULTAS TEKNIK SIPIL, LINGKUNGAN, DAN KEBUMIAN</option>
+                    <option value="FAKULTAS TEKNOLOGI INFORMASI DAN KOMUNIKASI">FAKULTAS TEKNOLOGI INFORMASI DAN KOMUNIKASI</option>
+                    <option value="FAKULTAS ARSITEKTUR, DESAIN, DAN PERENCANAAN">FAKULTAS ARSITEKTUR, DESAIN, DAN PERENCANAAN</option>
+                    <option value="FAKULTAS SAINS">FAKULTAS SAINS</option>
+                    <option value="FAKULTAS MATEMATIKA, KOMPUTASI, DAN SAINS DATA">FAKULTAS MATEMATIKA, KOMPUTASI, DAN SAINS DATA</option>
+                    <option value="FAKULTAS VOKASI">FAKULTAS VOKASI</option>
+                    <option value="FAKULTAS BISNIS DAN MANAJEMEN TEKNOLOGI">FAKULTAS BISNIS DAN MANAJEMEN TEKNOLOGI</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="department">Department</label>
+                    <select class="form-control" name="department" id="departoption" required>
                     </select>
                 </div>
                 <div class="form-group">
@@ -139,4 +144,24 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("select#facultyoption").change(function(){
+            var selectedCountry = $("#facultyoption option:selected").val();
+            if(selectedCountry=="FAKULTAS TEKNOLOGI INDUSTRI"){
+                $('#departoption').empty();
+                $('#departoption').append("<option>mesin</option><option>Elektro</option>")
+            }
+            else if(selectedCountry=="FAKULTAS TEKNOLOGI KELAUTAN"){
+                $('#departoption').empty();
+                $('#departoption').append("<option>infor</option><option>SI</option>")
+            }
+            else if(selectedCountry=="FAKULTAS TEKNOLOGI ELEKTRO"){
+                $('#departoption').empty();
+                $('#departoption').append("<option>mat</option><option>bio</option>")
+            }
+        });
+    });
+</script>
 @endsection

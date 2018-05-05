@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/tes', function () {
-    return view('adminlayouts.statistic');
+    return view('adminlayouts.dummy');
 });
 
 Auth::routes();

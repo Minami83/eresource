@@ -1,5 +1,13 @@
 @extends('webpage.mastercourse')
 
+@section('title')
+	Proquest
+@endsection()
+
+@section('titlejurnal')
+	Proquest
+@endsection()
+
 @section('howto')
 ini how to
 @endsection()

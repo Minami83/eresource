@@ -72,10 +72,11 @@
 
 	<div class="w3-main" style="margin-left:300px; margin-top: 60px">
 		<br>
-		<div class="w3-light-grey w3-round-xlarge" style="margin-left: 50px; margin-right: 50px">
+		<div class="w3-light-grey w3-round-xlarge" style="margin-left: 30px; margin-right: 30px">
 			<div id="myBar" class="w3-container w3-dropdownnavbar w3-round-xlarge w3-center" ></div>
 		</div>
 		<br>
+		<h3 style="padding: 0px 18px">@yield('titlejurnal')</h3><br>
 		<button class="accordion" id="accord1" onclick="accordionfunc(this.id)">How to:</button>
 		<div class="panel">
 	  		@yield('howto')
@@ -88,7 +89,7 @@
 		<div class="panel">
 	  		@yield('tutorial')
 		</div>
-		<br><br><br>
+		<br><br>
 		<form id="formstatistik" method="post" action="/next">
 			@csrf
 			<input id="accord1input" type="hidden" name="accord1input" value="0">
@@ -96,15 +97,28 @@
 			<input id="accord3input" type="hidden" name="accord3input" value="0">
 			<input name="url" value="{{substr(Request::path(),7)}}" type="hidden">
 			<div>
-				<button id="nextbutton" class="w3-button w3-right w3-dropdownnavbar w3-hover-dropdownnavbar" type=submit style="display: none;margin-right: 70px">Next</button>
+				<button id="nextbutton" class="w3-button w3-right w3-dropdownnavbar w3-hover-dropdownnavbar" type=submit style="display: none;margin-right: 50px">Next</button>
 			</div>
 		</form>
 	</div>
+	<br><br><br>
 
 	<script type="text/javascript">
+		$(window).resize(function(){
+			if ($(window).width() >= 992) {
+				w3_close();
+				$('#mySidebar').css("top","60px");
+		 		$('#mySidebar').css("height","100%");
+			}
+			else if($(window).width() < 992){
+				$('#mySidebar').css("top","0px");
+		    	$('#mySidebar').css("height","100%");
+			}
+		});
+
 		$(document).ready(function(){
 			var elem = document.getElementById("myBar");
-		    var width=({{$user->progress}}/19)*100;
+		    var width=(({{$user->progress}}-1)/19)*100;
 		    elem.style.width = width + '%';
 		    elem.innerHTML = parseFloat(width).toFixed(0) + '%';
 		});
@@ -179,11 +193,6 @@
 			}
 		});
 
-		function increase() {
-			// Increment database progress
-			// wes pindah nde controller hapusen ae iki
-		}
-
 		function accordionfunc(accordid){
 			var accord=document.getElementById(accordid);
 		    accord.classList.toggle("active2");
@@ -205,39 +214,15 @@
 		}
 
 		function w3_open() {
-		    var sidebardisplay=document.getElementById("mySidebar");
-			var overlaydisplay=document.getElementById("myOverlay");
-		    sidebardisplay.style.display = "block";
-		    overlaydisplay.style.display = "block";
+		    document.getElementById("mySidebar").style.display = "block";
+		    document.getElementById("myOverlay").style.display = "block";
+		    $('#mySidebar').css("top","0px");
+		    $('#mySidebar').css("height","100%");
 		}
 		function w3_close() {
-			var sidebardisplay=document.getElementById("mySidebar");
-			var overlaydisplay=document.getElementById("myOverlay");
-		    sidebardisplay.style.display = "none";
-		    overlaydisplay.style.display = "none";
+		    document.getElementById("mySidebar").style.display = "none";
+		    document.getElementById("myOverlay").style.display = "none";
 		}
-		function w3_toggle() {
-			var sidebardisplay=document.getElementById("mySidebar");
-			var overlaydisplay=document.getElementById("myOverlay");
-		    if($("#mySidebar").css('display')=='block' && $("#myOverlay").css('display')=='block'){
-		    	sidebardisplay.style.display='none';
-		    	overlaydisplay.style.display='none';
-		    }
-		    else if($("#mySidebar").css('display')=='none' && $("#myOverlay").css('display')=='none'){
-		    	sidebardisplay.style.display='block';
-		    	overlaydisplay.style.display='block';
-		    }
-		}
-
-		// var header = document.getElementById("mySidebar");
-		// var btn = header.getElementsByClassName("w3-bar-item w3-button");
-		// for (var i = 0; i < btn.length; i++) {
-		// 	btn[i].addEventListener("click", function() {
-		// 		var current = document.getElementsByClassName("active");
-		// 		current[0].className = current[0].className.replace(" active", "");
-		// 		this.className += " active";
-		// 	});
-		// }
 
 		@yield('morescript')
 	</script>

@@ -1,5 +1,13 @@
 @extends('webpage.mastercourse')
 
+@section('title')
+	ScienceDirect
+@endsection()
+
+@section('titlejurnal')
+	ScienceDirect
+@endsection()
+
 @section('howto')
 ini how to
 @endsection()

@@ -1,5 +1,13 @@
 @extends('webpage.mastercourse')
 
+@section('title')
+	ASME Digital Collection
+@endsection()
+
+@section('titlejurnal')
+	The American Society of Mechanical Engineers (ASME)
+@endsection()
+
 @section('howto')
 ini how to
 @endsection()

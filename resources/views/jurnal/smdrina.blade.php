@@ -1,5 +1,13 @@
 @extends('webpage.mastercourse')
 
+@section('title')
+	Shiprepair & Maintenance Digital - RINA
+@endsection()
+
+@section('titlejurnal')
+	Shiprepair & Maintenance Digital - RINA
+@endsection()
+
 @section('howto')
 ini how to
 @endsection()

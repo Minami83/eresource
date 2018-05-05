@@ -1,5 +1,13 @@
 @extends('webpage.mastercourse')
 
+@section('title')
+	IJME - RINA
+@endsection()
+
+@section('titlejurnal')
+	International journal of Maritime Technology (IJME) - RINA
+@endsection()
+
 @section('howto')
 ini how to
 @endsection()

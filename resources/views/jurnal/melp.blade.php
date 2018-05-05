@@ -1,5 +1,13 @@
 @extends('webpage.mastercourse')
 
+@section('title')
+	Maritime Economics & Logistics Palgrave
+@endsection()
+
+@section('titlejurnal')
+	Palgrave McMillan-Maritime Economics & Logistics
+@endsection()
+
 @section('howto')
 
 @endsection()

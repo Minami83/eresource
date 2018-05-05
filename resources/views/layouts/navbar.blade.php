@@ -1,6 +1,6 @@
 <div class="w3-top">
   <div class="w3-bar w3-large w3-dropdownnavbar">
-  	<button class="w3-button w3-teal w3-xlarge w3-hide-large w3-left w3-padding-16" onclick="w3_toggle()">&#9776;</button>
+  	<button class="w3-button w3-teal w3-hide-large w3-left w3-padding-16" style="height: 60px" onclick="w3_open()">&#9776;</button>
     	<a href="" class="w3-bar-item"><img src="/image/eresourcelogo.png"></a>
     	<div class="w3-dropdown-hover w3-right">
   	    <button class="w3-button w3-dropdownnavbar w3-padding-16 w3-hover-none w3-hover-text-amber">{{$user->name}}</button>

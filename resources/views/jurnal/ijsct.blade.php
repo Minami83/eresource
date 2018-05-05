@@ -1,5 +1,13 @@
 @extends('webpage.mastercourse')
 
+@section('title')
+	IJSCT - RINA
+@endsection()
+
+@section('titlejurnal')
+	International Journal of Small Craft Technology (IJSCT) - RINA
+@endsection()
+
 @section('howto')
 ini how to
 @endsection()

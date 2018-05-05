@@ -1,5 +1,13 @@
 @extends('webpage.mastercourse')
 
+@section('title')
+	The Naval Architect - RINA
+@endsection()
+
+@section('titlejurnal')
+	The Naval Architect - RINA
+@endsection()
+
 @section('howto')
 ini how to
 @endsection()
