@@ -15,9 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/tes', function () {
-    return view('adminlayouts.dummy');
+    return view('webpage.register');
 });
-
+Route::get('/tes2', function () {
+    return view('webpage.login');
+});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

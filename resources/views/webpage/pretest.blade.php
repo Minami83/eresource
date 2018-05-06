@@ -76,6 +76,8 @@
 			<p><input class="w3-radio" type="radio" name="pre1" value="">
 			<label>tempat mencari ilmu</label></p>
 			<p><br>
+
+			<button type="submit">
 		</form>
 	</div>
 @endsection()

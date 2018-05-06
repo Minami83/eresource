@@ -1,4 +1,4 @@
-@extends('layouts.master2')
+@extends('layouts.master')
 
 @section('style')
   .active {
@@ -39,7 +39,7 @@
 
 @endsection()
 @section('isi')
-<div class="container">
+<div class="container" style="margin-top: 60px">
 @foreach($unverified as $verif)
   <button class="accordion" id="accord1" onclick="accordionfunc(this.id)">{{$verif->name}}</button>
   <div class="panel">
@@ -49,7 +49,7 @@
       <div class="row">
         <div class="col-sm-6">
           @foreach($jurnal1 as $jur)
-          <input class="w3-check" type="checkbox" name='{{$jur->name}} 'value={{$jur->name}}> {{$jur->fullName}}<br>
+          <input class="w3-check" type="checkbox" name={{$jur->name}} value={{$jur->name}}> {{$jur->fullName}}<br>
           @endforeach
       </div>
       <div class="col-sm-6">

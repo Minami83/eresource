@@ -1,33 +1,60 @@
 @extends('layouts.master2')
 @section('title')
-	Home
+	Login
+@endsection()
+
+@section('style')
+	input.empty {
+		font-family: FontAwesome;
+		font-style: normal;
+		font-weight: normal;
+		text-decoration: inherit;
+	}
 @endsection()
 
 @section('isi')
-	<div class="jumbotron text-center">
-		<h1>E-Resource ITS</h1> 
-	</div>
 	
-	<div class="row" id="login" class="login">
-		<div class="col-sm-2"></div>
-		<div class="col-sm-8">
-		    <form action="" method="post">
-		    	<h1>Login</h1><br>
+	<div class="w3-row" style="margin-top: 150px">
+		<div class="w3-center"><img src="/image/eresourcelogo.png" style="width: 225px"></div><br>
+		<div class="col-sm-4"></div>
+		<div class="w3-card col-sm-4 w3-white w3-round-large">
+			<br>
+		    <form action="{{ route('login') }}" method="POST">
 		    	{{ csrf_field() }}
 		        <div class="form-group">
-		            <label for="username">Username</label><br>
-		            <input type="text" id="username" class="form-control" name="username">
+		            <input id="email" type="email" class="w3-round-xlarge iconified empty form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="&#xf0e0;   {{ __('E-Mail Address') }}" required autofocus>
+
+		            @if ($errors->has('email'))
+                        <span class="invalid-feedback">
+                            <strong>{{ $errors->first('email') }}</strong>
+                        </span>
+                    @endif
 		        </div>
 		        <div class="form-group">
-		            <label for="password">Password</label><br>
-		            <input type="password" id="password" class="form-control" name="password">
+		            <input id="password" type="password" class="w3-round-xlarge iconified empty form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="&#xf023;     {{ __('Password') }}" required>
+		            @if ($errors->has('password'))
+	                    <span class="invalid-feedback">
+	                        <strong>{{ $errors->first('password') }}</strong>
+	                    </span>
+	                @endif
 		        </div>
-		        <button class="btn waves-effect waves-light" type="submit" name="action">Login
-		        </button>
-		        <p>Don't have an account? <a id="changesign" href="#signup"><i>Sign Up</i></a></p>
+		        <div class="checkbox">
+                    <label style="float: left">
+                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> {{ __('Remember Me') }}
+                    </label>
+                </div>
+                <a style="float: right" class="btn-link" href="{{ route('password.request') }}">{{ __('Forgot Your Password?') }}</a>
+                <br><br>
+                <div>
+		        	<button style="width: 100%" class="btn waves-effect waves-light" type="submit"> {{ __('Login') }}
+		        	</button>
+		        </div>
+		        <br>
+		         <p class="">Belum punya akun? <a class="btn-link" href="#login"><i>Sign Up</i></a></p>
+                
 		    </form>
 		</div>
-		<div class="col-sm-2"></div>
+		<div class="col-sm-4"></div>
 	</div>	
 
 	<div class="row" id="signup" class="signup" style="display: none">
@@ -81,22 +108,19 @@
 	</div>
 
 	<script type="text/javascript">
-		$(document).ready(function(){
-			$('#signup').css("display","none");
-			$('#changesign').click(function(){
-				var dest = $(this).attr('href');
-				$('#login').css("display","none");
-				$('#login').removeClass('login');
-				$(dest).fadeIn();
-				return false;  
-			});
-			$('#changelog').click(function(){
-				var dest = $(this).attr('href');
-				$('#signup').css("display","none");
-				$('#signup').removeClass('signup');
-				$(dest).fadeIn();
-				return false;  
-			});
+		$('#iconified').on('keyup', function() {
+		    var input = $(this);
+		    if(input.val().length === 0) {
+		        input.addClass('empty');
+		    } else {
+		        input.removeClass('empty');
+		    }
 		});
+
+		$(document).ready(function(){
+			var width1 = document.getElementById("email").style.width;
+		    document.getElementById("btnlogin").style.width=width1;
+		});
+
 	</script>
 @endsection()
