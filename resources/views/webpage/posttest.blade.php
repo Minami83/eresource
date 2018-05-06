@@ -3,9 +3,9 @@
 @section('isi')
 	<br><br>
 	<div class="container">
-		<h2>Pre-test</h2><br>
+		<h2>Post-test</h2><br>
 		<form class="container" action="/action_page.php">
-			<p>      
+			<p>
 			<label>1. Apa yang dimaksud dengan jurnal?</label></p>
 			<p><input class="w3-radio" type="radio" name="pre1" value="">
 			<label>tempat mencari ilmu</label></p>
@@ -15,9 +15,9 @@
 			<label>tempat mencari ilmu</label></p>
 			<p><input class="w3-radio" type="radio" name="pre1" value="">
 			<label>tempat mencari ilmu</label></p>
-			<p><br>    
-			
-			<p>      
+			<p><br>
+
+			<p>
 			<label>1. Apa yang dimaksud dengan jurnal?</label></p>
 			<p><input class="w3-radio" type="radio" name="pre1" value="">
 			<label>tempat mencari ilmu</label></p>
@@ -29,7 +29,7 @@
 			<label>tempat mencari ilmu</label></p>
 			<p>
 
-			<p>      
+			<p>
 			<label>1. Apa yang dimaksud dengan jurnal?</label></p>
 			<p><input class="w3-radio" type="radio" name="pre1" value="">
 			<label>tempat mencari ilmu</label></p>
@@ -41,7 +41,7 @@
 			<label>tempat mencari ilmu</label></p>
 			<p><br>
 
-			<p>      
+			<p>
 			<label>1. Apa yang dimaksud dengan jurnal?</label></p>
 			<p><input class="w3-radio" type="radio" name="pre1" value="">
 			<label>tempat mencari ilmu</label></p>
@@ -53,7 +53,7 @@
 			<label>tempat mencari ilmu</label></p>
 			<p><br>
 
-			<p>      
+			<p>
 			<label>1. Apa yang dimaksud dengan jurnal?</label></p>
 			<p><input class="w3-radio" type="radio" name="pre1" value="">
 			<label>tempat mencari ilmu</label></p>
@@ -65,7 +65,7 @@
 			<label>tempat mencari ilmu</label></p>
 			<p><br>
 
-			<p>      
+			<p>
 			<label>1. Apa yang dimaksud dengan jurnal?</label></p>
 			<p><input class="w3-radio" type="radio" name="pre1" value="">
 			<label>tempat mencari ilmu</label></p>

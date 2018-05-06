@@ -68,4 +68,11 @@ class User extends Authenticatable
         return $this->jurnals()->where('user_id',$this->id)->get();
     }
 
+    public function pretests(){
+        return $this->belongsToMany(Pretest::class);
+    }
+
+    public function posttests(){
+        return $this->belongsToMany(Posttest::class);
+    }
 }

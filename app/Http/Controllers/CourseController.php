@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Request;
 use App\Jurnal;
 use App\Log;
+use App\Pretest;
+use App\Posttest;
 class CourseController extends Controller
 {
     //
@@ -37,33 +39,90 @@ class CourseController extends Controller
         'nature' => 19]);
     }
 
+    public function pretest()
+    {
+        $user = Auth()->user();
+        $pretest_quest = Pretest::get();
+        // dd($pretest_quest);
+        return view('webpage/pretest')->with('user',$user)->with('pretest',$pretest_quest);
+    }
+
+    public function preAns(Request $request)
+    {
+        $user = Auth()->user();
+        $ans = $request->all();
+        $pretest_quest = Pretest::get();
+        foreach($pretest_quest as $quest){
+            $user->pretests()->attach($pretest, ['answer' => $ans[$quest->id] ]);
+        }
+        $myJurnal = $user->takenJurnalList();
+        $url = 'jurnal'.$myJurnal[0]->name;
+        return view($url)->with('user',$user)->with('myJurnal', $myJurnal);
+    }
+
+    public function posttest()
+    {
+        $user = Auth()->user();
+        $posttest_quest = Posttest::get();
+        return view('webpage/posttest')->with('user',$user)->with('posttest',$posttest_quest);
+    }
+
+    public function postAns(Request $request)
+    {
+        $user = Auth()->user();
+        $ans = $request->all();
+        $posttest_quest = Posttest::get();
+        foreach($posttest_quest as $quest){
+            $user->posttests()->attach($posttest, ['answer' => $ans[$quest->id] ]);
+        }
+        $myJurnal = $user->takenJurnalList();
+        $url = 'jurnal'.$myJurnal[0]->name;
+        return view($url)->with('user',$user)->with('myJurnal', $myJurnal);
+    }
+
     public function index(string $courseName, $howto=0, $video=0, $tutorial=0)
     {
         $user = Auth()->user();
         if($user->verified==0) return view('adminlayouts/dummy');
-        if($user->progress < $this->progressRecord->get($courseName))
-          return redirect('course/pretest');
-        $url = 'jurnal/'.$courseName;
         $myJurnal = $user->takenJurnalList();
+        if($user->progress == 0)
+          return $this->pretest();
+        $now = substr(Request::path(),7);
+        $nowProgress = $myJurnal->pluck('name')->search($now);
+        $url = 'jurnal/'.$myJurnal[($user->progress>$nowProgress)?$nowProgress:$user->progress]->name;
         return view($url)->with('user',$user)->with('myJurnal',$myJurnal);
     }
+
 
     public function nextPage(Request $request)
     {
         $user = Auth()->user();
         if($user->verified==0) return redirect('adminlayout/dummy');
         $callerJurnal = Jurnal::where('name', request('url'))->first();
-        // dd(request('url'));
+        $myJurnal = $user->takenJurnalList();
+
         $this->incAction(request('accord1input'),request('accord2input'),request('accord3input'),$user, $callerJurnal);
-        $currentProgress = $this->progressRecord->get(request('url'));
-        if($user->progress == $currentProgress)
+
+        $currentProgress = $myJurnal->pluck('name')->search(request('url'));
+        if($user->progress-1 == $currentProgress)
         {
             $user->progress = $user->progress + 1;
+            if($user->progress > $myJurnal->count()){
+                $user->progress = $user->progress - 1;
+                $user->save();
+                return $this->posttest();
+            }
             $user->save();
-            $url = 'course/'.$this->progressRecord->search($user->progress);
+
+            $url = 'course/'.$myJurnal[$user->progress]->name;
         }
-        else $url = 'course/'.$this->progressRecord->search($currentProgress+1);
-        $myJurnal = $user->takenJurnalList();
+        else{
+            $currentProgress = $currentProgress + 1;
+            if($currentProgress > $myJurnal->count()) return $this->posttest();
+            $url = 'course/'.$myJurnal[$currentProgress]->name;
+
+        }
+        // dd($url);
         return redirect($url)->with('user',$user)->with('myJurnal',$myJurnal);
     }
 

@@ -3,6 +3,8 @@
 use Illuminate\Database\Seeder;
 use App\User;
 use App\Role;
+use App\Jurnal;
+use App\Pretest;
 class UserTableSeeder extends Seeder
 {
     /**
@@ -15,6 +17,8 @@ class UserTableSeeder extends Seeder
         //
         $role_student = Role::where('name', 'student')->first();
         $role_admin = Role::where('name', 'admin')->first();
+        $jurnal = Jurnal::get();
+        $pretest_quest = Pretest::get();
 
         $student = new User();
         $student->nrp = '51151000555';
@@ -28,6 +32,12 @@ class UserTableSeeder extends Seeder
         $student->verified = 1; //0-> not verified, 1->verified, 2->complete course
         $student->save();
         $student->roles()->attach($role_student);
+        foreach($jurnal as $jur){
+            $student->jurnals()->attach($jur);
+        }
+        foreach($pretest_quest as $quest){
+            $student->pretests()->attach($quest, ['answer' => 1]);
+        }
 
         $admin = new User();
         $admin->nrp = '51151000556';
@@ -41,7 +51,9 @@ class UserTableSeeder extends Seeder
         $admin->verified = 2;
         $admin->save();
         $admin->roles()->attach($role_admin);
-
+        foreach($jurnal as $jur){
+            $admin->jurnals()->attach($jur);
+        }
 
     }
 }
