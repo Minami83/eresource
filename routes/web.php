@@ -23,4 +23,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/next', 'CourseController@nextPage')->name('changePage');
 Route::get('/course/{courseName}', 'CourseController@index')->name('course');
-Route::get('/admin', 'HomeController@adminIndex');
+Route::get('/admin', 'AdminController@Index');
+Route::post('/admin', 'AdminController@verify');

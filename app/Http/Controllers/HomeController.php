@@ -26,19 +26,12 @@ class HomeController extends Controller
     {
         $request->user()->authorizeRoles(['student','admin']);
         $data = Auth()->user();
-        if($data->verified==0) return redirect('adminlayout/dummy');
+        if($data->verified==0) return view('adminlayouts/dummy')->with('user',$data);
         $myJurnal = $data->takenJurnalList();
         // dd($data);
         // dd($data);
         return redirect('course/asce')->with('user',$data)->with('myJurnal',$myJurnal);
         return view('webpage/mastercourse')->with('user',$data);
     }
-    public function adminIndex(Request $request)
-    {
-        $request->user()->authorizeRoles('admin');
-        $data = Auth()->user();
 
-        // dd($chartData);
-        return view('adminlayouts/statistic')->with('user',$data);
-    }
 }

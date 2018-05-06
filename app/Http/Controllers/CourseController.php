@@ -15,6 +15,7 @@ class CourseController extends Controller
     {
         $this->middleware('auth');
         $this->progressRecord = collect([
+        'pretest' => 0,
         'asce' => 1,
         'asme' => 2,
         'melp' => 3,
@@ -39,10 +40,9 @@ class CourseController extends Controller
     public function index(string $courseName, $howto=0, $video=0, $tutorial=0)
     {
         $user = Auth()->user();
-        if($user->verified==0) return redirect('adminlayout/dummy');
-        // $this->incAction($howto,$video,$tutorial,$user);
+        if($user->verified==0) return view('adminlayouts/dummy');
         if($user->progress < $this->progressRecord->get($courseName))
-          return redirect('course/asce');
+          return redirect('course/pretest');
         $url = 'jurnal/'.$courseName;
         $myJurnal = $user->takenJurnalList();
         return view($url)->with('user',$user)->with('myJurnal',$myJurnal);

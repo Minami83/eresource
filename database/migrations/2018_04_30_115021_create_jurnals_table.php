@@ -16,6 +16,7 @@ class CreateJurnalsTable extends Migration
         Schema::create('jurnals', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('fullName');
             $table->timestamps();
         });
     }
