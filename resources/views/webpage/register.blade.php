@@ -81,10 +81,9 @@
                 <div class="form-group">
                     <input id="password-confirm" type="password" class="w3-round-xlarge iconified empty form-control" name="password_confirmation" placeholder="&#xf01e;   {{ __('Confirm Password') }}" required>
                 </div>
-                <br>
                 <button style="width: 100%" class="btn waves-effect waves-light" type="submit" name="action">Register
                 </button><br><br>
-		        <p class="">Already have an account? <a id="changelog" href="#login"><i>Login</i></a></p>
+		        <p class="">Already have an account? <a class="btn-link" href="#login"><i>Login</i></a></p>
 	    	</form>
 		</div>
 		<div class="col-sm-4"></div>

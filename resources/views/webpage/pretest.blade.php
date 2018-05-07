@@ -3,81 +3,17 @@
 @section('isi')
 	<br><br>
 	<div class="container">
-		<h2>Pre-test</h2><br>
-		<form class="container" action="/action_page.php">
-			<p>      
-			<label>1. Apa yang dimaksud dengan jurnal?</label></p>
-			<p><input class="w3-radio" type="radio" name="pre1" value="">
-			<label>tempat mencari ilmu</label></p>
-			<p><input class="w3-radio" type="radio" name="pre1" value="">
-			<label>tempat mencari ilmu</label></p>
-			<p><input class="w3-radio" type="radio" name="pre1" value="">
-			<label>tempat mencari ilmu</label></p>
-			<p><input class="w3-radio" type="radio" name="pre1" value="">
-			<label>tempat mencari ilmu</label></p>
-			<p><br>    
-			
-			<p>      
-			<label>1. Apa yang dimaksud dengan jurnal?</label></p>
-			<p><input class="w3-radio" type="radio" name="pre1" value="">
-			<label>tempat mencari ilmu</label></p>
-			<p><input class="w3-radio" type="radio" name="pre1" value="">
-			<label>tempat mencari ilmu</label></p>
-			<p><input class="w3-radio" type="radio" name="pre1" value="">
-			<label>tempat mencari ilmu</label></p>
-			<p><input class="w3-radio" type="radio" name="pre1" value="">
-			<label>tempat mencari ilmu</label></p>
-			<p>
+		<br><br><h2>Pre-test</h2><br>
+		<form class="container" method="POST" action="/action_page.php">
+			@foreach($pretest as $pre)
+			<label>{{$pre->id}}. {{$pre->question}}</label><br>
+			<input class="w3-radio" type="radio" name="{{$pre->choice_1}}">{{$pre->choice_1}}<br>
+			<input class="w3-radio" type="radio" name="{{$pre->choice_2}}">{{$pre->choice_2}}<br>
+			<input class="w3-radio" type="radio" name="{{$pre->choice_3}}">{{$pre->choice_3}}<br>
+			<input class="w3-radio" type="radio" name="{{$pre->choice_4}}">{{$pre->choice_4}}<br><br>
+			@endforeach
 
-			<p>      
-			<label>1. Apa yang dimaksud dengan jurnal?</label></p>
-			<p><input class="w3-radio" type="radio" name="pre1" value="">
-			<label>tempat mencari ilmu</label></p>
-			<p><input class="w3-radio" type="radio" name="pre1" value="">
-			<label>tempat mencari ilmu</label></p>
-			<p><input class="w3-radio" type="radio" name="pre1" value="">
-			<label>tempat mencari ilmu</label></p>
-			<p><input class="w3-radio" type="radio" name="pre1" value="">
-			<label>tempat mencari ilmu</label></p>
-			<p><br>
-
-			<p>      
-			<label>1. Apa yang dimaksud dengan jurnal?</label></p>
-			<p><input class="w3-radio" type="radio" name="pre1" value="">
-			<label>tempat mencari ilmu</label></p>
-			<p><input class="w3-radio" type="radio" name="pre1" value="">
-			<label>tempat mencari ilmu</label></p>
-			<p><input class="w3-radio" type="radio" name="pre1" value="">
-			<label>tempat mencari ilmu</label></p>
-			<p><input class="w3-radio" type="radio" name="pre1" value="">
-			<label>tempat mencari ilmu</label></p>
-			<p><br>
-
-			<p>      
-			<label>1. Apa yang dimaksud dengan jurnal?</label></p>
-			<p><input class="w3-radio" type="radio" name="pre1" value="">
-			<label>tempat mencari ilmu</label></p>
-			<p><input class="w3-radio" type="radio" name="pre1" value="">
-			<label>tempat mencari ilmu</label></p>
-			<p><input class="w3-radio" type="radio" name="pre1" value="">
-			<label>tempat mencari ilmu</label></p>
-			<p><input class="w3-radio" type="radio" name="pre1" value="">
-			<label>tempat mencari ilmu</label></p>
-			<p><br>
-
-			<p>      
-			<label>1. Apa yang dimaksud dengan jurnal?</label></p>
-			<p><input class="w3-radio" type="radio" name="pre1" value="">
-			<label>tempat mencari ilmu</label></p>
-			<p><input class="w3-radio" type="radio" name="pre1" value="">
-			<label>tempat mencari ilmu</label></p>
-			<p><input class="w3-radio" type="radio" name="pre1" value="">
-			<label>tempat mencari ilmu</label></p>
-			<p><input class="w3-radio" type="radio" name="pre1" value="">
-			<label>tempat mencari ilmu</label></p>
-			<p><br>
-
-			<button type="submit">
+			<button class="w3-button w3-dropdownnavbar" type="submit">Submit
 		</form>
 	</div>
 @endsection()
