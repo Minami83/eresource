@@ -112,22 +112,23 @@ class CourseController extends Controller
         $this->incAction(request('accord1input'),request('accord2input'),request('accord3input'),$user, $callerJurnal);
 
         $currentProgress = $myJurnal->pluck('name')->search(request('url'));
-        // dd($user->progress);
-        if($user->progress == $currentProgress)
+        // dd($currentProgress);
+        if($user->progress == $currentProgress+1)
         {
             $user->progress = $user->progress + 1;
-            if($user->progress >= $myJurnal->count()){
-                $user->progress = $user->progress - 1;
-                $user->save();
+            if($user->progress > $myJurnal->count()){
+                // $user->progress = $user->progress - 1;
+                // $user->save();
                 return $this->posttest();
             }
             $user->save();
 
-            $url = 'course/'.$myJurnal[$user->progress]->name;
+            $url = 'course/'.$myJurnal[$currentProgress+1]->name;
         }
         else{
             // dd($myJurnal->count());
             $currentProgress = $currentProgress + 1;
+            // dd($currentProgress);
             if($currentProgress >= $myJurnal->count()) return $this->posttest();
             $url = 'course/'.$myJurnal[$currentProgress]->name;
 

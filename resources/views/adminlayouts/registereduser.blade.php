@@ -39,7 +39,7 @@
 
 @endsection()
 @section('isi')
-<div class="container" style="margin-top: 60px">
+<div class="container" style="margin-top: 100px">
 @foreach($unverified as $verif)
   <button class="accordion" id="accord1" onclick="accordionfunc(this.id)">{{$verif->name}}</button>
   <div class="panel">

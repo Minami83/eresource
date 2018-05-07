@@ -23,7 +23,7 @@ ini video
 
 	$(document).ready(function(){
 		var temp={{$user->progress}};
-		if(temp>=2){
+		if(temp>=3){
 			$("#nextbutton").css('display','block');
 		}
 		else{
@@ -36,7 +36,7 @@ ini video
 	document.getElementById('vid1').addEventListener('ended',myHandler,false);
     function myHandler(e) {
     	var temp={{$user->progress}};
-		if(temp>=2){
+		if(temp>=3){
 			$("#nextbutton").css('display','block');
 		}
 		else{	

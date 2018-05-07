@@ -118,7 +118,10 @@
 
 		$(document).ready(function(){
 			var elem = document.getElementById("myBar");
-		    var width=(({{$user->progress}}-1)/19)*100;
+		    @php
+		    	$temp=sizeof($myJurnal);
+		    @endphp
+		    var width=(({{$user->progress}}-1)/{{$temp}})*100;
 		    elem.style.width = width + '%';
 		    elem.innerHTML = parseFloat(width).toFixed(0) + '%';
 		});
@@ -126,70 +129,10 @@
 		$(document).ready(function(){
 			var header = document.getElementById("mySidebar");
 			var btn = header.getElementsByClassName("w3-bar-item");
-			var temp={{$user->progress}};
-			for (var i = temp; i < btn.length; i++) {
-				btn[i].className+=' takkebuka'
-			}
-		});
-
-		$(document).ready(function(){
-			var temp={{$user->progress}}
-			if(temp>=1){
-				$("#1").attr('href','asce');
-			}
-			if(temp>=2){
-				$("#2").attr('href','asme');
-			}
-			if(temp>=3){
-				$("#3").attr('href','melp');
-			}
-			if(temp>=4){
-				$("#4").attr('href','tnarina');
-			}
-			if(temp>=5){
-				$("#5").attr('href','sbidrina');
-			}
-			if(temp>=6){
-				$("#6").attr('href','smdrina');
-			}
-			if(temp>=7){
-				$("#7").attr('href','ijme');
-			}
-			if(temp>=8){
-				$("#8").attr('href','ijsct');
-			}
-			if(temp>=9){
-				$("#9").attr('href','jspd');
-			}
-			if(temp>=10){
-				$("#10").attr('href','jsr');
-			}
-			if(temp>=11){
-				$("#11").attr('href','marinetech');
-			}
-			if(temp>=12){
-				$("#12").attr('href','springerlink');
-			}
-			if(temp>=13){
-				$("#13").attr('href','emerald');
-			}
-			if(temp>=14){
-				$("#14").attr('href','gale');
-			}
-			if(temp>=15){
-				$("#15").attr('href','ieee');
-			}
-			if(temp>=16){
-				$("#16").attr('href','ebsco');
-			}
-			if(temp>=17){
-				$("#17").attr('href','proquest');
-			}
-			if(temp>=18){
-				$("#18").attr('href','sciencedir');
-			}
-			if(temp>=19){
-				$("#19").attr('href','nature');
+			var temp={{$user->progress}}+1;
+			for (var i = temp; i <= btn.length; i++) {
+				btn[i].className+=' takkebuka';
+				btn[i].removeAttribute('href');
 			}
 		});
 

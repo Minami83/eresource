@@ -17,9 +17,6 @@ Route::get('/', function () {
 Route::get('/tes', function () {
     return view('webpage.register');
 });
-Route::get('/tes2', function () {
-    return view('webpage.login');
-});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

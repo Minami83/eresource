@@ -39,7 +39,7 @@
 
 @endsection()
 @section('isi')
-<div class="container">
+<div class="container" style="margin-top: 60px">
 	<button class="accordion" id="accord1" onclick="accordionfunc(this.id)">Nama User (nek wes mbo benakno ubahen extends e jadi master biasa)</button>
 	<div class="panel">
 		<form method="post">

@@ -36,7 +36,7 @@
 
 	$(document).ready(function(){
 		var temp={{$user->progress}};
-		if(temp>=1){
+		if(temp>=2){
 			$("#nextbutton").css('display','block');
 		}
 		else{
@@ -49,7 +49,7 @@
 	document.getElementById('vid1').addEventListener('ended',myHandler,false);
     function myHandler(e) {
     	var temp={{$user->progress}};
-		if(temp>=1){
+		if(temp>=2){
 			$("#nextbutton").css('display','block');
 		}
 		else{	
