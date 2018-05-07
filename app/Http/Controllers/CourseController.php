@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-// use Illuminate\Http\Request;
-use Request;
+use Illuminate\Http\Request;
+// use Request;
 use App\Jurnal;
 use App\Log;
 use App\Pretest;
@@ -43,6 +43,9 @@ class CourseController extends Controller
     {
         $user = Auth()->user();
         $pretest_quest = Pretest::get();
+        $myJurnal = $user->takenJurnalList();
+        $url = 'course/'.$myJurnal[0]->name;
+        if($user->progress != 0) return redirect($url)->with('user',$user)->with('myJurnal',$myJurnal);
         // dd($pretest_quest);
         return view('webpage/pretest')->with('user',$user)->with('pretest',$pretest_quest);
     }
@@ -51,13 +54,16 @@ class CourseController extends Controller
     {
         $user = Auth()->user();
         $ans = $request->all();
+        // dd($ans);
         $pretest_quest = Pretest::get();
         foreach($pretest_quest as $quest){
-            $user->pretests()->attach($pretest, ['answer' => $ans[$quest->id] ]);
+            $user->pretests()->attach($quest, ['answer' => $ans[$quest->id] ]);
         }
         $myJurnal = $user->takenJurnalList();
-        $url = 'jurnal'.$myJurnal[0]->name;
-        return view($url)->with('user',$user)->with('myJurnal', $myJurnal);
+        $url = 'course/'.$myJurnal[0]->name;
+        $user->progress = 1;
+        $user->save();
+        return redirect($url)->with('user',$user)->with('myJurnal', $myJurnal);
     }
 
     public function posttest()
@@ -69,25 +75,27 @@ class CourseController extends Controller
 
     public function postAns(Request $request)
     {
+        // dd($request->all());
         $user = Auth()->user();
         $ans = $request->all();
         $posttest_quest = Posttest::get();
         foreach($posttest_quest as $quest){
-            $user->posttests()->attach($posttest, ['answer' => $ans[$quest->id] ]);
+            $user->posttests()->attach($quest, ['answer' => $ans[$quest->id] ]);
         }
         $myJurnal = $user->takenJurnalList();
-        $url = 'jurnal'.$myJurnal[0]->name;
-        return view($url)->with('user',$user)->with('myJurnal', $myJurnal);
+        $url = 'course/'.$myJurnal[0]->name;
+        return redirect($url)->with('user',$user)->with('myJurnal', $myJurnal);
     }
 
-    public function index(string $courseName, $howto=0, $video=0, $tutorial=0)
+    public function index(Request $request)
     {
+        // dd($request);
         $user = Auth()->user();
         if($user->verified==0) return view('adminlayouts/dummy');
         $myJurnal = $user->takenJurnalList();
         if($user->progress == 0)
           return $this->pretest();
-        $now = substr(Request::path(),7);
+        $now = substr($request->path(),7);
         $nowProgress = $myJurnal->pluck('name')->search($now);
         $url = 'jurnal/'.$myJurnal[($user->progress>$nowProgress)?$nowProgress:$user->progress]->name;
         return view($url)->with('user',$user)->with('myJurnal',$myJurnal);
@@ -104,10 +112,11 @@ class CourseController extends Controller
         $this->incAction(request('accord1input'),request('accord2input'),request('accord3input'),$user, $callerJurnal);
 
         $currentProgress = $myJurnal->pluck('name')->search(request('url'));
-        if($user->progress-1 == $currentProgress)
+        // dd($user->progress);
+        if($user->progress == $currentProgress)
         {
             $user->progress = $user->progress + 1;
-            if($user->progress > $myJurnal->count()){
+            if($user->progress >= $myJurnal->count()){
                 $user->progress = $user->progress - 1;
                 $user->save();
                 return $this->posttest();
@@ -117,12 +126,21 @@ class CourseController extends Controller
             $url = 'course/'.$myJurnal[$user->progress]->name;
         }
         else{
+            // dd($myJurnal->count());
             $currentProgress = $currentProgress + 1;
-            if($currentProgress > $myJurnal->count()) return $this->posttest();
+            if($currentProgress >= $myJurnal->count()) return $this->posttest();
             $url = 'course/'.$myJurnal[$currentProgress]->name;
 
         }
         // dd($url);
+        return redirect($url)->with('user',$user)->with('myJurnal',$myJurnal);
+    }
+
+    public function continue()
+    {
+        $user = Auth()->user();
+        $myJurnal = $user->takenJurnalList();
+        $url = 'course/'.$myJurnal[$user->progress-1]->name;
         return redirect($url)->with('user',$user)->with('myJurnal',$myJurnal);
     }
 

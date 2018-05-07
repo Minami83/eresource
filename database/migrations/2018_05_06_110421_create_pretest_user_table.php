@@ -17,7 +17,7 @@ class CreatePretestUserTable extends Migration
             $table->increments('id');
             $table->integer('pretest_id');
             $table->integer('user_id');
-            $table->integer('answer');
+            $table->string('answer');
             $table->timestamps();
         });
     }

@@ -30,8 +30,28 @@ class HomeController extends Controller
         $myJurnal = $data->takenJurnalList();
         // dd($data);
         // dd($data);
-        return redirect('course/asce')->with('user',$data)->with('myJurnal',$myJurnal);
-        return view('webpage/mastercourse')->with('user',$data);
+        // return redirect('course/asce')->with('user',$data)->with('myJurnal',$myJurnal);
+        return view('webpage/home')->with('user',$data);
+    }
+
+    public function profile()
+    {
+        $user = Auth()->user();
+        return view('webpage/profile')->with('user',$user);
+    }
+
+    public function change(Request $request)
+    {
+        $user = Auth()->user();
+        $data = $request->all();
+        $user->nrp = $data['nrp'];
+        $user->name = $data['name'];
+        $user->faculty = $data['faculty'];
+        $user->department = $data['department'];
+        $user->email = $data['email'];
+        $user->phone = $data['phone'];
+        $user->save();
+        return $this->profile();
     }
 
 }

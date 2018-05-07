@@ -17,7 +17,7 @@ class CreatePosttestUserTable extends Migration
             $table->increments('id');
             $table->integer('posttest_id');
             $table->integer('user_id');
-            $table->integer('answer');
+            $table->string('answer');
             $table->timestamps();
         });
     }
