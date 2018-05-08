@@ -15,7 +15,8 @@ class UserController extends Controller
     {
         //
         $listUser = User::get();
-        return view('adminlayout/userlist')->with('userList',$listUser);
+        $data = Auth()->user();
+        return view('adminlayouts/userlist')->with('userList',$listUser)->with('user',$data);
     }
 
     /**
@@ -26,7 +27,7 @@ class UserController extends Controller
     public function create()
     {
         //
-        return view('adminlayout/makeuser');
+        return view('adminlayouts/makeuser');
     }
 
     /**
@@ -39,16 +40,16 @@ class UserController extends Controller
     {
         //
         $data = $request->all();
-        $user = new User()
-        $user->nrp = $data['nrp']
-        $user->name = $data['name']
-        $user->faculty = $data['faculty']
-        $user->department = $data['department']
-        $user->phone = $data['phone']
-        $user->email = $data['email']
-        $user->progress = 0
-        $user->verified = 0
-        $user->password = bcrypt($data['password'])
+        $user = new User();
+        $user->nrp = $data['nrp'];
+        $user->name = $data['name'];
+        $user->faculty = $data['faculty'];
+        $user->department = $data['department'];
+        $user->phone = $data['phone'];
+        $user->email = $data['email'];
+        $user->progress = 0;
+        $user->verified = 0;
+        $user->password = bcrypt($data['password']);
         $user->save();
         $user
             ->roles()
@@ -68,7 +69,7 @@ class UserController extends Controller
     {
         //
         $user = User::where('id',$id)->first();
-        return view('adminlayout/userdetail')->with('user',$user);
+        return view('adminlayouts/userdetail')->with('user',$user);
     }
 
     /**
@@ -81,7 +82,7 @@ class UserController extends Controller
     {
         //
         $user = User::where('id',$id)->first();
-        return view('adminlayout/useredit')->with('user',$user);
+        return view('adminlayouts/useredit')->with('user',$user);
     }
 
     /**
