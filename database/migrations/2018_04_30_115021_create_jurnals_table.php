@@ -17,6 +17,8 @@ class CreateJurnalsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('fullName');
+            $table->string('howto');
+            $table->string('video');
             $table->timestamps();
         });
     }
