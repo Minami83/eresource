@@ -13,7 +13,7 @@
 		$(document).ready(function(){
 			if({{$user->progress}}>=1){
 				$("#btn").html('Continue');
-				$("#btn").attr('href','/course/jspd');
+				$("#btn").attr('href','/continue');
 			}else{
 				$("#btn").html('Start Course');
 				$("#btn").attr('href','/pretest');
