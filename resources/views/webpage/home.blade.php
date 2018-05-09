@@ -1,6 +1,8 @@
 @extends('layouts.master')
 
-
+@section('title')
+	E-Resource Class
+@endsection()
 
 @section('isi')
 	<div class="w3-center container" style="margin-top: 200px">

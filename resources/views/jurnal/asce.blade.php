@@ -5,21 +5,19 @@
 @endsection()
 
 @section('titlejurnal')
-	American Society of Civil Engineers (ASCE)
+	{{$jurnal[0]->fullName}}
 @endsection()
 
 @section('howto')
-<video width="320" height="240" controls id="vid1">
-  <source src="/video/vid1.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+	@foreach ($howto_text as $txt)
+		<p>{{$txt}}</p>
+	@endforeach
 @endsection()
 
 @section('video')
-<video width="320" height="240" controls id="vid1">
-  <source src="/video/vid1.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+	<video width="320" height="240" controls id="vid1">
+		<source src="{{$jurnal[0]->video}}" type="video/mp4">
+	</video>
 @endsection()
 
 @section('tutorial')

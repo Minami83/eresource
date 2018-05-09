@@ -74,7 +74,6 @@
             </div>
             <div class="form-group">
                 <label>How to:</label>
-                <!-- <textarea class="empty" style="width:100%;height: 200px" name="howto" placeholder="Step-by-step Journal"></textarea> -->
                 <input type="file" accept="text/plain" name="howto">
             </div>
             <div class="form-group">

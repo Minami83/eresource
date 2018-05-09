@@ -33,12 +33,19 @@
         <tr>
           <th onclick="sortTable(0)">NRP <i class="fa">&#xf0dc;</i></th>
           <th onclick="sortTable(1)">Nama <i class="fa">&#xf0dc;</i></th>
+          <th onclick="sortTable(2)">Status <i class="fa">&#xf0dc;</i></th>
         </tr>
         @foreach($userList as $ul)
         <tr>
           <td style="width: 200px">{{$ul->nrp}}</td>
           <td>{{$ul->name}}</td>
-          <td style="width: 30px"><a href="/admin/user/detail/{{$ul->id}}">
+          <td>{{$ul->verified}}</td>
+          <td style="width: 30px">
+            @if($ul->verified>0 )
+            <a href="/admin/user/detail/{{$ul->id}}">
+            @else
+            <a href="/admin">
+            @endif
             <button><i class="fa fa-arrow-circle-right"></i></button>
           </td>
           <td style="width: 30px">

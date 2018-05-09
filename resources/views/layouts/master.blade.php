@@ -11,7 +11,12 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  	<style type="text/css">@yield('style')</style>
+  	<style type="text/css">
+  		a,a:hover,a:visited,a:link,a:active{
+  			text-decoration: none;
+  		}
+  		@yield('style')
+  	</style>
 </head>
 <body>
 	<div class="w3-overlay w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>

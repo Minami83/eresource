@@ -23,7 +23,9 @@
 @section('isi')
 	
 	<div class="w3-row" style="margin-top: 70px">
-		<div class="col-sm-3"></div>
+		<div class="col-sm-3">
+			<a href="/admin/user/list"><button style="float: right;margin-top: 30px"><i class="fa fa-reply"></i></button></a>
+		</div>
 		<div class="col-sm-6 w3-white w3-round-large">
 			<br>
 		    <form method="POST" action="/admin/user/edit/{{$edituser->id}}">

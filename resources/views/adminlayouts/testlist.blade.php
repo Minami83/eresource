@@ -43,14 +43,14 @@
         <tr>
           <td style="width: 60px">{{$tes->id}}</td>
           <td>{{$tes->question}}</td>
-          <td>
-              <p>{{$tes->choice_1}}</p>
-              <p>{{$tes->choice_2}}</p>
-              <p>{{$tes->choice_3}}</p>
-              <p>{{$tes->choice_4}}</p>
+          <td class="kumpulanans">
+              <p id="ans1">{{$tes->choice_1}}</p>
+              <p id="ans2">{{$tes->choice_2}}</p>
+              <p id="ans3">{{$tes->choice_3}}</p>
+              <p id="ans4">{{$tes->choice_4}}</p>
           </td>
           <td style="width: 30px"><a href="/admin/test/detail/{{$tes->id}}">
-            <button><i class="fa fa-arrow-circle-right"></i></button>
+            <button><i class="fa fa-arrow-circle-right"></i></button></a>
           </td>
           <td style="width: 30px">
             <form method="POST" action="/admin/test/delete/{{$tes->id}}">
@@ -111,6 +111,17 @@
           modal.style.display = "none";
       }
   }
+
+  $(document).ready(function(){
+    var i=0
+    @foreach ($test as $tes)
+    var temp="{{$tes->right_answer}}";
+    var header = document.getElementById("myTable");
+    var p = header.getElementsByTagName("P");
+    p[temp-1+i].style.color = "red";
+    i+=4
+    @endforeach
+  });
 
   function myFunction() {
     var input, filter, table, tr, td, i;

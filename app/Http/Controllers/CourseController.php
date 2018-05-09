@@ -36,7 +36,8 @@ class CourseController extends Controller
         'ebsco' => 16,
         'proquest' => 17,
         'sciencedir' => 18,
-        'nature' => 19]);
+        'nature' => 19,
+        'posttest' => 20]);
     }
 
     public function pretest()
@@ -91,6 +92,7 @@ class CourseController extends Controller
     {
         // dd($request);
         $user = Auth()->user();
+        $jurnal = Jurnal::get();
         if($user->verified==0) return view('adminlayouts/dummy');
         $myJurnal = $user->takenJurnalList();
         if($user->progress == 0)
@@ -101,14 +103,14 @@ class CourseController extends Controller
         $url = 'jurnal/'.$myJurnal[$index]->name;
         $text = file(public_path().$myJurnal[$index]->howto);
         // dd($text);
-        return view($url)->with('user',$user)->with('myJurnal',$myJurnal)->with('howto_text',$text);
+        return view($url)->with('user',$user)->with('myJurnal',$myJurnal)->with('jurnal',$jurnal)->with('howto_text',$text);
     }
 
 
     public function nextPage(Request $request)
     {
         $user = Auth()->user();
-        if($user->verified==0) return redirect('adminlayout/dummy');
+        if($user->verified==0) return redirect('adminlayouts/dummy');
         $callerJurnal = Jurnal::where('name', request('url'))->first();
         $myJurnal = $user->takenJurnalList();
 

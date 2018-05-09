@@ -1,4 +1,4 @@
- @extends('layouts.master')
+@extends('layouts.master')
 @section('title')
 	{{$jurnal->name}}
 @endsection()
@@ -27,9 +27,10 @@
 @endsection()
 
 @section('isi')
-
 	<div class="w3-row" style="margin-top: 70px">
-		<div class="col-sm-3"></div>
+		<div class="col-sm-3">
+			<a href="/admin/jurnal/list"><button style="float: right;margin-top: 30px"><i class="fa fa-reply"></i></button></a>
+		</div>
 		<div class="col-sm-6 w3-white w3-round-large">
 			<br>
 		    <form method="POST" action="/admin/jurnal/edit/{{$jurnal->id}}">
@@ -56,7 +57,7 @@
 					<td>:</td>
 					<td class="profb" style="display: block">{{$jurnal->howto}}</td>
 					<td class="profa" style="display: none">
-						<textarea class="empty" style="width:100%;height: 200px" name="howto">{{$jurnal->howto}}</textarea>
+						<input type="file" accept="text/plain" value="{{$jurnal->howto}}" name="howto">
 					</td>
 				</tr>
 				<tr>
@@ -64,7 +65,7 @@
 					<td>:</td>
 					<td class="profb" style="display: block;">
 						<video width="320" height="240" controls id="vid1">
-							<source src="{{$jurnal->video}}" type="video/mp4">
+							<source id="myVid" src="{{$jurnal->video}}" type="video/mp4">
 						</video>
 					</td>
 					<td class="profa" style="display: none;">
@@ -88,6 +89,12 @@
 	</div>
 
 	<script type="text/javascript">
+
+		$(document).ready(function(){
+			var temp = "{{$jurnal->video}}";
+			var temp2 = temp.replace(" ","%");
+			$("#myVid").attr('src',temp2);
+		});
 
 		function editprofil(){
 			$('.profb').css('display','none');

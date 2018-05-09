@@ -5,15 +5,19 @@
 @endsection()
 
 @section('titlejurnal')
-	SpringerLink
+	{{$jurnal[11]->fullName}}
 @endsection()
 
 @section('howto')
-ini how to
+	@foreach ($howto_text as $txt)
+		<p>{{$txt}}</p>
+	@endforeach
 @endsection()
 
 @section('video')
-ini video
+	<video width="320" height="240" controls id="vid1">
+		<source src="{{$jurnal[11]->video}}" type="video/mp4">
+	</video>
 @endsection()
 
 @section('morescript')
