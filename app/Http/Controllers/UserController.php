@@ -27,7 +27,8 @@ class UserController extends Controller
     public function create()
     {
         //
-        return view('adminlayouts/makeuser');
+        $admin = Auth()->user();
+        return view('adminlayouts/makeuser')->with('user',$admin);
     }
 
     /**
@@ -51,6 +52,7 @@ class UserController extends Controller
         $user->verified = 0;
         $user->password = bcrypt($data['password']);
         $user->save();
+        $user->roles()->detach();
         $user
             ->roles()
             ->attach(Role::where('name',$data['role'])->first());
@@ -69,7 +71,8 @@ class UserController extends Controller
     {
         //
         $user = User::where('id',$id)->first();
-        return view('adminlayouts/userdetail')->with('user',$user);
+        $admin = Auth()->user();
+        return view('adminlayouts/userdetail')->with('edituser',$user)->with('user',$admin);
     }
 
     /**
@@ -82,7 +85,8 @@ class UserController extends Controller
     {
         //
         $user = User::where('id',$id)->first();
-        return view('adminlayouts/useredit')->with('user',$user);
+        $admin = Auth()->user();
+        return view('adminlayouts/useredit')->with('edituser',$user)->with('user',$admin);
     }
 
     /**
@@ -95,6 +99,7 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $admin = Auth()->user();
         $user = User::where('id',$id)->first();
         $data = $request->all();
         $user->nrp = $data['nrp'];
@@ -103,9 +108,13 @@ class UserController extends Controller
         $user->department = $data['department'];
         $user->email = $data['email'];
         $user->phone = $data['phone'];
+        $user->roles()->detach();
+        $user
+            ->roles()
+            ->attach(Role::where('name',$data['role'])->first());
         $user->save();
         $url = '/admin/user/detail/'.(string)$id;
-        return redirect($url)->with('user',$user);
+        return redirect($url)->with('edituser',$user)->with('user',$admin);
     }
 
     /**
@@ -119,5 +128,6 @@ class UserController extends Controller
         //
         $user = User::where('id',$id)->first();
         $user->delete();
+        return redirect('/admin/user/list');
     }
 }

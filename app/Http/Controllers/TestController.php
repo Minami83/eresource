@@ -16,7 +16,8 @@ class TestController extends Controller
     {
         //
         $test = Pretest::get();
-        return view('adminlayout/testlist')->with('test',$test);
+        $admin = Auth()->user();
+        return view('adminlayout/testlist')->with('test',$test)->with('user',$admin);
     }
 
     /**
@@ -27,7 +28,8 @@ class TestController extends Controller
     public function create()
     {
         //
-        return view('adminlayout/maketest');
+        $admin = Auth()->user();
+        return view('adminlayout/maketest')->with('user',$admin);
     }
 
     /**
@@ -39,6 +41,7 @@ class TestController extends Controller
     public function store(Request $request)
     {
         //
+        $admin = Auth()->user();
         $data = $request->all();
         $pretest = new Pretest();
         $pretest->question = $data['question'];
@@ -54,7 +57,7 @@ class TestController extends Controller
         $posttest->choice_3 = $data['choice_3'];
         $posttest->choice_4 = $data['choice_4'];
         $posttest->save();
-        return redirect('test/list');
+        return redirect('test/list')->with('user',$admin);
     }
 
     /**
@@ -66,8 +69,9 @@ class TestController extends Controller
     public function show($id)
     {
         //
+        $admin = Auth()->user();
         $test = Pretest::where('id',$id)->first();
-        return view('adminlayout/testdetail')->with('test',$test);
+        return view('adminlayout/testdetail')->with('test',$test)->with('user',$admin);
     }
 
     /**
@@ -79,8 +83,9 @@ class TestController extends Controller
     public function edit($id)
     {
         //
+        $admin = Auth()->user();
         $test = Pretest::where('id',$id)->first();
-        return view('adminlayout/testedit')->with('test',$test);
+        return view('adminlayout/testedit')->with('test',$test)->with('user',$admin);
     }
 
     /**
@@ -93,6 +98,7 @@ class TestController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $admin = Auth()->user();
         $data = $request->all();
         $pretest = Pretest::where('id',$id)->first();
         $pretest->question = $data['question'];
@@ -109,7 +115,7 @@ class TestController extends Controller
         $posttest->choice_4 = $data['choice_4'];
         $posttest->save();
         $url = 'admin/test/detail'.string($id);
-        return redirect($url)->with('test',$pretest);
+        return redirect($url)->with('test',$pretest)->with('user',$admin);
     }
 
     /**
@@ -125,5 +131,6 @@ class TestController extends Controller
         $pretest->delete();
         $posttest = Posttest::where('id',$id)->first();
         $posttest->delete();
+        return redirect('/admin/test/list');
     }
 }

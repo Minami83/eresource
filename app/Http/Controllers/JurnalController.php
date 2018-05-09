@@ -15,7 +15,8 @@ class JurnalController extends Controller
     {
         //
         $jurnal = Jurnal::get();
-        return view('adminlayout/jurnallist')->with('jurnal',$jurnal);
+        $admin = Auth()->user();
+        return view('adminlayout/jurnallist')->with('jurnal',$jurnal)->with('user',$admin);
 
     }
 
@@ -27,7 +28,8 @@ class JurnalController extends Controller
     public function create()
     {
         //
-        return view('adminlayout/makejurnal');
+        $admin = Auth()->user();
+        return view('adminlayout/makejurnal')->with('user',$admin);
     }
 
     /**
@@ -39,6 +41,7 @@ class JurnalController extends Controller
     public function store(Request $request)
     {
         //
+        $admin = Auth()->user();
         $data = $request->all();
         $jurnal = new Jurnal();
         $jurnal->name = $data['name'];
@@ -55,7 +58,7 @@ class JurnalController extends Controller
         $video->move($destination,$filename);
         $jurnal->video = $destination.'/'.$filename;
         $jurnal->save();
-        return redirect('/jurnal/list');
+        return redirect('/jurnal/list')->with('user',$admin);
 
     }
 
@@ -68,8 +71,9 @@ class JurnalController extends Controller
     public function show($id)
     {
         //
+        $admin = Auth()->user();
         $jurnal = Jurnal::where('id',$id)->first();
-        return view('adminlayout/jurnaldetail')->with('jurnal',$jurnal);
+        return view('adminlayout/jurnaldetail')->with('jurnal',$jurnal)->with('user',$admin);
     }
 
     /**
@@ -81,8 +85,9 @@ class JurnalController extends Controller
     public function edit($id)
     {
         //
+        $admin = Auth()->user();
         $jurnal = Jurnal::where('id',$id)->first();
-        return view('adminlayout/jurnaledit')->with('jurnal',$jurnal);
+        return view('adminlayout/jurnaledit')->with('jurnal',$jurnal)->with('user',$admin);
     }
 
     /**
@@ -95,6 +100,7 @@ class JurnalController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $admin = Auth()->user();
         $data = $request->all();
         $jurnal = Jurnal::where('id',$id)->first();
         $jurnal->name = $data['name'];
@@ -111,7 +117,7 @@ class JurnalController extends Controller
         $jurnal->video = $destination.'/'.$filename;
         $jurnal->save();
         $url = '/admin/jurnal/detail/'.string($id);
-        return redirect($url)->with('jurnal',$jurnal);
+        return redirect($url)->with('jurnal',$jurnal)->with('user',$admin);
     }
 
     /**
@@ -125,5 +131,6 @@ class JurnalController extends Controller
         //
         $jurnal = Jurnal::where('id',$id)->first();
         $jurnal->delete();
+        return redirect('/admin/jurnal/list');
     }
 }
