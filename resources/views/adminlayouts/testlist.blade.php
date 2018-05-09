@@ -1,10 +1,14 @@
 @extends('layouts.master')
 
 @section('title')
-  List Jurnal
+  List Test
 @endsection
 
 @section('style')
+  p:nth-child(odd){
+    background-color: #f2f2f2;
+  }
+
   th{
     cursor:pointer;
   }
@@ -25,28 +29,36 @@
 
 @section('isi')
 <div class="row" style="margin-top: 100px">
-  <div class="col-sm-3"></div>
-    <div class="col-sm-6 w3-center">
+  <div class="col-sm-2"></div>
+    <div class="col-sm-8 w3-center">
       <div class="col-sm-10"><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for journals.."></div>
       <div class="col-sm-2"><button style="width:50px;height:50px;" onclick="document.getElementById('id01').style.display='block'"><i class="fa fa-plus"></i></button></div>
       <table id="myTable" class="w3-table">
         <tr>
-          <th onclick="sortTable(0)">ID <i class="fa">&#xf0dc;</i></th>
-          <th onclick="sortTable(1)">Jurnal <i class="fa">&#xf0dc;</i></th>
+          <th onclick="sortTable(0)"># <i class="fa">&#xf0dc;</i></th>
+          <th onclick="sortTable(1)">Soal <i class="fa">&#xf0dc;</i></th>
+          <th onclick="sortTable(2)">Jawaban <i class="fa">&#xf0dc;</i></th>
         </tr>
-        @foreach($jurnal as $jur)
+        @foreach($test as $tes)
         <tr>
-          <td style="width: 75px">{{$jur->id}}</td>
-          <td>{{$jur->fullName}}</td>
-          <td style="width: 30px"><a href="/admin/jurnal/detail/{{$jur->id}}">
+          <td style="width: 60px">{{$tes->id}}</td>
+          <td>{{$tes->question}}</td>
+          <td>
+              <p>{{$tes->choice_1}}</p>
+              <p>{{$tes->choice_2}}</p>
+              <p>{{$tes->choice_3}}</p>
+              <p>{{$tes->choice_4}}</p>
+          </td>
+          <td style="width: 30px"><a href="/admin/test/detail/{{$tes->id}}">
             <button><i class="fa fa-arrow-circle-right"></i></button>
           </td>
           <td style="width: 30px">
-            <form method="POST" action="/admin/jurnal/delete/{{$jur->id}}">
+            <form method="POST" action="/admin/test/delete/{{$tes->id}}">
               @csrf
               {{method_field('DELETE')}}
-              <button><i class="fa fa-close"></i></a></td></button>
+              <button><i class="fa fa-close"></i></button>
             </form>
+          </td>
         </tr>
         @endforeach
       </table>
@@ -55,34 +67,34 @@
 </div>
 
 <div id="id01" class="w3-modal">
-  <div class="w3-modal-content w3-animate-top" style="margin-top: -60px">
+  <div class="w3-modal-content w3-animate-top" style="margin-top: 0px">
     <header class="w3-container w3-teal"> 
       <span onclick="document.getElementById('id01').style.display='none'" 
       class="w3-button w3-display-topright">&times;</span>
-      <h2>Add Journal</h2>
+      <h2>Add Question</h2>
     </header>
     <div class="w3-container">
       <div class="w3-white w3-round-large">
       <br>
-        <form method="POST" action="/admin/jurnal/make">
+        <form method="POST" action="/admin/test/make">
           @csrf
             <div class="form-group">
-                <input id="fullName" type="text" class="w3-round-xlarge iconified empty form-control" name="fullName" placeholder="&#xf007;     {{ __('Nama Jurnal') }}" required autofocus>
+                <input id="question" type="text" class="w3-round-xlarge iconified empty form-control" name="fullName" placeholder="&#xf128;     {{ __('Pertanyaan') }}" required autofocus>
+            </div>
+            {{-- <div class="form-group">
+                <input id="answer" type="text" class="w3-round-xlarge iconified empty form-control" name="answer" placeholder="&#xf00c;    {{ __('Jawaban') }}" required autofocus>
+            </div> --}}
+            <div class="form-group">
+                <input id="choice_1" type="text" class="w3-round-xlarge iconified empty form-control" name="choice_1" placeholder="&#xf00c;    {{ __('Pilihan 1') }}" required autofocus>
             </div>
             <div class="form-group">
-                <input id="name" type="text" class="w3-round-xlarge iconified empty form-control" name="name" placeholder="&#xf2b9;    {{ __('Alias') }}" required autofocus>
+                <input id="choice_2" type="text" class="w3-round-xlarge iconified empty form-control" name="choice_2" placeholder="&#xf00c;    {{ __('Pilihan 2') }}" required autofocus>
             </div>
             <div class="form-group">
-                <label>How to:</label>
-                <textarea class="empty" style="width:100%;height: 200px" name="howto" placeholder="Step-by-step Journal"></textarea>
+                <input id="choice_3" type="text" class="w3-round-xlarge iconified empty form-control" name="choice_3" placeholder="&#xf00c;    {{ __('Pilihan 3') }}" required autofocus>
             </div>
             <div class="form-group">
-              <label>Video:</label>
-                <input type="file" accept="video/mp4,video/x-m4v,video/*" name="video">
-            </div>
-            <div class="form-group">
-                <label>Tutorial:</label>
-                <textarea class="empty" style="width:100%;height: 200px" name="tutorial" placeholder="Step-by-step Journal"></textarea>
+                <input id="choice_4" type="text" class="w3-round-xlarge iconified empty form-control" name="choice_4" placeholder="&#xf00c;    {{ __('Pilihan 4') }}" required autofocus>
             </div>
             <button style="width: 100%" class="btn waves-effect waves-light" type="submit" name="action">Confirm
             </button><br><br>
@@ -109,8 +121,9 @@
     for (i = 0; i < tr.length; i++) {
       td1 = tr[i].getElementsByTagName("td")[0];
       td2 = tr[i].getElementsByTagName("td")[1];
-      if (td1 || td2) {
-        if (td1.innerHTML.toUpperCase().indexOf(filter) > -1 || td2.innerHTML.toUpperCase().indexOf(filter) > -1) {
+      td3 = tr[i].getElementsByTagName("td")[2];
+      if (td1 || td2 || td3) {
+        if (td1.innerHTML.toUpperCase().indexOf(filter) > -1 || td2.innerHTML.toUpperCase().indexOf(filter) > -1 || td3.innerHTML.toUpperCase().indexOf(filter) > -1) {
           tr[i].style.display = "";
         } else {
           tr[i].style.display = "none";

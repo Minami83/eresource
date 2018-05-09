@@ -38,7 +38,9 @@
         <tr>
           <td style="width: 200px">{{$ul->nrp}}</td>
           <td>{{$ul->name}}</td>
-          <td style="width: 30px"><a href="/admin/user/detail/{{$ul->id}}"><i class="fa fa-arrow-circle-right"></i></a></td>
+          <td style="width: 30px"><a href="/admin/user/detail/{{$ul->id}}">
+            <button><i class="fa fa-arrow-circle-right"></i></button>
+          </td>
           <td style="width: 30px">
             <form method="POST" action="/admin/user/delete/{{$ul->id}}">
               @csrf

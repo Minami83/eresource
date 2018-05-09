@@ -17,7 +17,7 @@ class TestController extends Controller
         //
         $test = Pretest::get();
         $admin = Auth()->user();
-        return view('adminlayout/testlist')->with('test',$test)->with('user',$admin);
+        return view('adminlayouts/testlist')->with('test',$test)->with('user',$admin);
     }
 
     /**
@@ -29,7 +29,7 @@ class TestController extends Controller
     {
         //
         $admin = Auth()->user();
-        return view('adminlayout/maketest')->with('user',$admin);
+        return view('adminlayouts/maketest')->with('user',$admin);
     }
 
     /**
@@ -71,7 +71,7 @@ class TestController extends Controller
         //
         $admin = Auth()->user();
         $test = Pretest::where('id',$id)->first();
-        return view('adminlayout/testdetail')->with('test',$test)->with('user',$admin);
+        return view('adminlayouts/testdetail')->with('test',$test)->with('user',$admin);
     }
 
     /**
@@ -85,7 +85,7 @@ class TestController extends Controller
         //
         $admin = Auth()->user();
         $test = Pretest::where('id',$id)->first();
-        return view('adminlayout/testedit')->with('test',$test)->with('user',$admin);
+        return view('adminlayouts/testedit')->with('test',$test)->with('user',$admin);
     }
 
     /**
