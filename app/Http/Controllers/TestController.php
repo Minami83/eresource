@@ -17,6 +17,7 @@ class TestController extends Controller
         //
         $test = Pretest::get();
         $admin = Auth()->user();
+        $admin->authorizeRoles(['admin']);
         return view('adminlayouts/testlist')->with('test',$test)->with('user',$admin);
     }
 
@@ -29,6 +30,7 @@ class TestController extends Controller
     {
         //
         $admin = Auth()->user();
+        $admin->authorizeRoles(['admin']);
         return view('adminlayouts/maketest')->with('user',$admin);
     }
 
@@ -42,6 +44,7 @@ class TestController extends Controller
     {
         //
         $admin = Auth()->user();
+        $admin->authorizeRoles(['admin']);
         $data = $request->all();
         $pretest = new Pretest();
         $pretest->question = $data['question'];
@@ -49,6 +52,7 @@ class TestController extends Controller
         $pretest->choice_2 = $data['choice_2'];
         $pretest->choice_3 = $data['choice_3'];
         $pretest->choice_4 = $data['choice_4'];
+        $pretest->right_answer = $data['right_answer'];
         $pretest->save();
         $posttest = new Posttest();
         $posttest->question = $data['question'];
@@ -56,8 +60,9 @@ class TestController extends Controller
         $posttest->choice_2 = $data['choice_2'];
         $posttest->choice_3 = $data['choice_3'];
         $posttest->choice_4 = $data['choice_4'];
+        $posttest->right_answer = $data['right_answer'];
         $posttest->save();
-        return redirect('test/list')->with('user',$admin);
+        return redirect('admin/test/list')->with('user',$admin);
     }
 
     /**
@@ -70,6 +75,7 @@ class TestController extends Controller
     {
         //
         $admin = Auth()->user();
+        $admin->authorizeRoles(['admin']);
         $test = Pretest::where('id',$id)->first();
         return view('adminlayouts/testdetail')->with('test',$test)->with('user',$admin);
     }
@@ -84,6 +90,7 @@ class TestController extends Controller
     {
         //
         $admin = Auth()->user();
+        $admin->authorizeRoles(['admin']);
         $test = Pretest::where('id',$id)->first();
         return view('adminlayouts/testedit')->with('test',$test)->with('user',$admin);
     }
@@ -99,6 +106,7 @@ class TestController extends Controller
     {
         //
         $admin = Auth()->user();
+        $admin->authorizeRoles(['admin']);
         $data = $request->all();
         $pretest = Pretest::where('id',$id)->first();
         $pretest->question = $data['question'];
@@ -106,6 +114,7 @@ class TestController extends Controller
         $pretest->choice_2 = $data['choice_2'];
         $pretest->choice_3 = $data['choice_3'];
         $pretest->choice_4 = $data['choice_4'];
+        $pretest->right_answer = $data['right_answer'];
         $pretest->save();
         $posttest = Posttest::where('id',$id)->first();
         $posttest->question = $data['question'];
@@ -113,8 +122,9 @@ class TestController extends Controller
         $posttest->choice_2 = $data['choice_2'];
         $posttest->choice_3 = $data['choice_3'];
         $posttest->choice_4 = $data['choice_4'];
+        $posttest->right_answer = $data['right_answer'];
         $posttest->save();
-        $url = 'admin/test/detail'.string($id);
+        $url = 'admin/test/detail/'.$id;
         return redirect($url)->with('test',$pretest)->with('user',$admin);
     }
 

@@ -16,8 +16,9 @@ class UserController extends Controller
     {
         //
         $listUser = User::get();
-        $data = Auth()->user();
-        return view('adminlayouts/userlist')->with('userList',$listUser)->with('user',$data);
+        $admin = Auth()->user();
+        $admin->authorizeRoles(['admin']);
+        return view('adminlayouts/userlist')->with('userList',$listUser)->with('user',$admin);
     }
 
     /**
@@ -29,6 +30,7 @@ class UserController extends Controller
     {
         //
         $admin = Auth()->user();
+        $admin->authorizeRoles(['admin']);
         return view('adminlayouts/makeuser')->with('user',$admin);
     }
 
@@ -41,6 +43,8 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
+        $admin = Auth()->user();
+        $admin->authorizeRoles(['admin']);
         $data = $request->all();
         $user = new User();
         $user->nrp = $data['nrp'];
@@ -58,7 +62,7 @@ class UserController extends Controller
             ->roles()
             ->attach(Role::where('name',$data['role'])->first());
         $user->save();
-        return redirect('/admin/user/list');
+        return redirect('/admin/user/list')->with('user',$admin);
 
     }
 
@@ -73,6 +77,7 @@ class UserController extends Controller
         //
         $user = User::where('id',$id)->first();
         $admin = Auth()->user();
+        $admin->authorizeRoles(['admin']);
         return view('adminlayouts/userdetail')->with('edituser',$user)->with('user',$admin);
     }
 
@@ -87,6 +92,7 @@ class UserController extends Controller
         //
         $user = User::where('id',$id)->first();
         $admin = Auth()->user();
+        $admin->authorizeRoles(['admin']);
         return view('adminlayouts/useredit')->with('edituser',$user)->with('user',$admin);
     }
 
@@ -101,6 +107,7 @@ class UserController extends Controller
     {
         //
         $admin = Auth()->user();
+        $admin->authorizeRoles(['admin']);
         $user = User::where('id',$id)->first();
         $data = $request->all();
         $user->nrp = $data['nrp'];
@@ -114,7 +121,7 @@ class UserController extends Controller
             ->roles()
             ->attach(Role::where('name',$data['role'])->first());
         $user->save();
-        $url = '/admin/user/detail/'.(string)$id;
+        $url = '/admin/user/detail/'.$id;
         return redirect($url)->with('edituser',$user)->with('user',$admin);
     }
 

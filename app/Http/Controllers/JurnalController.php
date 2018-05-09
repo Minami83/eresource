@@ -16,6 +16,7 @@ class JurnalController extends Controller
         //
         $jurnal = Jurnal::get();
         $admin = Auth()->user();
+        $admin->authorizeRoles(['admin']);
         return view('adminlayouts/jurnallist')->with('jurnal',$jurnal)->with('user',$admin);
 
     }
@@ -29,6 +30,7 @@ class JurnalController extends Controller
     {
         //
         $admin = Auth()->user();
+        $admin->authorizeRoles(['admin']);
         return view('adminlayouts/makejurnal')->with('user',$admin);
     }
 
@@ -42,21 +44,23 @@ class JurnalController extends Controller
     {
         //
         $admin = Auth()->user();
+        $admin->authorizeRoles(['admin']);
         $data = $request->all();
         $jurnal = new Jurnal();
         $jurnal->name = $data['name'];
         $jurnal->fullName = $data['fullName'];
 
         $howto = $request->file('howto');
+        // dd($howto);
         $filename = $howto->getClientOriginalName();
         $destination = public_path().'/howto';
         $howto->move($destination,$filename);
-        $jurnal->howto = $destination.'/'.$filename;
+        $jurnal->howto = '/howto/'.$filename;
         $video = $request->file('video');
-        $filename = $howto->getClientOriginalName();
+        $filename = $video->getClientOriginalName();
         $destination = public_path().'/video';
         $video->move($destination,$filename);
-        $jurnal->video = $destination.'/'.$filename;
+        $jurnal->video = '/video/'.$filename;
         $jurnal->save();
         return redirect('/admin/jurnal/list')->with('user',$admin);
 
@@ -72,6 +76,7 @@ class JurnalController extends Controller
     {
         //
         $admin = Auth()->user();
+        $admin->authorizeRoles(['admin']);
         $jurnal = Jurnal::where('id',$id)->first();
         return view('adminlayouts/jurnaldetail')->with('jurnal',$jurnal)->with('user',$admin);
     }
@@ -86,6 +91,7 @@ class JurnalController extends Controller
     {
         //
         $admin = Auth()->user();
+        $admin->authorizeRoles(['admin']);
         $jurnal = Jurnal::where('id',$id)->first();
         return view('adminlayouts/jurnaledit')->with('jurnal',$jurnal)->with('user',$admin);
     }
@@ -101,6 +107,7 @@ class JurnalController extends Controller
     {
         //
         $admin = Auth()->user();
+        $admin->authorizeRoles(['admin']);
         $data = $request->all();
         $jurnal = Jurnal::where('id',$id)->first();
         $jurnal->name = $data['name'];
@@ -109,14 +116,14 @@ class JurnalController extends Controller
         $filename = $howto->getClientOriginalName();
         $destination = public_path().'/howto';
         $howto->move($destination,$filename);
-        $jurnal->howto = $destination.'/'.$filename;
+        $jurnal->howto = '/howto/'.$filename;
         $video = $request->file('video');
         $filename = $howto->getClientOriginalName();
         $destination = public_path().'/video';
         $video->move($destination,$filename);
-        $jurnal->video = $destination.'/'.$filename;
+        $jurnal->video = '/video/'.$filename;
         $jurnal->save();
-        $url = '/admin/jurnal/detail/'.string($id);
+        $url = '/admin/jurnal/detail/'.$id;
         return redirect($url)->with('jurnal',$jurnal)->with('user',$admin);
     }
 

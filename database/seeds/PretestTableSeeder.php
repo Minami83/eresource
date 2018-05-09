@@ -18,6 +18,7 @@ class PretestTableSeeder extends Seeder
         $pretest->choice_2 = 'Dummy choice 1.2';
         $pretest->choice_3 = 'Dummy choice 1.3';
         $pretest->choice_4 = 'Dummy choice 1.4';
+        $pretest->right_answer = 3;
         $pretest->save();
 
         $pretest = new Pretest();
@@ -26,6 +27,7 @@ class PretestTableSeeder extends Seeder
         $pretest->choice_2 = 'Dummy choice 2.2';
         $pretest->choice_3 = 'Dummy choice 2.3';
         $pretest->choice_4 = 'Dummy choice 2.4';
+        $pretest->right_answer = 2;
         $pretest->save();
     }
 }

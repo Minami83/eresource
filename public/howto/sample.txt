@@ -1,0 +1,102 @@
+advance analytic entry point
+	technology directive
+	field of dream
+	ambitious executives
+	smart competitor
+
+agile approach to data driven
+	cepat menentukan bila tidak cocok metodenya
+
+data science -> mahal
+	untuk decision making
+
+
+Google vizier - black box optimization
+	mempermudah data scientist
+	deep learning - CNN
+		optimize parameter 
+	ui/ux
+	design barang fisik
+	robotics
+	goal
+		easy to use
+		reliable
+		scalable
+		flexible
+		state of the art
+
+Tensorflow extended
+	deep learning library from google
+	bagaimana membuat model yang dapat terpakai
+	design principle
+		for everything
+		continous training & serving
+			perubahan data mempengaruhi model
+		human in the loop
+	step:
+		data analysis
+		data validation
+		data transformation
+		trainer
+			membuat model sesuai keinginan
+		model validation
+		serving
+	layer of serving
+		documentation
+		education
+		automation
+
+Designing AI at scale for everyday use
+	machine learning at of facebook
+	MachineLearning at FB:
+		computer vision
+		deep text
+			machine translation
+		speech and video
+		AI powered camera
+			menyesuaikan dengan berbagai macam HP
+	Next:
+		multi modal learning
+			1 model untuk macam" task
+		transfer learning
+		multilingual modeling
+			model translation untuk semua bahasa
+		weekly un/supervised learning
+
+Industrial machine learning
+	sumber data terbanyak beralih dari manusia ke mesin
+	optimization metric:
+		higher accuracy != higher value
+		false positive 
+	model: physical(inject knowledge sebelum buat model) and 
+			data driver model
+	interpretebility and accuracy tradeoff
+		lebih susah dimengerti atau tidak
+	small improvement help a lot
+		optimisasi model memiliki dampak besar
+
+Deep learning & machine learning
+	untuk kasus data tidak banyak machine learning accuracy bisa lebih besar
+	tidak butuh fitur engineering
+
+Deep learning in Recomender system
+	2 orang melakukan search sama belum tentu hasil sama tergantung behaviour sebelumnya yang telah dikumpulkan (google.com)
+
+architect
+	train model offline
+	ketika ada querry ke offline
+	model offline memberi hasil ke online
+	di online model dijalankan untuk query yang masih pending
+
+Online advertising
+	adertiser - adnetwork - publisher
+	Ad Pricing:
+		popular model:
+			cost per mile impression
+			cost per click
+			cost per acquisition
+	bid = cpa * pSale
+	last click
+	first click
+	
+

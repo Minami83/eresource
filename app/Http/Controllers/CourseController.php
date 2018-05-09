@@ -97,8 +97,11 @@ class CourseController extends Controller
           return $this->pretest();
         $now = substr($request->path(),7);
         $nowProgress = $myJurnal->pluck('name')->search($now);
-        $url = 'jurnal/'.$myJurnal[($user->progress>$nowProgress)?$nowProgress:$user->progress]->name;
-        return view($url)->with('user',$user)->with('myJurnal',$myJurnal);
+        $index = ($user->progress>$nowProgress)?$nowProgress:$user->progress;
+        $url = 'jurnal/'.$myJurnal[$index]->name;
+        $text = file(public_path().$myJurnal[$index]->howto);
+        // dd($text);
+        return view($url)->with('user',$user)->with('myJurnal',$myJurnal)->with('howto_text',$text);
     }
 
 
@@ -122,7 +125,7 @@ class CourseController extends Controller
                 return $this->posttest();
             }
             $user->save();
-
+            $text = file(public_path().$myJurnal[$currentProgress+1]->howto);
             $url = 'course/'.$myJurnal[$currentProgress+1]->name;
         }
         else{
@@ -131,10 +134,10 @@ class CourseController extends Controller
             // dd($currentProgress);
             if($currentProgress >= $myJurnal->count()) return $this->posttest();
             $url = 'course/'.$myJurnal[$currentProgress]->name;
-
+            $text = file(public_path().$myJurnal[$currentProgress]->howto);
         }
         // dd($url);
-        return redirect($url)->with('user',$user)->with('myJurnal',$myJurnal);
+        return redirect($url)->with('user',$user)->with('myJurnal',$myJurnal)->with('howto_text',$text);
     }
 
     public function continue()
@@ -142,7 +145,8 @@ class CourseController extends Controller
         $user = Auth()->user();
         $myJurnal = $user->takenJurnalList();
         $url = 'course/'.$myJurnal[$user->progress-1]->name;
-        return redirect($url)->with('user',$user)->with('myJurnal',$myJurnal);
+        $text = file(public_path().$myJurnal[$user->progress-1]->howto);
+        return redirect($url)->with('user',$user)->with('myJurnal',$myJurnal)->with('howto_text',$text);
     }
 
     public function incAction(int $howto, int $video, int $tutorial, $user, $jurnal)

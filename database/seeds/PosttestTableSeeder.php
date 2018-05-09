@@ -18,6 +18,7 @@ class PosttestTableSeeder extends Seeder
       $posttest->choice_2 = 'Dummy choice 1.2';
       $posttest->choice_3 = 'Dummy choice 1.3';
       $posttest->choice_4 = 'Dummy choice 1.4';
+      $posttest->right_answer = 3;
       $posttest->save();
 
       $posttest = new Posttest();
@@ -26,6 +27,7 @@ class PosttestTableSeeder extends Seeder
       $posttest->choice_2 = 'Dummy choice 2.2';
       $posttest->choice_3 = 'Dummy choice 2.3';
       $posttest->choice_4 = 'Dummy choice 2.4';
+      $posttest->right_answer = 2;
       $posttest->save();
     }
 }

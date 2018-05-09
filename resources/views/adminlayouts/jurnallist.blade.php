@@ -56,15 +56,15 @@
 
 <div id="id01" class="w3-modal">
   <div class="w3-modal-content w3-animate-top" style="margin-top: -60px">
-    <header class="w3-container w3-teal"> 
-      <span onclick="document.getElementById('id01').style.display='none'" 
+    <header class="w3-container w3-teal">
+      <span onclick="document.getElementById('id01').style.display='none'"
       class="w3-button w3-display-topright">&times;</span>
       <h2>Add Journal</h2>
     </header>
     <div class="w3-container">
       <div class="w3-white w3-round-large">
       <br>
-        <form method="POST" action="/admin/jurnal/make">
+        <form method="POST" action="/admin/jurnal/make" enctype="multipart/form-data">
           @csrf
             <div class="form-group">
                 <input id="fullName" type="text" class="w3-round-xlarge iconified empty form-control" name="fullName" placeholder="&#xf007;     {{ __('Nama Jurnal') }}" required autofocus>
@@ -74,16 +74,17 @@
             </div>
             <div class="form-group">
                 <label>How to:</label>
-                <textarea class="empty" style="width:100%;height: 200px" name="howto" placeholder="Step-by-step Journal"></textarea>
+                <!-- <textarea class="empty" style="width:100%;height: 200px" name="howto" placeholder="Step-by-step Journal"></textarea> -->
+                <input type="file" accept="text/plain" name="howto">
             </div>
             <div class="form-group">
               <label>Video:</label>
                 <input type="file" accept="video/mp4,video/x-m4v,video/*" name="video">
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label>Tutorial:</label>
                 <textarea class="empty" style="width:100%;height: 200px" name="tutorial" placeholder="Step-by-step Journal"></textarea>
-            </div>
+            </div> -->
             <button style="width: 100%" class="btn waves-effect waves-light" type="submit" name="action">Confirm
             </button><br><br>
         </form>
@@ -115,7 +116,7 @@
         } else {
           tr[i].style.display = "none";
         }
-      }       
+      }
     }
   }
 
@@ -123,7 +124,7 @@
     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
     table = document.getElementById("myTable");
     switching = true;
-    dir = "asc"; 
+    dir = "asc";
     while (switching) {
       switching = false;
       rows = table.getElementsByTagName("TR");
@@ -146,7 +147,7 @@
       if (shouldSwitch) {
         rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
         switching = true;
-        switchcount ++;      
+        switchcount ++;
       } else {
         if (switchcount == 0 && dir == "asc") {
           dir = "desc";

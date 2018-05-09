@@ -18,7 +18,7 @@
 	}
 
 	th{
-		width:170px;	
+		width:170px;
 	}
 	.btna{
 		width:110px;
@@ -27,7 +27,7 @@
 @endsection()
 
 @section('isi')
-	
+
 	<div class="w3-row" style="margin-top: 70px">
 		<div class="col-sm-3"></div>
 		<div class="col-sm-6 w3-white w3-round-large">
@@ -40,7 +40,7 @@
 					<td>:</td>
 					<td class="profb" style="display: block">{{$test->question}}</td>
 					<td class="profa" style="display: none">
-						<input id="question" type="text" class="w3-round-xlarge empty form-control" name="fullName" value="{{$test->question}}" required autofocus>
+						<input id="question" type="text" class="w3-round-xlarge empty form-control" name="question" value="{{$test->question}}" required autofocus>
                     </td>
 				</tr>
 				<tr>
@@ -75,16 +75,16 @@
 						<input id="name" type="text" class="w3-round-xlarge empty form-control" name="choice_4" value="{{$test->choice_4}}" required autofocus>
 					</td>
 				</tr>
-				{{-- <tr>
+				<tr>
 					<th>{{ __('Jawaban') }}</th>
 					<td>:</td>
-					<td class="profb" style="display: block">{{$test->answer}}</td>
+					<td class="profb" style="display: block">{{$test->right_answer}}</td>
 					<td class="profa" style="display: none">
-						<input id="name" type="text" class="w3-round-xlarge empty form-control" name="answer" value="{{$test->answer}}" required autofocus>
+						<input id="name" type="text" class="w3-round-xlarge empty form-control" name="right_answer" value="{{$test->right_answer}}" required autofocus>
 					</td>
-				</tr> --}}
+				</tr>
 				</table>
-				<button id="btnsubmit" class="profa editprofil btna" style="display: none;margin-left: 100px" type="submit" name="action">Submit <i class="fa">&#xf1d8;</i></button>	
+				<button id="btnsubmit" class="profa editprofil btna" style="display: none;margin-left: 100px" type="submit" name="action">Submit <i class="fa">&#xf1d8;</i></button>
 	    	</form>
 	    		<button id="btncancel" style="position:absolute;display: none;bottom:0px;" class="profa editprofil btna" onclick="canceleditprofil()">Cancel <i class="fa">&#xf00d;</i></button>
 				<button id="btnubah" style="display: block" class="profb editprofil btna" onclick="editprofil()">Edit Test <i class="fa">&#xf044;</i></button>

@@ -20,6 +20,7 @@ class CreatePretestsTable extends Migration
             $table->string('choice_2');
             $table->string('choice_3');
             $table->string('choice_4');
+            $table->integer('right_answer');
             $table->timestamps();
         });
     }

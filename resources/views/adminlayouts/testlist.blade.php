@@ -68,8 +68,8 @@
 
 <div id="id01" class="w3-modal">
   <div class="w3-modal-content w3-animate-top" style="margin-top: 0px">
-    <header class="w3-container w3-teal"> 
-      <span onclick="document.getElementById('id01').style.display='none'" 
+    <header class="w3-container w3-teal">
+      <span onclick="document.getElementById('id01').style.display='none'"
       class="w3-button w3-display-topright">&times;</span>
       <h2>Add Question</h2>
     </header>
@@ -79,11 +79,11 @@
         <form method="POST" action="/admin/test/make">
           @csrf
             <div class="form-group">
-                <input id="question" type="text" class="w3-round-xlarge iconified empty form-control" name="fullName" placeholder="&#xf128;     {{ __('Pertanyaan') }}" required autofocus>
+                <input id="question" type="text" class="w3-round-xlarge iconified empty form-control" name="question" placeholder="&#xf128;     {{ __('Pertanyaan') }}" required autofocus>
             </div>
-            {{-- <div class="form-group">
-                <input id="answer" type="text" class="w3-round-xlarge iconified empty form-control" name="answer" placeholder="&#xf00c;    {{ __('Jawaban') }}" required autofocus>
-            </div> --}}
+            <div class="form-group">
+                <input id="answer" type="text" class="w3-round-xlarge iconified empty form-control" name="right_answer" placeholder="&#xf00c;    {{ __('Jawaban') }}" required autofocus>
+            </div>
             <div class="form-group">
                 <input id="choice_1" type="text" class="w3-round-xlarge iconified empty form-control" name="choice_1" placeholder="&#xf00c;    {{ __('Pilihan 1') }}" required autofocus>
             </div>
@@ -128,7 +128,7 @@
         } else {
           tr[i].style.display = "none";
         }
-      }       
+      }
     }
   }
 
@@ -136,7 +136,7 @@
     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
     table = document.getElementById("myTable");
     switching = true;
-    dir = "asc"; 
+    dir = "asc";
     while (switching) {
       switching = false;
       rows = table.getElementsByTagName("TR");
@@ -159,7 +159,7 @@
       if (shouldSwitch) {
         rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
         switching = true;
-        switchcount ++;      
+        switchcount ++;
       } else {
         if (switchcount == 0 && dir == "asc") {
           dir = "desc";

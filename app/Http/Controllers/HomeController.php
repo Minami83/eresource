@@ -26,6 +26,7 @@ class HomeController extends Controller
     {
         $request->user()->authorizeRoles(['student','admin']);
         $data = Auth()->user();
+        $this->loginlog();
         if($data->verified==0) return view('adminlayouts/dummy')->with('user',$data);
         $myJurnal = $data->takenJurnalList();
         // dd($data);
@@ -52,6 +53,27 @@ class HomeController extends Controller
         $user->phone = $data['phone'];
         $user->save();
         return $this->profile();
+    }
+
+    public function loginlog()
+    {
+        $user = Auth()->user();
+        $log = new Log();
+        $log->user_id = $user->id;
+        $log->jurnal_id = 0;
+        $log->activity = 'Login';
+        $log->save();
+    }
+
+    public function logoutlog()
+    {
+        $user = Auth()->user();
+        $log = new Log();
+        $log->user_id = $user->id;
+        $log->jurnal_id = 0;
+        $log->activity = 'Login';
+        $log->save();
+        Auth()->logout();
     }
 
 }
