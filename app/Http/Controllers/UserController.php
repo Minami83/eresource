@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Role;
 class UserController extends Controller
 {
     /**
@@ -57,7 +58,7 @@ class UserController extends Controller
             ->roles()
             ->attach(Role::where('name',$data['role'])->first());
         $user->save();
-        return redirect('/user/list');
+        return redirect('/admin/user/list');
 
     }
 

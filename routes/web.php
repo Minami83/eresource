@@ -12,11 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('webpage.login');
 });
-Route::get('/tes', function () {
-    return view('webpage.register');
-});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -41,7 +39,7 @@ Route::post('/admin/user/make', 'UserController@store');
 Route::get('/admin/user/detail/{id}', 'UserController@show');
 Route::get('/admin/user/edit/{id}', 'UserController@edit');
 Route::post('/admin/user/edit/{id}', 'UserController@update');
-Route::delete('admin/user/delete/{id}', 'UserController@delete');
+Route::delete('/admin/user/delete/{id}', 'UserController@destroy');
 
 Route::get('/admin/jurnal/list', 'JurnalController@index');
 Route::get('/admin/jurnal/make', 'JurnalController@create');
@@ -49,7 +47,7 @@ Route::post('/admin/jurnal/make', 'JurnalController@store');
 Route::get('/admin/jurnal/detail/{id}', 'JurnalController@show');
 Route::get('/admin/jurnal/edit/{id}', 'JurnalController@edit');
 Route::post('/admin/jurnal/edit/{id}', 'JurnalController@update');
-Route::delete('admin/jurnal/delete/{id}', 'JurnalController@delete');
+Route::delete('/admin/jurnal/delete/{id}', 'JurnalController@destroy');
 
 Route::get('/admin/test/list', 'TestController@index');
 Route::get('/admin/test/make', 'TestController@create');
@@ -57,4 +55,4 @@ Route::post('/admin/test/make', 'TestController@store');
 Route::get('/admin/test/detail/{id}', 'TestController@show');
 Route::get('/admin/test/edit/{id}', 'TestController@edit');
 Route::post('/admin/test/edit/{id}', 'TestController@update');
-Route::delete('admin/test/delete/{id}', 'TestController@delete');
+Route::delete('/admin/test/delete/{id}', 'TestController@destroy');
