@@ -60,6 +60,12 @@ class User extends Authenticatable
 
     }
 
+    public function roleName()
+    {
+        $uname = $this->roles()->where('user_id',$this->id)->first();
+        return $uname->name;
+    }
+
     public function jurnals(){
         return $this->belongsToMany(Jurnal::class);
     }
