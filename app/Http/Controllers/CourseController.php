@@ -103,15 +103,31 @@ class CourseController extends Controller
         // bikin warna text r g b format
         $color = imagecolorallocate($image, 0, 0, 0);
         $string = $user->name;
-        $x = 420;
-        $y = 400;
+        $string1 = "atas partisipasinya dalam menyelesaikan";
+        $string2 = "E-Resource Class";
         $font = public_path().'/font/Certificate.ttf';
+        $font1 = public_path().'/font/CALIFR.TTF';
+        $font2 = public_path().'/font/timesbi.ttf';
+        $box=imageftbbox(40, 0, $font, $string);
+        $box1=imageftbbox(20, 0, $font1, $string1);
+        $box2=imageftbbox(30, 0, $font2, $string2);
+        $x = (1024 - ($box[2]-$box[0]))/2;
+        $x1 = (1024 - ($box1[2]-$box1[0]))/2;
+        $x2 = (1024 - ($box2[2]-$box2[0]))/2;
+        $x3 = 255;
+        $y = 390;
+        $y1 = 430;
+        $y2 = 470;
+        $y3 = 525;
         // write on the image
-        imagettftext($image, 75, 0, $x, $y, $color, $font, $string);
+        imagettftext($image, 40, 0, $x, $y, $color, $font, $string);
+        imagettftext($image, 20, 0, $x1, $y1, $color, $font1, $string1);
+        imagettftext($image, 30, 0, $x2, $y2, $color, $font2, $string2);
+        imagettftext($image, 20, 0, $x3, $y3, $color, $font, $date);
         // save the image
         $img = '/image/'.$user->name.'.jpg';
         imagejpeg($image,  $fileName = public_path().$img, $quality = 100);
-        return redirect('/home');
+        // return redirect('/home');
         return view('webpage/sertifikat')->with('user',$user)->with('date',$date)->with('img_url',$img);
     }
 

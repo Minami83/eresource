@@ -20,31 +20,29 @@
 	</video>
 @endsection()
 
+@section('tutorial')
+@endsection()
+
 @section('morescript')
 	$(document).ready(function(){
 		$("#13").addClass("active")
 	});
 
 	$(document).ready(function(){
-		var temp={{$user->progress}};
-		if(temp>=14){
-			$("#nextbutton").css('display','block');
-		}
-		else{
-		    $("#accord1").click(function(){
-		        $("#nextbutton").fadeIn();
-		    });
-		}
+		@for ($i = 0; $i < sizeof($myJurnal); $i++)
+			@if ($myJurnal[$i]->id==$jurnal[12]->id)
+				@if ($i+2 <= $user->progress)
+					$("#nextbutton").css('display','block');
+				@else
+				    $("#accord1").click(function(){
+				        $("#nextbutton").fadeIn();
+				    });
+					document.getElementById('vid1').addEventListener('ended',myHandler,false);
+				    function myHandler(e) {
+					    $("#nextbutton").fadeIn();
+				    }
+				@endif
+			@endif
+		@endfor
 	});
-
-	document.getElementById('vid1').addEventListener('ended',myHandler,false);
-    function myHandler(e) {
-    	var temp={{$user->progress}};
-		if(temp>=14){
-			$("#nextbutton").css('display','block');
-		}
-		else{	
-	        $("#nextbutton").fadeIn();
-	    }
-    }
 @endsection()

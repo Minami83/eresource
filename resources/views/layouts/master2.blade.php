@@ -16,6 +16,14 @@
   		a,a:hover,a:visited,a:link,a:active{
   			text-decoration: none;
   		}
+  		body{
+  			width: inherit;
+  			height: inherit;
+  		}
+  		#main{
+  			width: inherit;		
+  			height: inherit;	
+  		}
   		@yield('style')
   	</style>
 </head>

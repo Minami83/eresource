@@ -15,7 +15,7 @@
 @section('isi')
 	
 	<div class="w3-row" style="margin-top: 30px">
-		<div class="w3-center"><img src="/image/eresourcelogo.png" style="width: 150px"></div><br>
+		<div class="w3-center"><img src="/image/eresourcelogo2.png" style="width: 150px"></div><br>
 		<div class="col-sm-4"></div>
 		<div class="w3-card col-sm-4 w3-white w3-round-large">
 			<br>

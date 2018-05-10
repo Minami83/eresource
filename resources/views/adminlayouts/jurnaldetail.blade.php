@@ -92,7 +92,7 @@
 
 		$(document).ready(function(){
 			var temp = "{{$jurnal->video}}";
-			var temp2 = temp.replace(" ","%");
+			var temp2 = temp.replace(/ /g, "%20");
 			$("#myVid").attr('src',temp2);
 		});
 

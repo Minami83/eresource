@@ -15,7 +15,7 @@
 		width:170px;	
 	}
 	.btna{
-		width:100px;
+		width:110px;
 		height:30px
 	}
 @endsection()

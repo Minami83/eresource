@@ -5,14 +5,26 @@
 @endsection()
 
 @section('isi')
+
 	<div class="w3-center container" style="margin-top: 200px">
 		<h1 class="w3-animate-opacity">E-Resource Class</h1><br>
-		<div class="">
-			<a id="btn" class="w3-button"></a>
+		@if ($user->verified<2)
+		<div class="w3-center">
+			<a id="btn" class="homebutton w3-button w3-light-gray"></a>
 		</div>
+		@else
+		<div class="col-sm-3"></div>
+		<div class="col-sm-3">
+			<a id="btn" class="homebutton w3-center w3-button w3-light-gray"></a>
+		</div>
+		<div class="col-sm-3">
+			<a id="btn2" href="/sertif" class="homebutton w3-center w3-button w3-light-gray">Sertif</a>
+		</div>
+		@endif
 
 	<script type="text/javascript">
 		$(document).ready(function(){
+			$('.homebutton').width('95');
 			if({{$user->progress}}>=1){
 				$("#btn").html('Continue');
 				$("#btn").attr('href','/continue');
