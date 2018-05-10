@@ -113,15 +113,19 @@ class JurnalController extends Controller
         $jurnal->name = $data['name'];
         $jurnal->fullName = $data['fullName'];
         $howto = $request->file('howto');
-        $filename = $howto->getClientOriginalName();
-        $destination = public_path().'/howto';
-        $howto->move($destination,$filename);
-        $jurnal->howto = '/howto/'.$filename;
+        if($howto != null){
+            $filename = $howto->getClientOriginalName();
+            $destination = public_path().'/howto';
+            $howto->move($destination,$filename);
+            $jurnal->howto = '/howto/'.$filename;
+        }
         $video = $request->file('video');
-        $filename = $howto->getClientOriginalName();
-        $destination = public_path().'/video';
-        $video->move($destination,$filename);
-        $jurnal->video = '/video/'.$filename;
+        if($video != null){
+            $filename = $howto->getClientOriginalName();
+            $destination = public_path().'/video';
+            $video->move($destination,$filename);
+            $jurnal->video = '/video/'.$filename;
+        }
         $jurnal->save();
         $url = '/admin/jurnal/detail/'.$id;
         return redirect($url)->with('jurnal',$jurnal)->with('user',$admin);

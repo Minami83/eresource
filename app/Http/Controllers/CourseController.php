@@ -46,7 +46,8 @@ class CourseController extends Controller
         $pretest_quest = Pretest::get();
         $myJurnal = $user->takenJurnalList();
         $url = 'course/'.$myJurnal[0]->name;
-        if($user->progress != 0) return redirect($url)->with('user',$user)->with('myJurnal',$myJurnal);
+        // if($user->progress != 0) return redirect($url)->with('user',$user)->with('myJurnal',$myJurnal);
+        if($user->progress != 0) return redirect('/home')->with('user',$user);
         // dd($pretest_quest);
         return view('webpage/pretest')->with('user',$user)->with('pretest',$pretest_quest);
     }
@@ -71,6 +72,7 @@ class CourseController extends Controller
     {
         $user = Auth()->user();
         $posttest_quest = Posttest::get();
+        if($user->verified == 2) return redirect('/home')->with('user',$user);
         return view('webpage/posttest')->with('user',$user)->with('posttest',$posttest_quest);
     }
 
@@ -85,7 +87,32 @@ class CourseController extends Controller
         }
         $myJurnal = $user->takenJurnalList();
         $url = 'course/'.$myJurnal[0]->name;
-        return redirect($url)->with('user',$user)->with('myJurnal', $myJurnal);
+        $user->verified = 2;
+        $user->save();
+        // return redirect($url)->with('user',$user)->with('myJurnal', $myJurnal);
+        return redirect('/home');
+    }
+
+    public function sertifPage()
+    {
+        $user = Auth()->user();
+        if($user->verified != 2) return redirect('/home');
+        $date = date('d-m-y');
+        $path = public_path().'/image/dummySertif.jpg';
+        $image = imagecreatefromjpeg($path);
+        // bikin warna text r g b format
+        $color = imagecolorallocate($image, 0, 0, 0);
+        $string = $user->name;
+        $x = 420;
+        $y = 400;
+        $font = public_path().'/font/Certificate.ttf';
+        // write on the image
+        imagettftext($image, 75, 0, $x, $y, $color, $font, $string);
+        // save the image
+        $img = '/image/'.$user->name.'.jpg';
+        imagejpeg($image,  $fileName = public_path().$img, $quality = 100);
+        return redirect('/home');
+        return view('webpage/sertifikat')->with('user',$user)->with('date',$date)->with('img_url',$img);
     }
 
     public function index(Request $request)

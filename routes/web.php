@@ -25,6 +25,7 @@ Route::get('/pretest', 'CourseController@pretest');
 Route::post('/preans', 'CourseController@preAns');
 Route::get('/posttest', 'CourseController@posttest');
 Route::post('/postans', 'CourseController@postAns')->name('postans');
+Route::get('/sertif', 'CourseController@sertifPage');
 
 Route::get('/course/{courseName}', 'CourseController@index')->name('course');
 Route::post('/next', 'CourseController@nextPage')->name('changePage');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Role;
+use App\Jurnal;
 class UserController extends Controller
 {
     /**
@@ -55,6 +56,15 @@ class UserController extends Controller
         $user->email = $data['email'];
         $user->progress = 0;
         $user->verified = 0;
+        if($data['role']=='admin'){
+            $user->verified = 2;
+            $jurnalCnt = Jurnal::count();
+            $user->progress = $jurnalCnt;
+            $jurnal = Jurnal::get();
+            foreach($jurnal as $jur){
+                $user->jurnals()->attach($jur);
+            }
+        }
         $user->password = bcrypt($data['password']);
         $user->save();
         $user->roles()->detach();
@@ -116,6 +126,11 @@ class UserController extends Controller
         $user->department = $data['department'];
         $user->email = $data['email'];
         $user->phone = $data['phone'];
+        if($data['role']=='admin'){
+            $user->verified = 2;
+            $jurnalCnt = Jurnal::count();
+            $user->progress = $jurnalCnt;
+        }
         $user->roles()->detach();
         $user
             ->roles()
