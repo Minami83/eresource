@@ -145,8 +145,8 @@ class CourseController extends Controller
         $nowProgress = $myJurnal->pluck('name')->search($now);
         // dd($nowProgress);
         $index = ($user->progress>$nowProgress)?$nowProgress:$user->progress-1;
-
-        if($nowProgress==false) $index = $user->progress-1;
+        if($nowProgress===false) $index = $user->progress-1;
+        // dd($index);
         $text = file(public_path().$myJurnal[$index]->howto);
         if($nowProgress === false || $nowProgress>$user->progress){
             $url = 'course/'.$myJurnal[$index]->name;
@@ -197,10 +197,10 @@ class CourseController extends Controller
         $user = Auth()->user();
         $myJurnal = $user->takenJurnalList();
         $index = ($user->verified==2)?$user->progress-2:$user->progress-1;
-        $url = 'jurnal/'.$myJurnal[$index]->name;
+        $url = 'course/'.$myJurnal[$index]->name;
         $text = file(public_path().$myJurnal[$index]->howto);
         $jurnal = Jurnal::get();
-        return view($url)->with('user',$user)->with('myJurnal',$myJurnal)->with('howto_text',$text)->with('jurnal',$jurnal);
+        return redirect($url)->with('user',$user)->with('myJurnal',$myJurnal)->with('howto_text',$text)->with('jurnal',$jurnal);
     }
 
     public function incAction(int $howto, int $video, int $tutorial, $user, $jurnal)

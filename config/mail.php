@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'driver' => env('MAIL_DRIVER', 'smtp'),
+    'driver' => env('MAIL_DRIVER', 'mailgun'),
 
     /*
     |--------------------------------------------------------------------------
@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+    'host' => env('MAIL_HOST', 'smtp.gmail.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'aeron.fedelmid@gmail.com'),
+        'name' => env('MAIL_FROM_NAME', 'Admin E-Resource Class'),
     ],
 
     /*
@@ -84,9 +84,9 @@ return [
     |
     */
 
-    'username' => env('MAIL_USERNAME'),
+    'username' => env('aeron.fedelmid@gmail.com'),
 
-    'password' => env('MAIL_PASSWORD'),
+    'password' => env('aeronman12'),
 
     /*
     |--------------------------------------------------------------------------
@@ -100,6 +100,7 @@ return [
     */
 
     'sendmail' => '/usr/sbin/sendmail -bs',
+    'pretend' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -119,5 +120,13 @@ return [
             resource_path('views/vendor/mail'),
         ],
     ],
+
+    'stream' => [
+   'ssl' => [
+      'allow_self_signed' => true,
+      'verify_peer' => false,
+      'verify_peer_name' => false,
+   ],
+],
 
 ];
