@@ -4,6 +4,11 @@
 @endsection()
 
 @section('style')
+    body{
+        color:#ffc107!important;
+        background-color: #00748d!important;
+    }
+
     .text{
         color:white;
         font-family: FontAwesome;

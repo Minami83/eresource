@@ -27,7 +27,7 @@
   		@yield('style')
   	</style>
 </head>
-<body class="w3-dropdownnavbar">
+<body>
 	<div id="main">
 		@yield('isi')
 	</div>
