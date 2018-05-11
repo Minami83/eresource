@@ -41,7 +41,7 @@
 @section('isi')
 <div class="container" style="margin-top: 100px">
 @foreach($unverified as $verif)
-  <button class="accordion" id="accord1" onclick="accordionfunc(this.id)">{{$verif->name}}</button>
+  <button class="accordion" id="{{$verif->id}}" onclick="accordionfunc(this.id)">{{$verif->name}}</button>
   <div class="panel">
     <form method="post" action="/admin">
       @csrf

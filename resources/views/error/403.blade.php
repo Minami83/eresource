@@ -1,6 +1,6 @@
-@extends('layouts.master')
+@extends('layouts.master2')
 
-@section('title','Unauthorized Access')
+@section('title','Error 403')
 
 @section('customstyle')
     <style>
@@ -32,11 +32,11 @@
         }
     </style>
 
-@section('content')
+@section('isi')
     <div class="bodyerror">
         <div class="container2">
             <div class="content">
-                <div class="title">Unautorized Access</div>
+                <div class="title">Unauthorized Access</div>
             </div>
         </div>
     </div>

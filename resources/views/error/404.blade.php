@@ -1,6 +1,8 @@
-@extends('layouts.master')
+@extends('layouts.master2')
 
-@section('title'.'Not Found')
+@section('title')
+    Error 404
+@endsection
 
 @section('customstyle')
     <style>
@@ -32,7 +34,7 @@
         }
     </style>
 
-@section('content')
+@section('isi')
     <div class="bodyerror">    
         <div class="container2">
             <div class="content">

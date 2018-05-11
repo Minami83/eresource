@@ -29,7 +29,7 @@
     <div class="container" style="margin-top: 15px">
         <div style" class="col-sm-6" id="verline1">
                 <div style="margin-top: 175px" class="tester123 w3-center">
-                    <img src="/image/eresourcelogo2.png" style="width: 300px">
+                    <img src="/image/eresourcelogo.png" style="width: 300px">
                 </div><br>
                 <div class="col-sm-2"></div>
                 <div class="col-sm-10 text">
@@ -127,43 +127,43 @@
             $("select#facultyoption").change(function(){
                 var selectedCountry = $("#facultyoption option:selected").val();
                 if(selectedCountry=="FAKULTAS TEKNOLOGI INDUSTRI"){
-                    $('#departoption').text();
+                    $('#departoption').empty();
                     $('#departoption').append("<option value='Teknik Mesin'>Teknik Mesin</option><option value='Teknik Fisika'>Teknik Fisika</option><option value='Teknik Industri'>Teknik Industri</option><option value='Teknik Material'>Teknik Material</option><option value='Teknik Kimia'>Teknik Kimia</option>");
                 }
                 else if(selectedCountry=="FAKULTAS TEKNOLOGI KELAUTAN"){
-                    $('#departoption').text();
+                    $('#departoption').empty();
                     $('#departoption').append("<option value='Teknik Perkapalan'>Teknik Perkapalan</option><option value='Teknik Sistem Perkapalan'>Teknik Sistem Perkapalan</option><option value='Teknik Kelautan'>Teknik Kelautan</option><option value='Transportasi Laut'>Transportasi Laut</option>");
                 }
                 else if(selectedCountry=="FAKULTAS TEKNOLOGI ELEKTRO"){
-                    $('#departoption').text();
+                    $('#departoption').empty();
                     $('#departoption').append("<option value='Teknik Elektro'>Teknik Elektro</option><option value='Teknik Biomedik'>Teknik Biomedik</option><option value='Teknik Komputer'>Teknik Komputer</option>");
                 }
                 else if(selectedCountry=="FAKULTAS TEKNIK SIPIL, LINGKUNGAN, DAN KEBUMIAN"){
-                    $('#departoption').text();
+                    $('#departoption').empty();
                     $('#departoption').append("<option value='Teknik Sipil'>Teknik Sipil</option><option value='Teknik Lingkungan'>Teknik Lingkungan</option><option value='Teknik Geomatika'>Teknik Geomatika</option><option value='Teknik Geofisika'>Teknik Geofisika</option>");
                 }
                 else if(selectedCountry=="FAKULTAS TEKNOLOGI INFORMASI DAN KOMUNIKASI"){
-                    $('#departoption').text();
+                    $('#departoption').empty();
                     $('#departoption').append("<option value='Informatika'>Informatika</option><option value='Sistem Informasi'>Sistem Informasi</option><option value='Teknologi Informasi'>Teknologi Informasi</option>");
                 }
                 else if(selectedCountry=="FAKULTAS ARSITEKTUR, DESAIN, DAN PERENCANAAN"){
-                    $('#departoption').text();
+                    $('#departoption').empty();
                     $('#departoption').append("<option value='Arsitektur'>Arsitektur</option><option value='Perencanaan Wilayah dan Kota'>Perencanaan Wilayah dan Kota</option><option value='Desain Produk Industri'>Desain Produk Industri</option><option value='Desain Interior'>Desain Interior</option>");
                 }
                 else if(selectedCountry=="FAKULTAS SAINS"){
-                    $('#departoption').text();
+                    $('#departoption').empty();
                     $('#departoption').append("<option value='Fisika'>Fisika</option><option value='Kimia'>Kimia</option><option value='Biologi'>Biologi</option>");
                 }
                 else if(selectedCountry=="FAKULTAS MATEMATIKA, KOMPUTASI, DAN SAINS DATA"){
-                    $('#departoption').text();
+                    $('#departoption').empty();
                     $('#departoption').append("<option value='Matematika'>Matematika</option><option value='Statistika'>Statistika</option><option value='Aktuaria'>Aktuaria</option>");
                 }
                 else if(selectedCountry=="FAKULTAS VOKASI"){
-                    $('#departoption').text();
+                    $('#departoption').empty();
                     $('#departoption').append("<option value='Teknik Infrastruktur Sipil'>Teknik Infrastruktur Sipil</option><option value='Teknik Mesin Industri'>Teknik Mesin Industri</option><option value='Teknik Elektro Otomasi'>Teknik Elektro Otomasi</option><option value='Teknik Kimia Industri'>Teknik Kimia Industri</option><option value='Teknik Instrumentasi'>Teknik Instrumentasi</option><option value='Statistika Bisnis'>Statistika Bisnis</option>");
                 }
                 else if(selectedCountry=="FAKULTAS BISNIS DAN MANAJEMEN TEKNOLOGI"){
-                    $('#departoption').text();
+                    $('#departoption').empty();
                     $('#departoption').append("<option value='Manajemen Bisnis'>Manajemen Bisnis</option><option value='Manajemen Teknologi'>Manajemen Teknologi</option><option value='Studi Pembangunan'>Studi Pembangunan</option>");
                 }
             });

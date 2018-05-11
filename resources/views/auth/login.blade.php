@@ -29,7 +29,7 @@
     <div class="container w3-row" style="margin-top: 100px">
         <div style" class="col-sm-6" id="verline1">
                 <div style="margin-top:90px;" class="w3-center">
-                    <img src="/image/eresourcelogo2.png" style="width: 300px">
+                    <img src="/image/eresourcelogo.png" style="width: 300px">
                 </div><br>
                 <div class="col-sm-2"></div>
                 <div class="col-sm-10 text">

@@ -29,7 +29,7 @@
 		@for ($i = 0; $i < sizeof($myJurnal); $i++)
 			@if ($myJurnal[$i]->id==$jurnal[16]->id)
 				@if ($i+2 <= $user->progress)
-					{{-- $("#nextbutton").css('display','block'); --}}
+					$("#nextbutton").css('display','block');
 				@else
 				    $("#accord1").click(function(){
 				        $("#nextbutton").fadeIn();
