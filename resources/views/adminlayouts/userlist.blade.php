@@ -17,7 +17,7 @@
   #myInput {
     width: 100%;
     font-size: 16px;
-    padding: 12px 20px 12px 40px;
+    padding: 12px 20px 12px 15px;
     border: 1px solid #ddd;
     margin-bottom: 12px;
   }
@@ -27,8 +27,8 @@
 <div class="row" style="margin-top: 100px">
   <div class="col-sm-3"></div>
     <div class="col-sm-6 w3-center">
-      <div class="col-sm-10"><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.."></div>
-      <div class="col-sm-2"><button style="width:50px;height:50px;" onclick="document.getElementById('id01').style.display='block'"><i class="fa fa-plus"></i></button></div>
+      <div class="col-sm-11"><input class="empty iconified" type="text" id="myInput" onkeyup="myFunction()" placeholder="&#xf002; Search for names.."></div>
+      <div class="col-sm-1"><button class="w3-right" style="width:50px;height:50px;" onclick="document.getElementById('id01').style.display='block'"><i class="fa fa-plus"></i></button></div>
       <table id="myTable" class="w3-table">
         <tr>
           <th onclick="sortTable(0)">NRP <i class="fa">&#xf0dc;</i></th>
@@ -65,7 +65,7 @@
   <div class="w3-modal-content w3-animate-top" style="margin-top: -60px">
     <header class="w3-container w3-teal"> 
       <span onclick="document.getElementById('id01').style.display='none'" 
-      class="w3-button w3-display-topright">&times;</span>
+      class="w3-hover-teal w3-button w3-display-topright">&times;</span>
       <h2>Add User</h2>
     </header>
     <div class="w3-container">

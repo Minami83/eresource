@@ -96,14 +96,22 @@
 			<input id="accord2input" type="hidden" name="accord2input" value="0">
 			<input id="accord3input" type="hidden" name="accord3input" value="0">
 			<input name="url" value="{{substr(Request::path(),7)}}" type="hidden">
-			<div>
-				<button id="nextbutton" class="w3-button w3-right w3-dropdownnavbar w3-hover-dropdownnavbar" type=submit style="display: none;margin-right: 50px">Next</button>
+			<div class="w3-border w3-round" style="margin-right:30px;margin-left:30px;">
+				<a id="btnprev" class="w3-button">&#10094; Previous</a>
+				<a id="btnnext" class="w3-button w3-right" style="display: none">Next &#10095;</a>
 			</div>
+			{{-- <div>
+				<button id="nextbutton" class="btn btn-4 btn-4c icon-arrow-right w3-right w3-dropdownnavbar" type="submit" style="display: none;">Next</button>
+			</div> --}}
 		</form>
 	</div>
 	<br><br><br>
 
 	<script type="text/javascript">
+		$("#btnnext").click(function(){
+		    $("#formstatistik").submit();
+		    return false;
+	    });
 		$(window).resize(function(){
 			if ($(window).width() >= 992) {
 				w3_close();

@@ -16,7 +16,9 @@
 	}
 	.btna{
 		width:110px;
-		height:30px
+		height:30px;
+		margin-top:10px;
+		margin-left:16px;
 	}
 @endsection()
 
@@ -107,10 +109,10 @@
 					</td>
 				</tr>
 				</table>
-				<button id="btnsubmit" class="profa editprofil btna" style="display: none;margin-left: 100px" type="submit" name="action">Submit <i class="fa">&#xf1d8;</i></button>	
+				<button id="btnsubmit" class="profa editprofil btna" style="display: none;margin-left: 130px" type="submit" name="action"><i class="fa">&#xf1d8;</i> Submit</button>	
 	    	</form>
-	    		<button id="btncancel" style="position:absolute;display: none;bottom:0px;" class="profa editprofil btna" onclick="canceleditprofil()">Cancel <i class="fa">&#xf00d;</i></button>
-				<button id="btnubah" style="display: block" class="profb editprofil btna" onclick="editprofil()">Edit Profil <i class="fa">&#xf044;</i></button>
+	    		<button id="btncancel" style="position:absolute;display: none;bottom:0px;" class="profa editprofil btna" onclick="canceleditprofil()"><i class="fa">&#xf00d;</i> Cancel</button>
+				<button id="btnubah" style="display: block" class="profb editprofil btna" onclick="editprofil()"><i class="fa">&#xf044;</i> Edit Profil</button>
 		</div>
 		<div class="col-sm-3"></div>
 	</div>

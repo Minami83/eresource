@@ -22,21 +22,24 @@
 
 @section('morescript')
 	$(document).ready(function(){
-		$("#4").addClass("active")
+		$("#4").addClass("active");
 	});
 
 	$(document).ready(function(){
 		@for ($i = 0; $i < sizeof($myJurnal); $i++)
 			@if ($myJurnal[$i]->id==$jurnal[3]->id)
+				$("#btnprev").html("&#10094; {{$myJurnal[$i-1]->name}}");
+				$("#btnprev").attr("href","{{$myJurnal[$i-1]->name}}");
+				$("#btnnext").html("{{$myJurnal[$i+1]->name}} &#10095;");
 				@if ($i+2 <= $user->progress)
-					$("#nextbutton").css('display','block');
+					$("#btnnext").css('display','block');
 				@else
 				    $("#accord1").click(function(){
-				        $("#nextbutton").fadeIn();
+				        $("#btnnext").fadeIn();
 				    });
 					document.getElementById('vid1').addEventListener('ended',myHandler,false);
 				    function myHandler(e) {
-					    $("#nextbutton").fadeIn();
+					    $("#btnnext").fadeIn();
 				    }
 				@endif
 			@endif
