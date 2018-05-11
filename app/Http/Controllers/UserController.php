@@ -59,7 +59,7 @@ class UserController extends Controller
         if($data['role']=='admin'){
             $user->verified = 2;
             $jurnalCnt = Jurnal::count();
-            $user->progress = $jurnalCnt;
+            $user->progress = $jurnalCnt+1;
             $jurnal = Jurnal::get();
             foreach($jurnal as $jur){
                 $user->jurnals()->attach($jur);
@@ -129,7 +129,12 @@ class UserController extends Controller
         if($data['role']=='admin'){
             $user->verified = 2;
             $jurnalCnt = Jurnal::count();
-            $user->progress = $jurnalCnt;
+            $user->progress = $jurnalCnt+1;
+            $user->jurnals()->detach();
+            $jurnal = Jurnal::get();
+            foreach($jurnal as $jur){
+                $user->jurnals()->attach($jur);
+            }
         }
         $user->roles()->detach();
         $user

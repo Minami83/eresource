@@ -77,4 +77,10 @@ class HomeController extends Controller
         Auth()->logout();
     }
 
+    public function errorPage()
+    {
+        $user = Auth()->user();
+        return view('error/403')->with('user',$user);
+    }
+
 }

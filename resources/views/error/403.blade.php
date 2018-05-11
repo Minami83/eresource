@@ -33,7 +33,7 @@
     </style>
 
 @section('content')
-    <div class="bodyerror">    
+    <div class="bodyerror">
         <div class="container2">
             <div class="content">
                 <div class="title">Unautorized Access</div>
@@ -41,4 +41,4 @@
         </div>
     </div>
 @endsection()
-        
+

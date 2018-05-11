@@ -20,6 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile', 'HomeController@profile');
 Route::post('/profile', 'HomeController@change');
+Route::get('/error/403', 'HomeController@errorPage');
 
 Route::get('/pretest', 'CourseController@pretest');
 Route::post('/preans', 'CourseController@preAns');

@@ -47,7 +47,7 @@ class UserTableSeeder extends Seeder
         $admin->phone = '08122446882';
         $admin->email = 'badu@gmail.com';
         $admin->password = bcrypt('badubadu');
-        $admin->progress = 19;
+        $admin->progress = 20;
         $admin->verified = 2;
         $admin->save();
         $admin->roles()->attach($role_admin);

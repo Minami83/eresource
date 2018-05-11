@@ -88,6 +88,7 @@ class CourseController extends Controller
         $myJurnal = $user->takenJurnalList();
         $url = 'course/'.$myJurnal[0]->name;
         $user->verified = 2;
+        $user->progress = $user->progress + 1;
         $user->save();
         // return redirect($url)->with('user',$user)->with('myJurnal', $myJurnal);
         return redirect('/home');
@@ -136,16 +137,22 @@ class CourseController extends Controller
         // dd($request);
         $user = Auth()->user();
         $jurnal = Jurnal::get();
-        if($user->verified==0) return view('adminlayouts/dummy');
+        if($user->verified==0) return view('error/403');
         $myJurnal = $user->takenJurnalList();
         if($user->progress == 0)
           return $this->pretest();
         $now = substr($request->path(),7);
         $nowProgress = $myJurnal->pluck('name')->search($now);
-        $index = ($user->progress>$nowProgress)?$nowProgress:$user->progress;
-        $url = 'jurnal/'.$myJurnal[$index]->name;
+        // dd($nowProgress);
+        $index = ($user->progress>$nowProgress)?$nowProgress:$user->progress-1;
+
+        if($nowProgress==false) $index = $user->progress-1;
         $text = file(public_path().$myJurnal[$index]->howto);
-        // dd($text);
+        if($nowProgress === false || $nowProgress>$user->progress){
+            $url = 'course/'.$myJurnal[$index]->name;
+            return redirect($url);
+        }
+        $url = 'jurnal/'.$myJurnal[$index]->name;
         return view($url)->with('user',$user)->with('myJurnal',$myJurnal)->with('jurnal',$jurnal)->with('howto_text',$text);
     }
 
@@ -153,7 +160,7 @@ class CourseController extends Controller
     public function nextPage(Request $request)
     {
         $user = Auth()->user();
-        if($user->verified==0) return redirect('adminlayouts/dummy');
+        if($user->verified==0) return view('error/403');
         $callerJurnal = Jurnal::where('name', request('url'))->first();
         $myJurnal = $user->takenJurnalList();
 
@@ -189,9 +196,11 @@ class CourseController extends Controller
     {
         $user = Auth()->user();
         $myJurnal = $user->takenJurnalList();
-        $url = 'course/'.$myJurnal[$user->progress-1]->name;
-        $text = file(public_path().$myJurnal[$user->progress-1]->howto);
-        return redirect($url)->with('user',$user)->with('myJurnal',$myJurnal)->with('howto_text',$text);
+        $index = ($user->verified==2)?$user->progress-2:$user->progress-1;
+        $url = 'jurnal/'.$myJurnal[$index]->name;
+        $text = file(public_path().$myJurnal[$index]->howto);
+        $jurnal = Jurnal::get();
+        return view($url)->with('user',$user)->with('myJurnal',$myJurnal)->with('howto_text',$text)->with('jurnal',$jurnal);
     }
 
     public function incAction(int $howto, int $video, int $tutorial, $user, $jurnal)

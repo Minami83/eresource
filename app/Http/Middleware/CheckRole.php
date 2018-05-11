@@ -15,8 +15,11 @@ class CheckRole
      */
     public function handle($request, Closure $next)
     {
+        // dd($request->user());
         if($request->user()->roleName()=='student')
-            return view('error/403');
+        {
+            return redirect('error/403');
+        }
         return $next($request);
     }
 }
