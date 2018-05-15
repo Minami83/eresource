@@ -153,7 +153,8 @@ class CourseController extends Controller
             return redirect($url)->with('index',$index);
         }
         $url = 'jurnal/'.$myJurnal[$index]->name;
-        return view($url)->with('user',$user)->with('myJurnal',$myJurnal)->with('jurnal',$jurnal)->with('howto_text',$text)->with('index',$index);
+        // return view($url)->with('user',$user)->with('myJurnal',$myJurnal)->with('jurnal',$jurnal)->with('howto_text',$text)->with('index',$index);
+        return view('webpage/temp')->with('user',$user)->with('myJurnal',$myJurnal)->with('jurnal',$jurnal)->with('howto_text',$text)->with('index',$index);
     }
 
 
@@ -179,6 +180,7 @@ class CourseController extends Controller
             $user->save();
             $text = file(public_path().$myJurnal[$currentProgress+1]->howto);
             $url = 'course/'.$myJurnal[$currentProgress+1]->name;
+            $index = $currentProgress+1;
         }
         else{
             // dd($myJurnal->count());
@@ -187,8 +189,10 @@ class CourseController extends Controller
             if($currentProgress >= $myJurnal->count()) return $this->posttest();
             $url = 'course/'.$myJurnal[$currentProgress]->name;
             $text = file(public_path().$myJurnal[$currentProgress]->howto);
+            $index = $currentProgress;
         }
         // dd($url);
+        // return redirect($url)->with('user',$user)->with('myJurnal',$myJurnal)->with('howto_text',$text);
         return redirect($url)->with('user',$user)->with('myJurnal',$myJurnal)->with('howto_text',$text)->with('index',$index);
     }
 
