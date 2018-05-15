@@ -14,8 +14,8 @@ class AdminController extends Controller
     $request->user()->authorizeRoles('admin');
     $data = Auth()->user();
     $unverified = DB::table('users')->where('verified',0)->get();
-    $jurnal1 = DB::table('jurnals')->where('id','<',11)->get();
-    $jurnal2 = DB::table('jurnals')->where('id','>',10)->get();
+    $jurnal1 = Jurnal::where('id','<',Jurnal::count()/2+1)->get();
+    $jurnal2 = Jurnal::where('id','>',Jurnal::count()/2)->get();
     // dd($jurnal);
     return view('adminlayouts/registereduser')->with('user',$data)->with('unverified',$unverified)->with('jurnal1',$jurnal1)->with('jurnal2',$jurnal2);
   }

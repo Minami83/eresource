@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('title')
+	{{$myJurnal[$index]->name}}
+@endsection(
+)
 @section('style')
 	a:hover {
 		text-decoration:none;
@@ -76,14 +80,23 @@
 			<div id="myBar" class="w3-container w3-dropdownnavbar w3-round-xlarge w3-center" ></div>
 		</div>
 		<br>
-		<h3 style="padding: 0px 18px">@yield('titlejurnal')</h3><br>
+		<h2 style="padding: 0px 18px">{{$myJurnal[$index]->fullName}}</h2><br>
 		<button class="accordion" id="accord1" onclick="accordionfunc(this.id)">How to:</button>
 		<div class="panel">
-	  		@yield('howto')
+			@php
+				$text = file(public_path().$myJurnal[$index]->howto);
+			@endphp
+	  		@foreach ($text as $txt)
+				<p>{{$txt}}</p>
+			@endforeach
+			{{-- @yield('howto') --}}
 		</div>
 		<button class="accordion" id="accord2" onclick="accordionfunc(this.id)">Video</button>
 		<div class="panel">
-	  		@yield('video')
+			<video width="320" height="240" controls id="vid1">
+				<source src="{{$myJurnal[$index]->video}}" type="video/mp4">
+			</video>
+	  		{{-- @yield('video') --}}
 		</div>
 		<button class="accordion" id="accord3" onclick="accordionfunc(this.id)">Tutorial</button>
 		<div class="panel">
@@ -124,6 +137,44 @@
 			}
 		});
 
+		$(document).ready(function(){
+			$("#"+{{$myJurnal[$index]->id}}).addClass("active")
+		});
+
+		$(document).ready(function(){
+			@if ($index==0)
+				$("#btnprev").hover(function(){
+			        $(this).css("color", "white");
+			        $(this).css("background-color", "white");
+			    });
+			    $("#btnprev").css("color", "white");
+				$("#btnnext").html("{{$myJurnal[$index+1]->name}} &#10095;");
+			@elseif ($index==sizeof($myJurnal)-1)
+				$("#btnprev").html("&#10094; {{$myJurnal[$index-1]->name}}");
+				$("#btnprev").attr("href","{{$myJurnal[$index-1]->name}}");
+				@if ($user->progress<=sizeof($myJurnal))
+					$("#btnnext").html("Posttest &#10095;");
+				@else
+					$("#btnnext").html("Home &#10095;");
+				@endif
+			@else
+				$("#btnprev").html("&#10094; {{$myJurnal[$index-1]->name}}");
+				$("#btnprev").attr("href","{{$myJurnal[$index-1]->name}}");
+				$("#btnnext").html("{{$myJurnal[$index+1]->name}} &#10095;");
+			@endif
+
+			@if ($index+2 <= $user->progress)
+					$("#btnnext").css('display','block');
+			@else
+			    $("#accord1").click(function(){
+			        $("#btnnext").fadeIn();
+			    });
+				document.getElementById('vid1').addEventListener('ended',myHandler,false);
+			    function myHandler(e) {
+				    $("#btnnext").fadeIn();
+			    }
+			@endif
+		});
 		$(document).ready(function(){
 			var elem = document.getElementById("myBar");
 		    @php

@@ -15,8 +15,10 @@ class CreatePosttestUserTable extends Migration
     {
         Schema::create('posttest_user', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('posttest_id');
-            $table->integer('user_id');
+            $table->integer('posttest_id')->unsigned();
+            $table->integer('user_id')->unsigned();
+            $table->foreign('posttest_id')->references('id')->on('posttests')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('answer');
             $table->timestamps();
         });

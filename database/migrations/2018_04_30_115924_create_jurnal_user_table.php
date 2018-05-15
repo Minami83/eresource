@@ -15,8 +15,10 @@ class CreateJurnalUserTable extends Migration
     {
         Schema::create('jurnal_user', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('jurnal_id');
-            $table->integer('user_id');
+            $table->integer('jurnal_id')->unsigned();
+            $table->integer('user_id')->unsigned();
+            $table->foreign('jurnal_id')->references('id')->on('jurnals')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

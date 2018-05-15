@@ -1,0 +1,215 @@
+   1 2 3 4 5 6 7 8 
+1 | | | | | | | | |
+2 | | |P|P|P| | | |
+3 | | |P|k|P| | | |
+4 | | | |P|p| | | |
+5 | | | |K| | | | |
+6 | | | | | | | | |
+7 | | | | | | | | |
+8 | | | | | | | | |
+
+   1 2 3 4 5 6 7 8 
+1 | |-|-|-|-|-| | |
+2 | |-|P|-|P|-| | |
+3 | | |-|k|-| | | |
+4 | | |-|P|p| | | |
+5 | | |-|-|-| | | |
+6 | | |-|-|-| | | |
+7 | | | | | | | | |
+8 | | | | | | | | |
+
+   1 2 3 4 5 6 7 8 
+1 | | | | | | | | |
+2 | | |+|+|+| | | |
+3 | | |+|k|+| | | |
+4 | | |+|+|+| | | |
+5 | | | |K| |+| | |
+6 | | | | | | | | |
+7 | | | | | | | | |
+8 | | | | | | | | |
+
+
+   1 2 3 4 5 6 7 8 
+1 | |Q| | | | | | |
+2 | | | | | | | | |
+3 | | | |k| | | | |
+4 | | | | | | |q| |
+5 | | | | | | | | |
+6 | | | | |K| | | |
+7 | | | | | | | | |
+8 | | | | | | | | |
+
+
+   1 2 3 4 5 6 7 8 
+1 |k| | | | | | | |
+2 | | | | | | | |R|
+3 | | | | | | | | |
+4 |r| | |B| | | | |
+5 | |R|R| | | | | |
+6 | | | | | | |K| |
+7 | | |q| | | | | |
+8 | | | | | | | | |
+
+1
+8 6
+1 1 k
+7 3 q
+4 4 B
+5 2 R
+2 8 R
+6 7 K
+
+   1 2 3 4 5 6 7 8 
+1 |k| | | | | | | |
+2 | | | | | | | | |
+3 | |H| | | | | | |
+4 | | | | | | | | |
+5 | | | | |P| | | |
+6 | | | | | | |K| |
+7 | | | | | | | | |
+8 | | | | | | | | |
+
+1
+8 4
+1 1 k
+6 7 K
+3 2 H
+5 5 p
+
+   1 2 3 4 5 6 7 8 
+1 | | | | | | | | |
+2 | | | | | | | | |
+3 | |P|P| | | | | |
+4 | |P|k|P|K| | | |
+5 | |P|P|p| | | | |
+6 | | | | | | | | |
+7 | | | | | | | | |
+8 | | | | | | | | |
+
+8 9
+3 2 P
+4 2 P
+5 2 P
+3 3 P
+4 3 k
+5 3 P
+4 4 P
+5 4 p
+4 5 K
+
+
+
+1
+8 6
+1 1 k
+8 2 R
+4 4 B
+2 5 R
+7 6 K
+3 7 q
+
+cari semua titik potong di garis king-check
+untuk tiap titik potong cari ke 6 arah lain (tergantung model -|/\ garis) piece terdekat
+jika piece terdekat teman yang bisa ke garis -> tambah satu possible move
+
+
+bikin persamaan garis dari semua bidak ke garis king-check
+kumpulin garis yang ber interseksi dengan garis king-check
+untuk
+
+Hashmap<int, Treeset<int>> map
+k1 -> horizontal idx berapa
+k2 -> vertikal idx berapa
+
+1, 2
+n * 1 * log(n)
+
+2, 3 
+n * 1 * log n
+map.get(2).floor(3)
+map.get(2).ceil(3)
+
+R -> 6,2 
+B -> 4,7
+Enemy -> 7,5
+K -> 3,4
+
+bikin garis dari penyerang dan king yang diserang
+	buat garis dari semua piece warna sama dengan king dan garis tepi
+	tentukan apakah kedua garis berpotongan
+
+cari move dari (6,2) dan B sehingga posisi bisa berada pada 7,5 atau antara (3,4) dan (7,5)
+kumpulin per tipe piece
+untuk Rook
+	x sama, y sama -> 1 plausible move
+	x>xking, x<xpiece
+	x<xking, x>xpiece
+	y>yking, y<ypiece
+	y<yking, x>ypiece
+	
+
+	
+
+awal 	3-4
+		2-5
+		1-6
+
+
+if(x==xking) -> N and S
+if(y==yking) -> E and W
+if( |x-xking| == |y-yking| ) -> NW,SW,SE,NE
+
+if(y==yking-1) -> E and W
+if( |x-xking| == |y-yking-1| ) -> NW,SW,SE,NE
+
+if(y==yking+1) -> E and W
+if( |x-xking| == |y-yking+1| ) -> NW,SW,SE,NE
+
+if(x==xking+1) -> N and S
+if( |x-xking+1| == |y-yking| ) -> NW,SW,SE,NE
+
+if(x==xking-1) -> N and S
+if( |x-xking-1| == |y-yking| ) -> NW,SW,SE,NE
+
+if(x==xking+1) -> N and S
+if(y==yking+1) -> E and W
+if( |x-xking+1| == |y-yking+1| ) -> SE,NW
+
+if(x==xking-1) -> N and S
+if(y==yking-1) -> E and W
+if( |x-xking-1| == |y-yking-1| ) -> SE,NW
+
+if(x==xking+1) -> N and S
+if(y==yking-1) -> E and W
+if( |x-xking+1| == |y-yking-1| ) -> SW,NE
+
+if(x==xking-1) -> N and S
+if(y==yking+1) -> E and W
+if( |x-xking-1| == |y-yking+1| ) -> SW,NE
+
+N,NW,W,SW,S,SE,E,NE		awal
+NW,W,SW,SE,E,NE 		y-1
+NW,W,SW,SE,E,NE			y+1
+N,NW,SW,S,SE,NE			x+1
+N,NW,SW,S,SE,NE			x-1
+N,W,SW,S,E,NE			x+1,y-1
+N,W,SW,S,E,NE			x-1,y+1
+N,NW,W,S,SE,E			x-1,y-1
+N,NW,W,S,SE,E			x+1,y+1
+
+n + p = 450 000
+n^2 = p
+p <= n^2
+
+worst n = 671
+worst p = 450 241
+
+//t * 2 * n^2 
+
+try: 
+map<char, pair<int,int> >
+map<pair<int,int>, char>
+cari king yang kena check (test semua opposing piece)
+check 9 arah dari king yang kena check
+check 8 arah dari 9 posisi
+9 flag menunjukkan posisi aman king

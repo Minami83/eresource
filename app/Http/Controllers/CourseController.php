@@ -16,28 +16,6 @@ class CourseController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->progressRecord = collect([
-        'pretest' => 0,
-        'asce' => 1,
-        'asme' => 2,
-        'melp' => 3,
-        'tnarina' => 4,
-        'sbidrina' => 5,
-        'smdrina' => 6,
-        'ijme' => 7,
-        'ijsct' => 8,
-        'jspd' => 9,
-        'jsr' => 10,
-        'marinetech' => 11,
-        'springerlink' => 12,
-        'emerald' => 13,
-        'gale' => 14,
-        'ieee' => 15,
-        'ebsco' => 16,
-        'proquest' => 17,
-        'sciencedir' => 18,
-        'nature' => 19,
-        'posttest' => 20]);
     }
 
     public function pretest()
@@ -72,6 +50,7 @@ class CourseController extends Controller
     {
         $user = Auth()->user();
         $posttest_quest = Posttest::get();
+        if($user->progress < $user->takenJurnalList()->count()) return redirect('/home');
         if($user->verified == 2) return redirect('/home')->with('user',$user);
         return view('webpage/posttest')->with('user',$user)->with('posttest',$posttest_quest);
     }
@@ -97,7 +76,7 @@ class CourseController extends Controller
     public function sertifPage()
     {
         $user = Auth()->user();
-        if($user->verified != 2) return redirect('/home');
+        if($user->verified != 2 && $user->progress < $user->takenJurnalList()->count()) return redirect('/home');
         $date = date('d-m-y');
         $path = public_path().'/image/dummySertif.jpg';
         $image = imagecreatefromjpeg($path);
@@ -154,7 +133,7 @@ class CourseController extends Controller
         }
         $url = 'jurnal/'.$myJurnal[$index]->name;
         // return view($url)->with('user',$user)->with('myJurnal',$myJurnal)->with('jurnal',$jurnal)->with('howto_text',$text)->with('index',$index);
-        return view('webpage/temp')->with('user',$user)->with('myJurnal',$myJurnal)->with('jurnal',$jurnal)->with('howto_text',$text)->with('index',$index);
+        return view('webpage/mastercourse')->with('user',$user)->with('myJurnal',$myJurnal)->with('jurnal',$jurnal)->with('howto_text',$text)->with('index',$index);
     }
 
 
