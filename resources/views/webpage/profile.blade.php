@@ -108,6 +108,11 @@
 						<input type="text" id="phone" class="w3-round-xlarge form-control" value="{{$user->phone}}" name="phone">
 					</td>
 				</tr>
+				<tr>
+					<td>
+						<a class="profb" href="">Change Password?</a>
+					</td>
+				</tr>
 				</table>
 				<button id="btnsubmit" class="profa editprofil btna" style="display: none;margin-left: 130px" type="submit" name="action"><i class="fa">&#xf1d8;</i> Submit</button>	
 	    	</form>

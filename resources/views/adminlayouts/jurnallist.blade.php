@@ -55,7 +55,7 @@
 </div>
 
 <div id="id01" class="w3-modal">
-  <div class="w3-modal-content w3-animate-top" style="margin-top: -60px">
+  <div class="w3-modal-content w3-animate-top">
     <header class="w3-container w3-teal">
       <span onclick="document.getElementById('id01').style.display='none'"
       class="w3-button w3-hover-teal w3-display-topright">&times;</span>
@@ -74,11 +74,11 @@
             </div>
             <div class="form-group">
                 <label>How to:</label>
-                <input type="file" accept="text/plain" name="howto">
+                <input type="file" accept="text/plain" name="howto" required>
             </div>
             <div class="form-group">
               <label>Video:</label>
-                <input type="file" accept="video/mp4,video/x-m4v,video/*" name="video">
+                <input type="file" accept="video/mp4,video/x-m4v,video/*" name="video" required>
             </div>
             <!-- <div class="form-group">
                 <label>Tutorial:</label>

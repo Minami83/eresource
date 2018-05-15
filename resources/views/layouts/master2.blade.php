@@ -19,6 +19,7 @@
   		body{
   			width: inherit;
   			height: inherit;
+        background-color: #00748d;
   		}
   		#main{
   			width: inherit;		
