@@ -150,10 +150,10 @@ class CourseController extends Controller
         $text = file(public_path().$myJurnal[$index]->howto);
         if($nowProgress === false || $nowProgress>$user->progress){
             $url = 'course/'.$myJurnal[$index]->name;
-            return redirect($url);
+            return redirect($url)->with('index',$index);
         }
         $url = 'jurnal/'.$myJurnal[$index]->name;
-        return view($url)->with('user',$user)->with('myJurnal',$myJurnal)->with('jurnal',$jurnal)->with('howto_text',$text);
+        return view($url)->with('user',$user)->with('myJurnal',$myJurnal)->with('jurnal',$jurnal)->with('howto_text',$text)->with('index',$index);
     }
 
 
@@ -189,7 +189,7 @@ class CourseController extends Controller
             $text = file(public_path().$myJurnal[$currentProgress]->howto);
         }
         // dd($url);
-        return redirect($url)->with('user',$user)->with('myJurnal',$myJurnal)->with('howto_text',$text);
+        return redirect($url)->with('user',$user)->with('myJurnal',$myJurnal)->with('howto_text',$text)->with('index',$index);
     }
 
     public function continue()
@@ -200,7 +200,7 @@ class CourseController extends Controller
         $url = 'course/'.$myJurnal[$index]->name;
         $text = file(public_path().$myJurnal[$index]->howto);
         $jurnal = Jurnal::get();
-        return redirect($url)->with('user',$user)->with('myJurnal',$myJurnal)->with('howto_text',$text)->with('jurnal',$jurnal);
+        return redirect($url)->with('user',$user)->with('myJurnal',$myJurnal)->with('howto_text',$text)->with('jurnal',$jurnal)->with('index',$index);
     }
 
     public function incAction(int $howto, int $video, int $tutorial, $user, $jurnal)
