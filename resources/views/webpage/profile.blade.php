@@ -12,7 +12,7 @@
 	}
 
 	th{
-		width:170px;	
+		width:170px;
 	}
 	.btna{
 		width:110px;
@@ -23,7 +23,7 @@
 @endsection()
 
 @section('isi')
-	
+
 	<div class="w3-row" style="margin-top: 70px">
 		<div class="col-sm-3"></div>
 		<div class="col-sm-6 w3-white w3-round-large">
@@ -110,11 +110,11 @@
 				</tr>
 				<tr>
 					<td>
-						<a class="profb" href="">Change Password?</a>
+						<a class="profb" href="/profile/password">Change Password?</a>
 					</td>
 				</tr>
 				</table>
-				<button id="btnsubmit" class="profa editprofil btna" style="display: none;margin-left: 130px" type="submit" name="action"><i class="fa">&#xf1d8;</i> Submit</button>	
+				<button id="btnsubmit" class="profa editprofil btna" style="display: none;margin-left: 130px" type="submit" name="action"><i class="fa">&#xf1d8;</i> Submit</button>
 	    	</form>
 	    		<button id="btncancel" style="position:absolute;display: none;bottom:0px;" class="profa editprofil btna" onclick="canceleditprofil()"><i class="fa">&#xf00d;</i> Cancel</button>
 				<button id="btnubah" style="display: block" class="profb editprofil btna" onclick="editprofil()"><i class="fa">&#xf044;</i> Edit Profil</button>
@@ -140,7 +140,7 @@
 			$('.profb').css('display','block');
 			$('.profa').css('display','none');
 		}
-		
+
 	    $(document).ready(function(){
 	    	$('#facultyoption option[value="{{$user->faculty}}"]').prop('selected', 'selected');
 			$('#roleoption option[value="{{$user->roleName()}}"]').prop('selected', 'selected');

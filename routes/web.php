@@ -24,6 +24,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile', 'HomeController@profile');
 Route::post('/profile', 'HomeController@change');
+Route::get('/profile/password', 'HomeController@viewChangePass');
+Route::post('/profile/password', 'HomeController@changePass');
 Route::get('/error/403', 'HomeController@errorPage');
 
 Route::get('/pretest', 'CourseController@pretest');

@@ -33,7 +33,9 @@ class UserTableSeeder extends Seeder
         $student->save();
         $student->roles()->attach($role_student);
         foreach($jurnal as $jur){
-            $student->jurnals()->attach($jur);
+            if($jur->id<=4) $comp = 1;
+            else $comp = 0;
+            $student->jurnals()->attach($jur,['completed' => $comp]);
         }
         foreach($pretest_quest as $quest){
             $student->pretests()->attach($quest, ['answer' => 1]);
@@ -52,7 +54,7 @@ class UserTableSeeder extends Seeder
         $admin->save();
         $admin->roles()->attach($role_admin);
         foreach($jurnal as $jur){
-            $admin->jurnals()->attach($jur);
+            $admin->jurnals()->attach($jur,['completed' => 1]);
         }
 
     }

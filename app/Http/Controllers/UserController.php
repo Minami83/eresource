@@ -16,8 +16,8 @@ class UserController extends Controller
     public function index()
     {
         //
-        $listUser = User::get();
         $admin = Auth()->user();
+        $listUser = User::where('id', '!=', $admin->id)->get();
         $admin->authorizeRoles(['admin']);
         return view('adminlayouts/userlist')->with('userList',$listUser)->with('user',$admin);
     }
@@ -154,8 +154,10 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+        $admin = Auth()->user();
+        if($id == $admin->id) return redirect('/admin/user/list');
         $user = User::where('id',$id)->first();
         $user->delete();
-        return redirect('/admin/user/list');
+        return redirect()->back();
     }
 }

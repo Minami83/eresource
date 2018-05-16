@@ -10,6 +10,6 @@ class Jurnal extends Model
     protected $fillable = ['name','fullName','howto','video'];
 
     public function users(){
-      return $this->belongsToMany(User::class);
+      return $this->belongsToMany(User::class)->withPPivot('completed');
     }
 }

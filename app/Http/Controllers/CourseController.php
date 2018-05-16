@@ -7,6 +7,7 @@ use App\Jurnal;
 use App\Log;
 use App\Pretest;
 use App\Posttest;
+use Illuminate\Support\Facades\DB;
 class CourseController extends Controller
 {
     //
@@ -132,8 +133,11 @@ class CourseController extends Controller
             return redirect($url)->with('index',$index);
         }
         $url = 'jurnal/'.$myJurnal[$index]->name;
+        $compl = DB::table('jurnal_user')->where('user_id',$user->id)->where('completed',1.0)->count();
+        $prog = (float)$compl/(float)$myJurnal->count();
+        // dd($prog);
         // return view($url)->with('user',$user)->with('myJurnal',$myJurnal)->with('jurnal',$jurnal)->with('howto_text',$text)->with('index',$index);
-        return view('webpage/mastercourse')->with('user',$user)->with('myJurnal',$myJurnal)->with('jurnal',$jurnal)->with('howto_text',$text)->with('index',$index);
+        return view('webpage/mastercourse')->with('user',$user)->with('myJurnal',$myJurnal)->with('jurnal',$jurnal)->with('howto_text',$text)->with('index',$index)->with('progress',$prog);
     }
 
 
@@ -147,6 +151,7 @@ class CourseController extends Controller
         $this->incAction(request('accord1input'),request('accord2input'),request('accord3input'),$user, $callerJurnal);
 
         $currentProgress = $myJurnal->pluck('name')->search(request('url'));
+        $user->jurnals()->updateExistingPivot($myJurnal[$currentProgress],array('completed' => 1),false);
         // dd($currentProgress);
         if($user->progress == $currentProgress+1)
         {

@@ -67,7 +67,7 @@ class User extends Authenticatable
     }
 
     public function jurnals(){
-        return $this->belongsToMany(Jurnal::class);
+        return $this->belongsToMany(Jurnal::class)->withPivot('completed');
     }
 
     public function takenJurnalList(){

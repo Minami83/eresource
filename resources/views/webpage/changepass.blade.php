@@ -14,7 +14,7 @@
 					<th>{{ __('Old password') }}</th>
 					<td>:</td>
 					<td>
-						<input id="oldpass" type="text" class="w3-round-xlarge form-control" name="oldpass" autofocus>
+						<input id="oldpass" type="password" class="w3-round-xlarge form-control" name="oldpass" autofocus>
                     </td>
 				</tr>
 				<tr>
@@ -32,7 +32,7 @@
 					</td>
 				</tr>
 				</table>
-				<button id="btnsubmit" type="submit" name="action"><i class="fa">&#xf1d8;</i> Submit</button>	
+				<button id="btnsubmit" type="submit" name="action"><i class="fa">&#xf1d8;</i> Submit</button>
 	    	</form>
 		</div>
 		<div class="col-sm-3"></div>
