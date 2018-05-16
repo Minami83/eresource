@@ -53,7 +53,7 @@ class AdminController extends Controller
       array_push($compUser[$month],$user);
     }
     // dd($compUser);
-    return view('adminlayout/laporan')->with('user',$admin)->with('regis_user',$regUser)->with('compl_user',$compUser);
+    return view('adminlayouts/laporan')->with('user',$admin)->with('regis_user',$regUser)->with('compl_user',$compUser);
   }
 
 }

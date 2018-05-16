@@ -34,9 +34,9 @@
 				<tr>
 					<th>{{ __('NRP') }}</th>
 					<td>:</td>
-					<td class="profb" style="display: block">{{$user->nrp}}</td>
+					<td class="profb" style="display: block">{{$user->id_number}}</td>
 					<td class="profa" style="display: none">
-						<input id="nrp" type="text" class="w3-round-xlarge form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="nrp" value="{{$user->nrp}}" autofocus>
+						<input id="nrp" type="text" class="w3-round-xlarge form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="nrp" value="{{$user->id_number}}" disabled autofocus>
 	                    @if ($errors->has('name'))
 	                        <span class="invalid-feedback">
 	                            <strong>{{ $errors->first('name') }}</strong>
@@ -49,7 +49,7 @@
 					<td>:</td>
 					<td class="profb" style="display: block">{{$user->name}}</td>
 					<td class="profa" style="display: none">
-						<input id="name" type="text" class="w3-round-xlarge form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{$user->name}}" autofocus>
+						<input id="name" type="text" class="w3-round-xlarge form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{$user->name}}" disabled autofocus>
 	                    @if ($errors->has('name'))
 	                        <span class="invalid-feedback">
 	                            <strong>{{ $errors->first('name') }}</strong>
@@ -62,7 +62,7 @@
 					<td>:</td>
 					<td class="profb" style="display: block">{{$user->faculty}}</td>
 					<td class="profa" style="display: none">
-						<select class="w3-round-xlarge form-control" name="faculty" id="facultyoption">
+						<select class="w3-round-xlarge form-control" name="faculty" id="facultyoption" disabled>
 	                    <option selected>{{$user->faculty}}</option>
 	                    <option value="FAKULTAS TEKNOLOGI INDUSTRI">FAKULTAS TEKNOLOGI INDUSTRI</option>
 	                    <option value="FAKULTAS TEKNOLOGI KELAUTAN">FAKULTAS TEKNOLOGI KELAUTAN</option>
@@ -82,7 +82,7 @@
 					<td>:</td>
 					<td class="profb" style="display: block;">{{$user->department}}</td>
 					<td class="profa" style="display: none;">
-						<select class="w3-round-xlarge form-control" name="department" id="departoption">
+						<select class="w3-round-xlarge form-control" name="department" id="departoption" disabled>
 	                    	<option selected>{{$user->department}}</option>
 	                    </select>
 					</td>
@@ -92,7 +92,7 @@
 					<td>:</td>
 					<td class="profb" style="display: block;">{{$user->email}}</td>
 					<td class="profa" style="display: none;">
-						<input name="email" input id="email" type="email" class="w3-round-xlarge form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{$user->email}}">
+						<input name="email" input id="email" type="email" class="w3-round-xlarge form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{$user->email}}" disabled>
 	                    @if ($errors->has('email'))
 	                        <span class="invalid-feedback">
 	                            <strong>{{ $errors->first('email') }}</strong>

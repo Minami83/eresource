@@ -15,10 +15,11 @@
 		width:170px;	
 	}
 	.btna{
-		width:110px;
+		width:130px;
 		height:30px;
 		margin-top:10px;
 		margin-left:16px;
+		cursor:pointer;
 	}
 @endsection()
 
@@ -28,17 +29,17 @@
 		<div class="col-sm-3">
 			<a href="/admin/user/list"><button style="float: right;margin-top: 30px"><i class="fa fa-reply"></i></button></a>
 		</div>
-		<div class="col-sm-6 w3-white w3-round-large">
+		<div class="col-sm-6">
 			<br>
 		    <form method="POST" action="/admin/user/edit/{{$edituser->id}}">
 		    	@csrf
 		    	<table class="w3-table">
 				<tr>
-					<th>{{ __('NRP') }}</th>
+					<th>{{ __('ID') }}</th>
 					<td>:</td>
-					<td class="profb" style="display: block">{{$edituser->nrp}}</td>
+					<td class="profb" style="display: block">{{$edituser->id_number}}</td>
 					<td class="profa" style="display: none">
-						<input id="nrp" type="text" class="w3-round-xlarge form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="nrp" value="{{$edituser->nrp}}" autofocus>
+						<input id="nrp" type="text" class="w3-round-xlarge form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="nrp" value="{{$edituser->id_number}}" autofocus>
 	                    @if ($errors->has('name'))
 	                        <span class="invalid-feedback">
 	                            <strong>{{ $errors->first('name') }}</strong>
@@ -121,13 +122,45 @@
 					</td>
 				</tr>
 				</table>
-				<button id="btnsubmit" class="profa editprofil btna" style="display: none;margin-left: 130px" type="submit" name="action"><i class="fa">&#xf1d8;</i> Submit</button>	
+				<button id="btnsubmit" class="profa editprofil btna" style="display: none;margin-left: 150px" type="submit" name="action"><i class="fa">&#xf1d8;</i> Simpan</button>
 	    	</form>
-	    		<button id="btncancel" style="position:absolute;display: none;bottom:0px;" class="profa editprofil btna" onclick="canceleditprofil()"><i class="fa">&#xf00d;</i> Cancel</button>
-				<button id="btnubah" style="display: block" class="profb editprofil btna" onclick="editprofil()"><i class="fa">&#xf044;</i> Edit User</button>
+				<a class="btn-link profb btna" onclick="document.getElementById('id01').style.display='block'">Daftar Jurnal</a>
+	    		<button id="btncancel" style="position:absolute;display: none;bottom:0px;" class="profa editprofil btna" onclick="canceleditprofil()"><i class="fa">&#xf00d;</i> Batal</button>
+				<button id="btnubah" style="display: block" class="profb editprofil btna" onclick="editprofil()"><i class="fa">&#xf044;</i> Sunting User</button>
 		</div>
 		<div class="col-sm-3"></div>
 	</div>
+
+	<div id="id01" class="w3-modal">
+		<div class="w3-modal-content w3-animate-top" style="margin-top: -60px">
+			<header class="w3-container w3-teal"> 
+			  	<span onclick="document.getElementById('id01').style.display='none'" class="w3-hover-teal w3-button w3-display-topright">&times;</span>
+			  	<h2>Daftar Jurnal {{$user->name}}</h2>
+			</header>
+			<div class="container">
+			    <form method="POST" action="/admin/user/edit/{{$edituser->id}}">
+			    	@csrf
+			    	<div class="row">
+			        <div class="col-sm-6">
+				        @for ($i = 0; $i < sizeof($myJurnal)/2; $i++)
+				          	<input class="w3-check" type="checkbox" name="{{$myJurnal[$i]->name}}" value="{{$myJurnal[$i]->name}}"> {{$myJurnal[$i]->fullName}}<br>
+				        @endfor
+				    </div>
+				   	<div class="col-sm-6">
+				        @for ($i = sizeof($myJurnal)/2+1; $i < sizeof($myJurnal); $i++)
+				        	<input class="w3-check" type="checkbox" name="{{$myJurnal[$i]->name}}" value="{{$myJurnal[$i]->name}}"> {{$myJurnal[$i]->fullName}}<br>
+				        @endfor
+				   	</div>
+					</div><br>
+			      	<div style="margin-top: 10px">
+				        <button class="w3-button w3-circle w3-red" style="height: 50px;width: 50px"><i class="fa fa-check w3-large"></i></button>
+			      	</div>
+	    		</form>
+	    		<br>
+	    	</div>
+		</div>
+	</div>
+	
 
 	<script type="text/javascript">
 		// $('#iconified').on('keyup', function() {
@@ -142,6 +175,12 @@
 		// $(document).ready(function(){
 		// 	if(in)
 		// });
+		var modal = document.getElementById('id01');
+		window.onclick = function(event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+		}
 
 		function editprofil(){
 			$('.profb').css('display','none');

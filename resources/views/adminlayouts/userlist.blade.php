@@ -31,15 +31,23 @@
       <div class="col-sm-1"><button class="w3-right" style="width:50px;height:50px;" onclick="document.getElementById('id01').style.display='block'"><i class="fa fa-plus"></i></button></div>
       <table id="myTable" class="w3-table">
         <tr>
-          <th onclick="sortTable(0)">NRP <i class="fa">&#xf0dc;</i></th>
+          <th onclick="sortTable(0)">ID <i class="fa">&#xf0dc;</i></th>
           <th onclick="sortTable(1)">Nama <i class="fa">&#xf0dc;</i></th>
           <th onclick="sortTable(2)">Status <i class="fa">&#xf0dc;</i></th>
         </tr>
         @foreach($userList as $ul)
         <tr>
-          <td style="width: 200px">{{$ul->nrp}}</td>
+          <td style="width: 200px">{{$ul->id_number}}</td>
           <td>{{$ul->name}}</td>
-          <td>{{$ul->verified}}</td>
+          <td>
+            @if ($ul->verified==0)
+              Belum terverifikasi
+            @elseif($ul->verified==1)
+              Sedang menjalankan course
+            @else
+              Selesai
+            @endif
+          </td>
           <td style="width: 30px">
             @if($ul->verified>0 )
             <a href="/admin/user/detail/{{$ul->id}}">
@@ -74,10 +82,10 @@
         <form method="POST" action="/admin/user/make">
           @csrf
             <div class="form-group">
-                <input id="nrp" type="text" class="w3-round-xlarge iconified empty form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="nrp" value="{{ old('nrp') }}" placeholder="&#xf007;     {{ __('NRP') }}" required autofocus>
-                    @if ($errors->has('name'))
+                <input id="nrp" type="text" class="w3-round-xlarge iconified empty form-control{{ $errors->has('id_number') ? ' is-invalid' : '' }}" name="nrp" value="{{ old('id_number') }}" placeholder="&#xf007;     {{ __('ID') }}" required autofocus>
+                    @if ($errors->has('id_number'))
                         <span class="invalid-feedback">
-                            <strong>{{ $errors->first('name') }}</strong>
+                            <strong>{{ $errors->first('id_number') }}</strong>
                         </span>
                     @endif
             </div>
