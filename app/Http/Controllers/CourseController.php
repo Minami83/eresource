@@ -184,7 +184,8 @@ class CourseController extends Controller
     {
         $user = Auth()->user();
         $myJurnal = $user->takenJurnalList();
-        $index = ($user->verified==2)?$user->progress-2:$user->progress-1;
+        // $index = ($user->verified==2)?$user->progress-2:$user->progress-1;
+        $index = DB::table('jurnal_user')->where('user_id',$user->id)->where('completed',1)->count()-1;
         $url = 'course/'.$myJurnal[$index]->name;
         $text = file(public_path().$myJurnal[$index]->howto);
         $jurnal = Jurnal::get();
