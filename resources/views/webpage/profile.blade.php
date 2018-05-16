@@ -110,7 +110,7 @@
 				</tr>
 				<tr>
 					<td>
-						<a class="profb" href="/profile/password">Change Password?</a>
+						<a class="profb btn-link" href="/profile/password">Change Password?</a>
 					</td>
 				</tr>
 				</table>

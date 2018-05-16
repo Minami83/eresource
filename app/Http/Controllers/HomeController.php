@@ -68,13 +68,26 @@ class HomeController extends Controller
         $user = Auth()->user();
         $data = $request->all();
         // dd(bcrypt($data['oldpass']));
-        if(!(Hash::check($data['oldpass'],$user->password)))
-            return redirect('/profile/password')->with('message','wrong old password');
-        if($data['newpass'] != $data['password_confirmation'])
-            return redirect('/profile/password')->with('message','password confirmation does not match');
-        $user->password = bcrypt($data['newpass']);
-        $user->save();
-        return redirect('/profile/password')->with('message','password change completed');
+        if(!(Hash::check($data['oldpass'],$user->password))){
+            echo ("<script LANGUAGE='JavaScript'>
+                    window.alert('wrong old password');
+                    window.location.href='/profile/password';
+                    </script>");
+        }
+        elseif($data['newpass'] != $data['password_confirmation']){
+            echo ("<script LANGUAGE='JavaScript'>
+                    window.alert('password confirmation does not match');
+                    window.location.href='/profile/password';
+                    </script>");
+        }
+        else{
+            $user->password = bcrypt($data['newpass']);
+            $user->save();
+            echo ("<script LANGUAGE='JavaScript'>
+                    window.alert('password change completed');
+                    window.location.href='/profile/password';
+                    </script>");
+        }
     }
 
     public function loginlog()

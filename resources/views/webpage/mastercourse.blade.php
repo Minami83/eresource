@@ -180,7 +180,7 @@
 		    @php
 		    	$temp=sizeof($myJurnal);
 		    @endphp
-		    var width=(({{$user->progress}}-1)/{{$temp}})*100;
+		    var width=({{$progress}})*100;
 		    elem.style.width = width + '%';
 		    elem.innerHTML = parseFloat(width).toFixed(0) + '%';
 		});

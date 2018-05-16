@@ -21,20 +21,35 @@
 					<th>{{ __('New password') }}</th>
 					<td>:</td>
 					<td>
-						<input id="newpass" type="text" class="w3-round-xlarge form-control" name="newpass" autofocus>
+						<input id="newpass" type="password" class="w3-round-xlarge form-control" name="newpass" autofocus>
 					</td>
 				</tr>
 				<tr>
 					<th>{{ __('Confirm password') }}</th>
 					<td>:</td>
 					<td>
-						<input id="password_confirmation" type="text" class="w3-round-xlarge form-control" name="password_confirmation" autofocus>
+						<input id="password_confirmation" type="password" class="w3-round-xlarge form-control" name="password_confirmation" autofocus>
 					</td>
 				</tr>
 				</table>
-				<button id="btnsubmit" type="submit" name="action"><i class="fa">&#xf1d8;</i> Submit</button>
+				<button style="width:110px;height:30px;margin-top:10px;margin-left:16px;" id="btnsubmit" type="submit" name="action"><i class="fa">&#xf1d8;</i> Submit</button>
 	    	</form>
 		</div>
 		<div class="col-sm-3"></div>
 	</div>
+
+	{{-- <script type="text/javascript">
+		function validate(form){
+			@php
+        		$data = $request->all();
+			@endphp
+			@if (!(Hash::check($data['oldpass'],$user->password)))
+				alert('wrong old password');
+			@else if($data['newpass'] != $data['password_confirmation'])
+				alert('password confirmation does not match');
+			@else
+
+			@endif
+		}
+	</script> --}}
 @endsection
