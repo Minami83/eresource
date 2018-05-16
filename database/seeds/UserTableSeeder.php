@@ -15,13 +15,14 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         //
-        $role_student = Role::where('name', 'student')->first();
+        $role_student = Role::where('name', 'partisipan')->first();
         $role_admin = Role::where('name', 'admin')->first();
+        $role_pustakawan = Role::where('name','pustakawan')->first();
         $jurnal = Jurnal::get();
         $pretest_quest = Pretest::get();
 
         $student = new User();
-        $student->nrp = '51151000555';
+        $student->id_number = '51151000555';
         $student->name = 'Budi';
         $student->faculty = 'Fakultas Teknologi Informasi dan Komunikasi';
         $student->department = 'Informatika';
@@ -42,7 +43,7 @@ class UserTableSeeder extends Seeder
         }
 
         $admin = new User();
-        $admin->nrp = '51151000556';
+        $admin->id_number = '51151000556';
         $admin->name = 'Badu';
         $admin->faculty = 'Fakultas Teknologi Informasi dan Komunikasi';
         $admin->department = 'Informatika';
@@ -55,6 +56,22 @@ class UserTableSeeder extends Seeder
         $admin->roles()->attach($role_admin);
         foreach($jurnal as $jur){
             $admin->jurnals()->attach($jur,['completed' => 1]);
+        }
+
+        $pustakawan = new User();
+        $pustakawan->id_number = '51151000559';
+        $pustakawan->name = 'Badi';
+        $pustakawan->faculty = 'Fakultas Teknologi Informasi dan Komunikasi';
+        $pustakawan->department = 'Informatika';
+        $pustakawan->phone = '08122446888';
+        $pustakawan->email = 'badi@gmail.com';
+        $pustakawan->password = bcrypt('badibadi');
+        $pustakawan->progress = 20;
+        $pustakawan->verified = 2;
+        $pustakawan->save();
+        $pustakawan->roles()->attach($role_pustakawan);
+        foreach($jurnal as $jur){
+            $pustakawan->jurnals()->attach($jur,['completed' => 1]);
         }
 
     }

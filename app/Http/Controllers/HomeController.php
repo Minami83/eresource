@@ -26,7 +26,7 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $request->user()->authorizeRoles(['student','admin']);
+        $request->user()->authorizeRoles(['partisipan','admin','pustakawan']);
         $data = Auth()->user();
         $this->loginlog();
         if($data->verified==0) return view('adminlayouts/dummy')->with('user',$data);
@@ -47,11 +47,11 @@ class HomeController extends Controller
     {
         $user = Auth()->user();
         $data = $request->all();
-        $user->nrp = $data['nrp'];
-        $user->name = $data['name'];
-        $user->faculty = $data['faculty'];
-        $user->department = $data['department'];
-        $user->email = $data['email'];
+        // $user->nrp = $data['nrp'];
+        // $user->name = $data['name'];
+        // $user->faculty = $data['faculty'];
+        // $user->department = $data['department'];
+        // $user->email = $data['email'];
         $user->phone = $data['phone'];
         $user->save();
         return $this->profile();

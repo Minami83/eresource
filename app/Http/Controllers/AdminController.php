@@ -11,7 +11,7 @@ class AdminController extends Controller
     //
   public function Index(Request $request)
   {
-    $request->user()->authorizeRoles('admin');
+    $request->user()->authorizeRoles(['admin','pustakawan']);
     $data = Auth()->user();
     $unverified = DB::table('users')->where('verified',0)->get();
     $jurnal1 = Jurnal::where('id','<=',Jurnal::count()/2)->get();
@@ -35,4 +35,25 @@ class AdminController extends Controller
     return redirect('/admin');
 
   }
+
+  public function recap()
+  {
+    $admin = Auth()->user();
+    $users = User::get();
+    $regUser = ['01'=>[],'02'=>[],'03'=>[],'04'=>[],'05'=>[],'06'=>[],'07'=>[],'08'=>[],'09'=>[],'10'=>[],'11'=>[],'12'=>[]];
+    $compUser = ['01'=>[],'02'=>[],'03'=>[],'04'=>[],'05'=>[],'06'=>[],'07'=>[],'08'=>[],'09'=>[],'10'=>[],'11'=>[],'12'=>[]];
+    foreach($users as $user){
+      $month = $user->created_at->format('m');
+      array_push($regUser[$month],$user);
+    }
+    // dd($regUser);
+    foreach($users as $user){
+      if($user->verified != 2) continue;
+      $month = $user->updated_at->format('m');
+      array_push($compUser[$month],$user);
+    }
+    // dd($compUser);
+    return view('adminlayout/laporan')->with('user',$admin)->with('regis_user',$regUser)->with('compl_user',$compUser);
+  }
+
 }

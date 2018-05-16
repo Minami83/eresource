@@ -32,6 +32,7 @@ Route::get('/pretest', 'CourseController@pretest');
 Route::post('/preans', 'CourseController@preAns');
 Route::get('/posttest', 'CourseController@posttest');
 Route::post('/postans', 'CourseController@postAns')->name('postans');
+Route::get('/testscore', 'CourseController@testScore');
 Route::get('/sertif', 'CourseController@sertifPage');
 
 Route::get('/course/{courseName}', 'CourseController@index')->name('course');
@@ -40,6 +41,7 @@ Route::get('/continue', 'CourseController@continue');
 
 Route::get('/admin', 'AdminController@Index')->middleware('role');
 Route::post('/admin', 'AdminController@verify')->middleware('role');
+Route::get('/admin/laporan', 'AdminController@recap')->middleware('role');
 
 Route::get('/admin/user/list', 'UserController@index')->middleware('role');
 Route::get('/admin/user/make', 'UserController@create')->middleware('role');

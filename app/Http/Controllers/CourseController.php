@@ -74,6 +74,26 @@ class CourseController extends Controller
         return redirect('/home');
     }
 
+    public function testScore()
+    {
+        $user = Auth()->user();
+        $preAns = DB::table('pretest_user')->where('user_id',$user->id)->get('answer');
+        $postAns = DB::table('posttest_user')->where('user_id',$user->id)->get('answer');
+        $test = Pretest::get();
+        $preScore = 0;
+        $postScore = 0;
+        for($i=0;i<$test->count();$i++){
+            if($test[$i]->right_answer==1) $truAns = $test[$i]->choice_1;
+            if($test[$i]->right_answer==2) $truAns = $test[$i]->choice_2;
+            if($test[$i]->right_answer==3) $truAns = $test[$i]->choice_3;
+            if($test[$i]->right_answer==4) $truAns = $test[$i]->choice_4;
+            if($preAns[$i]==$truAns) $preScore = $preScore + 1;
+            if($postAns[$i]==$truAns) $postScore = $postScore + 1;
+        }
+        return view('webpage/testScore')->with('user',$user)->with('preAns',$preAns)->with('postAns',$postAns)->with('test',$test)->with('preScore',$preScore)->with('postScore',$postScore);
+    }
+
+
     public function sertifPage()
     {
         $user = Auth()->user();
@@ -135,6 +155,11 @@ class CourseController extends Controller
         $url = 'jurnal/'.$myJurnal[$index]->name;
         $compl = DB::table('jurnal_user')->where('user_id',$user->id)->where('completed',1.0)->count();
         $prog = (float)$compl/(float)$myJurnal->count();
+        $log = new Log();
+        $log->user_id = $user->id;
+        $log->jurnal_id = $myJurnal[$index]->id;
+        $log->activity = 'Masuk Ke '.$myJurnal[$index]->fullName;
+        $log->save();
         // dd($prog);
         // return view($url)->with('user',$user)->with('myJurnal',$myJurnal)->with('jurnal',$jurnal)->with('howto_text',$text)->with('index',$index);
         return view('webpage/mastercourse')->with('user',$user)->with('myJurnal',$myJurnal)->with('jurnal',$jurnal)->with('howto_text',$text)->with('index',$index)->with('progress',$prog);
@@ -147,6 +172,7 @@ class CourseController extends Controller
         if($user->verified==0) return view('error/403');
         $callerJurnal = Jurnal::where('name', request('url'))->first();
         $myJurnal = $user->takenJurnalList();
+
 
         $this->incAction(request('accord1input'),request('accord2input'),request('accord3input'),$user, $callerJurnal);
 
@@ -177,6 +203,11 @@ class CourseController extends Controller
         }
         // dd($url);
         // return redirect($url)->with('user',$user)->with('myJurnal',$myJurnal)->with('howto_text',$text);
+        $log = new Log();
+        $log->user_id = $user->id;
+        $log->jurnal_id = $callerJurnal->id;
+        $log->activity = 'Menyelesaikan '.$callerJurnal->fullName;
+        $log->save();
         return redirect($url)->with('user',$user)->with('myJurnal',$myJurnal)->with('howto_text',$text)->with('index',$index);
     }
 

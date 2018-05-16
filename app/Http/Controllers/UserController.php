@@ -18,7 +18,7 @@ class UserController extends Controller
         //
         $admin = Auth()->user();
         $listUser = User::where('id', '!=', $admin->id)->get();
-        $admin->authorizeRoles(['admin']);
+        $admin->authorizeRoles(['admin','pustakawan']);
         return view('adminlayouts/userlist')->with('userList',$listUser)->with('user',$admin);
     }
 
@@ -32,7 +32,8 @@ class UserController extends Controller
         //
         $admin = Auth()->user();
         $admin->authorizeRoles(['admin']);
-        return view('adminlayouts/makeuser')->with('user',$admin);
+        $jurnal = Jurnal::get();
+        return view('adminlayouts/makeuser')->with('user',$admin)->with('jurnal',$jurnal);
     }
 
     /**
@@ -48,7 +49,7 @@ class UserController extends Controller
         $admin->authorizeRoles(['admin']);
         $data = $request->all();
         $user = new User();
-        $user->nrp = $data['nrp'];
+        $user->id_number = $data['nrp'];
         $user->name = $data['name'];
         $user->faculty = $data['faculty'];
         $user->department = $data['department'];
@@ -56,7 +57,8 @@ class UserController extends Controller
         $user->email = $data['email'];
         $user->progress = 0;
         $user->verified = 0;
-        if($data['role']=='admin'){
+
+        if($data['role']=='admin' or $data['role']=='pustakawan'){
             $user->verified = 2;
             $jurnalCnt = Jurnal::count();
             $user->progress = $jurnalCnt+1;
@@ -65,6 +67,7 @@ class UserController extends Controller
                 $user->jurnals()->attach($jur);
             }
         }
+
         $user->password = bcrypt($data['password']);
         $user->save();
         $user->roles()->detach();
@@ -87,8 +90,29 @@ class UserController extends Controller
         //
         $user = User::where('id',$id)->first();
         $admin = Auth()->user();
-        $admin->authorizeRoles(['admin']);
-        return view('adminlayouts/userdetail')->with('edituser',$user)->with('user',$admin);
+        $admin->authorizeRoles(['admin','pustakawan']);
+        $myJurnal = $user->takenJurnalList();
+        return view('adminlayouts/userdetail')->with('edituser',$user)->with('user',$admin)->with('myJurnal',$myJurnal);
+    }
+
+    public function showTest($id)
+    {
+        $admin = Auth()->user();
+        $user = User::where('id',$id)->first();
+        $preAns = DB::table('pretest_user')->where('user_id',$user->id)->get('answer');
+        $postAns = DB::table('posttest_user')->where('user_id',$user->id)->get('answer');
+        $test = Pretest::get();
+        $preScore = 0;
+        $postScore = 0;
+        for($i=0;i<$test->count();$i++){
+            if($test[$i]->right_answer==1) $truAns = $test[$i]->choice_1;
+            if($test[$i]->right_answer==2) $truAns = $test[$i]->choice_2;
+            if($test[$i]->right_answer==3) $truAns = $test[$i]->choice_3;
+            if($test[$i]->right_answer==4) $truAns = $test[$i]->choice_4;
+            if($preAns[$i]==$truAns) $preScore = $preScore + 1;
+            if($postAns[$i]==$truAns) $postScore = $postScore + 1;
+        }
+        return view('webpage/testScore')->with('user',$admin)->with('preAns',$preAns)->with('postAns',$postAns)->with('test',$test)->with('preScore',$preScore)->with('postScore',$postScore)->with('showeduser',$user);
     }
 
     /**
@@ -102,8 +126,9 @@ class UserController extends Controller
         //
         $user = User::where('id',$id)->first();
         $admin = Auth()->user();
-        $admin->authorizeRoles(['admin']);
-        return view('adminlayouts/useredit')->with('edituser',$user)->with('user',$admin);
+        $admin->authorizeRoles(['admin','pustakawan']);
+        $myJurnal = $user->takenJurnalList();
+        return view('adminlayouts/useredit')->with('edituser',$user)->with('user',$admin)->with('myJurnal',$myJurnal);
     }
 
     /**
@@ -117,15 +142,23 @@ class UserController extends Controller
     {
         //
         $admin = Auth()->user();
-        $admin->authorizeRoles(['admin']);
+        $admin->authorizeRoles(['admin','pustakawan']);
         $user = User::where('id',$id)->first();
         $data = $request->all();
-        $user->nrp = $data['nrp'];
+        $user->id_number = $data['nrp'];
         $user->name = $data['name'];
         $user->faculty = $data['faculty'];
         $user->department = $data['department'];
         $user->email = $data['email'];
         $user->phone = $data['phone'];
+        $user->jurnals()->detach();
+        foreach($data as $dat)
+        {
+            $jurn = Jurnal::where('name',$dat)->first();
+            if($jurn==null) continue;
+            $user->jurnals()->attach($jurn,['completed' => 0]);
+        }
+
         if($data['role']=='admin'){
             $user->verified = 2;
             $jurnalCnt = Jurnal::count();
@@ -136,6 +169,7 @@ class UserController extends Controller
                 $user->jurnals()->attach($jur);
             }
         }
+
         $user->roles()->detach();
         $user
             ->roles()
