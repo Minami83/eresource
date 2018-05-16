@@ -3,11 +3,23 @@
 @section('title','Change Password')
 
 @section('isi')
+
 	<div class="w3-row" style="margin-top: 70px">
 		<div class="col-sm-3"></div>
 		<div class="col-sm-6 w3-white w3-round-large">
 			<br>
-		    <form method="POST" action="/profile/password">
+			@if (session('alert'))
+				@if (session('alert')=='password telah terganti')
+					<div class="alert alert-success">
+	        	{{ session('alert') }}
+	    		</div>
+	    	@else
+	    		<div class="alert alert-danger">
+	        	{{ session('alert') }}
+	    		</div>
+	    	@endif
+			@endif
+		    <form method="POST" action="/profile/password" >
 		    	@csrf
 		    	<table class="w3-table">
 				<tr>
@@ -38,18 +50,5 @@
 		<div class="col-sm-3"></div>
 	</div>
 
-	{{-- <script type="text/javascript">
-		function validate(form){
-			@php
-        		$data = $request->all();
-			@endphp
-			@if (!(Hash::check($data['oldpass'],$user->password)))
-				alert('wrong old password');
-			@else if($data['newpass'] != $data['password_confirmation'])
-				alert('password confirmation does not match');
-			@else
 
-			@endif
-		}
-	</script> --}}
 @endsection
