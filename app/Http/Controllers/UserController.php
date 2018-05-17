@@ -32,8 +32,9 @@ class UserController extends Controller
         //
         $admin = Auth()->user();
         $admin->authorizeRoles(['admin']);
-        $jurnal = Jurnal::get();
-        return view('adminlayouts/makeuser')->with('user',$admin)->with('jurnal',$jurnal);
+        $jurnal1 = Jurnal::where('id','<=',Jurnal::count()/2)->get();
+        $jurnal2 = Jurnal::where('id','>',Jurnal::count()/2)->get();
+        return view('adminlayouts/makeuser')->with('user',$admin)->with('jurnal1',$jurnal1)->with('jurnal2',$jurnal2);
     }
 
     /**

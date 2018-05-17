@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Jurnal;
+use Illuminate\Support\Facades\File;
 class AdminController extends Controller
 {
     //
@@ -42,16 +43,46 @@ class AdminController extends Controller
     $users = User::get();
     $regUser = ['01'=>[],'02'=>[],'03'=>[],'04'=>[],'05'=>[],'06'=>[],'07'=>[],'08'=>[],'09'=>[],'10'=>[],'11'=>[],'12'=>[]];
     $compUser = ['01'=>[],'02'=>[],'03'=>[],'04'=>[],'05'=>[],'06'=>[],'07'=>[],'08'=>[],'09'=>[],'10'=>[],'11'=>[],'12'=>[]];
+
+    File::delete(public_path().'/laporan/reguser.csv');
+    $reg = fopen(public_path().'/laporan/reguser.csv', 'a+');
+
     foreach($users as $user){
       $month = $user->created_at->format('m');
       array_push($regUser[$month],$user);
     }
+    $i = 1;
+    fputcsv($reg,['ID','Nama','Departemen','Bulan_Mendaftar']);
+    foreach($regUser as $userz){
+      foreach($userz as $user){
+        fputcsv($reg,[$user->id_number,$user->name,$user->department,$i]);
+      }
+      $i = $i + 1;
+    }
+
+    // fclose($reg);
+
     // dd($regUser);
+    File::delete(public_path().'/laporan/complete_course.csv');
+    $compl = fopen(public_path().'/laporan/complete_course.csv', 'a+');
+
     foreach($users as $user){
       if($user->verified != 2) continue;
       $month = $user->updated_at->format('m');
       array_push($compUser[$month],$user);
     }
+
+    $i = 1;
+    fputcsv($compl,['ID','Nama','Departemen','Bulan_Menyelesaikan']);
+    foreach($regUser as $userz){
+      foreach($userz as $user){
+        fputcsv($compl,[$user->id_number,$user->name,$user->department,$i]);
+      }
+      $i = $i + 1;
+    }
+
+    // fclose($compl);
+
     // dd($compUser);
     return view('adminlayouts/laporan')->with('user',$admin)->with('regis_user',$regUser)->with('compl_user',$compUser);
   }
