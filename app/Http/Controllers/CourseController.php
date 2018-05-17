@@ -77,12 +77,12 @@ class CourseController extends Controller
     public function testscore()
     {
         $user = Auth()->user();
-        $preAns = DB::table('pretest_user')->where('user_id',$user->id)->get('answer');
-        $postAns = DB::table('posttest_user')->where('user_id',$user->id)->get('answer');
+        $preAns = DB::table('pretest_user')->where('user_id',$user->id)->get(['answer']);
+        $postAns = DB::table('posttest_user')->where('user_id',$user->id)->get(['answer']);
         $test = Pretest::get();
         $preScore = 0;
         $postScore = 0;
-        for($i=0;i<$test->count();$i++){
+        for($i=0;$i<$test->count();$i++){
             if($test[$i]->right_answer==1) $truAns = $test[$i]->choice_1;
             if($test[$i]->right_answer==2) $truAns = $test[$i]->choice_2;
             if($test[$i]->right_answer==3) $truAns = $test[$i]->choice_3;

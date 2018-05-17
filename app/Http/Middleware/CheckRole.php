@@ -16,7 +16,7 @@ class CheckRole
     public function handle($request, Closure $next)
     {
         // dd($request->user());
-        if($request->user()->roleName()=='student')
+        if($request->user()->hasRole('student'))
         {
             return redirect('error/403');
         }

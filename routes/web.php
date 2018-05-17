@@ -49,6 +49,7 @@ Route::post('/admin/user/make', 'UserController@store')->middleware('role');
 Route::get('/admin/user/detail/{id}', 'UserController@show')->middleware('role');
 Route::get('/admin/user/edit/{id}', 'UserController@edit')->middleware('role');
 Route::post('/admin/user/edit/{id}', 'UserController@update')->middleware('role');
+Route::post('/admin/user/edit/jurnal/{id}', 'UserController@updateJurnal')->middleware('role');
 Route::delete('/admin/user/delete/{id}', 'UserController@destroy')->middleware('role');
 
 Route::get('/admin/jurnal/list', 'JurnalController@index')->middleware('role');

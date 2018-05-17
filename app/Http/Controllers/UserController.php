@@ -32,7 +32,7 @@ class UserController extends Controller
         //
         $admin = Auth()->user();
         $admin->authorizeRoles(['admin']);
-        
+
         return view('adminlayouts/makeuser')->with('user',$admin);
     }
 
@@ -45,6 +45,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
+
         $admin = Auth()->user();
         $admin->authorizeRoles(['admin']);
         $data = $request->all();
@@ -153,13 +154,6 @@ class UserController extends Controller
         $user->department = $data['department'];
         $user->email = $data['email'];
         $user->phone = $data['phone'];
-        $user->jurnals()->detach();
-        foreach($data as $dat)
-        {
-            $jurn = Jurnal::where('name',$dat)->first();
-            if($jurn==null) continue;
-            $user->jurnals()->attach($jurn,['completed' => 0]);
-        }
 
         if($data['role']=='admin'){
             $user->verified = 2;
@@ -179,6 +173,22 @@ class UserController extends Controller
         $user->save();
         $url = '/admin/user/detail/'.$id;
         return redirect($url)->with('edituser',$user)->with('user',$admin);
+    }
+
+    public function updateJurnal(Request $request,$id)
+    {
+        $admin = Auth()->user();
+        $user = User::where('id',$id)->first();
+        $data = $request->all();
+        $user->jurnals()->detach();
+        dd($data);
+        foreach($data as $dat)
+        {
+            $jurn = Jurnal::where('name',$dat)->first();
+            if($jurn==null) continue;
+            $user->jurnals()->attach($jurn,['completed' => 0]);
+        }
+        return redirect()->back();
     }
 
     /**

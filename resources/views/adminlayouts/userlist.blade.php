@@ -71,8 +71,8 @@
 
 <div id="id01" class="w3-modal">
   <div class="w3-modal-content w3-animate-top" style="margin-top: -60px">
-    <header class="w3-container w3-teal"> 
-      <span onclick="document.getElementById('id01').style.display='none'" 
+    <header class="w3-container w3-teal">
+      <span onclick="document.getElementById('id01').style.display='none'"
       class="w3-hover-teal w3-button w3-display-topright">&times;</span>
       <h2>Add User</h2>
     </header>
@@ -130,7 +130,7 @@
             </div>
             <div class="form-group">
               <select class="w3-round-xlarge iconified empty form-control" name="role" value="{{ old('faculty') }}" required>
-                <option value="student">Student</option>
+                <option value="partisipan">Partisipan</option>
                 <option value="admin">Admin</option>
               </select>
             </div>
@@ -179,7 +179,7 @@
         } else {
           tr[i].style.display = "none";
         }
-      }       
+      }
     }
   }
 
@@ -187,7 +187,7 @@
     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
     table = document.getElementById("myTable");
     switching = true;
-    dir = "asc"; 
+    dir = "asc";
     while (switching) {
       switching = false;
       rows = table.getElementsByTagName("TR");
@@ -210,7 +210,7 @@
       if (shouldSwitch) {
         rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
         switching = true;
-        switchcount ++;      
+        switchcount ++;
       } else {
         if (switchcount == 0 && dir == "asc") {
           dir = "desc";

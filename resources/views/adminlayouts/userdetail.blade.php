@@ -12,7 +12,7 @@
 	}
 
 	th{
-		width:170px;	
+		width:170px;
 	}
 	.btna{
 		width:130px;
@@ -24,7 +24,7 @@
 @endsection()
 
 @section('isi')
-	
+
 	<div class="w3-row" style="margin-top: 70px">
 		<div class="col-sm-3">
 			<a href="/admin/user/list"><button style="float: right;margin-top: 30px"><i class="fa fa-reply"></i></button></a>
@@ -116,7 +116,7 @@
 					<td class="profb" style="display: block;">{{$edituser->roleName()}}</td>
 					<td class="profa" style="display: none">
 						<select id="roleoption" class="w3-round-xlarge form-control" name="role" value="{{ old('faculty') }}" required>
-	                    <option value="student">Student</option>
+	                    <option value="partisipan">Partisipan</option>
 	                    <option value="admin">Admin</option>
 	                    </select>
 					</td>
@@ -133,12 +133,12 @@
 
 	<div id="id01" class="w3-modal">
 		<div class="w3-modal-content w3-animate-top" style="margin-top: -60px">
-			<header class="w3-container w3-teal"> 
+			<header class="w3-container w3-teal">
 			  	<span onclick="document.getElementById('id01').style.display='none'" class="w3-hover-teal w3-button w3-display-topright">&times;</span>
 			  	<h2>Daftar Jurnal {{$user->name}}</h2>
 			</header>
 			<div class="container">
-			    <form method="POST" action="/admin/user/edit/{{$edituser->id}}">
+			    <form method="POST" action="/admin/user/edit/jurnal/{{$edituser->id}}">
 			    	@csrf
 			    	<div class="row">
 			        <div class="col-sm-6">
@@ -168,7 +168,7 @@
 	    	</div>
 		</div>
 	</div>
-	
+
 
 	<script type="text/javascript">
 		// $('#iconified').on('keyup', function() {
