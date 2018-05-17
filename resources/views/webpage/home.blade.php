@@ -10,11 +10,14 @@
 		<h1 class="w3-animate-opacity">E-Resource Class</h1><br>
 		@if ($user->verified==2)
 		<div class="col-sm-3"></div>
-		<div class="col-sm-3">
-			<a id="btn" class="homebutton w3-center w3-button w3-light-gray"></a>
+		<div class="col-sm-2">
+			<a id="btn1" class="homebutton w3-center w3-button w3-light-gray">Review</a>
 		</div>
-		<div class="col-sm-3">
+		<div class="col-sm-2">
 			<a id="btn2" href="/sertif" class="homebutton w3-center w3-button w3-light-gray">Sertif</a>
+		</div>
+		<div class="col-sm-2">
+			<a id="btn3" href="/testscore" class="homebutton w3-center w3-button w3-light-gray">Skor Test</a>
 		</div>
 		@else
 		<div class="w3-center">

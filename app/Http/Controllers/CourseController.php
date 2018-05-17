@@ -74,7 +74,7 @@ class CourseController extends Controller
         return redirect('/home');
     }
 
-    public function testScore()
+    public function testscore()
     {
         $user = Auth()->user();
         $preAns = DB::table('pretest_user')->where('user_id',$user->id)->get('answer');
@@ -90,7 +90,7 @@ class CourseController extends Controller
             if($preAns[$i]==$truAns) $preScore = $preScore + 1;
             if($postAns[$i]==$truAns) $postScore = $postScore + 1;
         }
-        return view('webpage/testScore')->with('user',$user)->with('preAns',$preAns)->with('postAns',$postAns)->with('test',$test)->with('preScore',$preScore)->with('postScore',$postScore);
+        return view('webpage/testscore')->with('user',$user)->with('preAns',$preAns)->with('postAns',$postAns)->with('test',$test)->with('preScore',$preScore)->with('postScore',$postScore);
     }
 
 

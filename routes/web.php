@@ -32,7 +32,7 @@ Route::get('/pretest', 'CourseController@pretest');
 Route::post('/preans', 'CourseController@preAns');
 Route::get('/posttest', 'CourseController@posttest');
 Route::post('/postans', 'CourseController@postAns')->name('postans');
-Route::get('/testscore', 'CourseController@testScore');
+Route::get('/testscore', 'CourseController@testscore');
 Route::get('/sertif', 'CourseController@sertifPage');
 
 Route::get('/course/{courseName}', 'CourseController@index')->name('course');

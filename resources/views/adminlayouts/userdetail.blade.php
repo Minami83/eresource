@@ -142,14 +142,22 @@
 			    	@csrf
 			    	<div class="row">
 			        <div class="col-sm-6">
-				        @for ($i = 0; $i < sizeof($myJurnal)/2; $i++)
-				          	<input class="w3-check" type="checkbox" name="{{$myJurnal[$i]->name}}" value="{{$myJurnal[$i]->name}}"> {{$myJurnal[$i]->fullName}}<br>
-				        @endfor
+				        @foreach ($jurnal1 as $jur1)
+				        	@foreach ($myJurnal as $takenjur)
+				        		@continue ($takenjur->id==$jur1->id)
+			          				<input class="w3-check" type="checkbox" name="{{$jur1->name}}" value="{{$jur1->name}}" checked> {{$jur1->fullName}}<br>
+			          			@break($takenjur->id!=$jur1->id)
+				        	@endforeach
+				        @endforeach
 				    </div>
 				   	<div class="col-sm-6">
-				        @for ($i = sizeof($myJurnal)/2+1; $i < sizeof($myJurnal); $i++)
-				        	<input class="w3-check" type="checkbox" name="{{$myJurnal[$i]->name}}" value="{{$myJurnal[$i]->name}}"> {{$myJurnal[$i]->fullName}}<br>
-				        @endfor
+				        @foreach ($jurnal2 as $jur2)
+				        	@foreach ($myJurnal as $takenjur)
+				        		@continue ($takenjur->id==$jur2->id)
+			          				<input class="w3-check" type="checkbox" name="{{$jur2->name}}" value="{{$jur2->name}}" checked> {{$jur2->fullName}}<br>
+			          			@break($takenjur->id!=$jur1->id)
+				        	@endforeach
+				        @endforeach
 				   	</div>
 					</div><br>
 			      	<div style="margin-top: 10px">

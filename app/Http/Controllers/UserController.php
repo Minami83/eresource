@@ -32,9 +32,8 @@ class UserController extends Controller
         //
         $admin = Auth()->user();
         $admin->authorizeRoles(['admin']);
-        $jurnal1 = Jurnal::where('id','<=',Jurnal::count()/2)->get();
-        $jurnal2 = Jurnal::where('id','>',Jurnal::count()/2)->get();
-        return view('adminlayouts/makeuser')->with('user',$admin)->with('jurnal1',$jurnal1)->with('jurnal2',$jurnal2);
+        
+        return view('adminlayouts/makeuser')->with('user',$admin);
     }
 
     /**
@@ -93,7 +92,9 @@ class UserController extends Controller
         $admin = Auth()->user();
         $admin->authorizeRoles(['admin','pustakawan']);
         $myJurnal = $user->takenJurnalList();
-        return view('adminlayouts/userdetail')->with('edituser',$user)->with('user',$admin)->with('myJurnal',$myJurnal);
+        $jurnal1 = Jurnal::where('id','<=',Jurnal::count()/2)->get();
+        $jurnal2 = Jurnal::where('id','>',Jurnal::count()/2)->get();
+        return view('adminlayouts/userdetail')->with('edituser',$user)->with('user',$admin)->with('myJurnal',$myJurnal)->with('jurnal1',$jurnal1)->with('jurnal2',$jurnal2);
     }
 
     public function showTest($id)
