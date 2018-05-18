@@ -65,7 +65,7 @@ class UserController extends Controller
             $user->progress = $jurnalCnt+1;
             $jurnal = Jurnal::get();
             foreach($jurnal as $jur){
-                $user->jurnals()->attach($jur);
+                $user->jurnals()->attach($jur,['completed'=>1]);
             }
         }
 
@@ -162,7 +162,7 @@ class UserController extends Controller
             $user->jurnals()->detach();
             $jurnal = Jurnal::get();
             foreach($jurnal as $jur){
-                $user->jurnals()->attach($jur);
+                $user->jurnals()->attach($jur,['completed'=>1]);
             }
         }
 

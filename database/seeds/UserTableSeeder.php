@@ -5,6 +5,7 @@ use App\User;
 use App\Role;
 use App\Jurnal;
 use App\Pretest;
+use App\Posttest;
 class UserTableSeeder extends Seeder
 {
     /**
@@ -20,6 +21,7 @@ class UserTableSeeder extends Seeder
         $role_pustakawan = Role::where('name','pustakawan')->first();
         $jurnal = Jurnal::get();
         $pretest_quest = Pretest::get();
+        $posttest_quest = Posttest::get();
 
         $student = new User();
         $student->id_number = '51151000555';
@@ -57,6 +59,12 @@ class UserTableSeeder extends Seeder
         foreach($jurnal as $jur){
             $admin->jurnals()->attach($jur,['completed' => 1]);
         }
+        foreach($pretest_quest as $quest){
+            $student->pretests()->attach($quest, ['answer' => 1]);
+        }
+        foreach($posttest_quest as $quest){
+            $student->posttests()->attach($quest, ['answer' => 1]);
+        }
 
         $pustakawan = new User();
         $pustakawan->id_number = '51151000559';
@@ -72,6 +80,12 @@ class UserTableSeeder extends Seeder
         $pustakawan->roles()->attach($role_pustakawan);
         foreach($jurnal as $jur){
             $pustakawan->jurnals()->attach($jur,['completed' => 1]);
+        }
+        foreach($pretest_quest as $quest){
+            $student->pretests()->attach($quest, ['answer' => 1]);
+        }
+        foreach($posttest_quest as $quest){
+            $student->posttests()->attach($quest, ['answer' => 1]);
         }
 
     }
