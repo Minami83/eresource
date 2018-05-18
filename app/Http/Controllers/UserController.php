@@ -181,7 +181,7 @@ class UserController extends Controller
         $user = User::where('id',$id)->first();
         $data = $request->all();
         $user->jurnals()->detach();
-        dd($data);
+        // dd($data);
         foreach($data as $dat)
         {
             $jurn = Jurnal::where('name',$dat)->first();

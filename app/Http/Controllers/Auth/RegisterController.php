@@ -50,7 +50,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'id_number' => 'required|string|max:18|min:14',
+            'nrp' => 'required|string|max:18|min:14',
             'name' => 'required|string|max:255',
             'faculty' => 'required|string',
             'department' => 'required|string',
@@ -81,7 +81,7 @@ class RegisterController extends Controller
         ]);
         $user
             ->roles()
-            ->attach(Role::where('name','student')->first());
+            ->attach(Role::where('name','partisipan')->first());
 
         return $user;
     }

@@ -118,6 +118,7 @@
 						<select id="roleoption" class="w3-round-xlarge form-control" name="role" value="{{ old('faculty') }}" required>
 	                    <option value="partisipan">Partisipan</option>
 	                    <option value="admin">Admin</option>
+	                    <option value="pustakawan">Pustakawan</option>
 	                    </select>
 					</td>
 				</tr>
@@ -137,26 +138,18 @@
 			  	<span onclick="document.getElementById('id01').style.display='none'" class="w3-hover-teal w3-button w3-display-topright">&times;</span>
 			  	<h2>Daftar Jurnal {{$user->name}}</h2>
 			</header>
-			<div class="container">
+			<div class="w3-container">
 			    <form method="POST" action="/admin/user/edit/jurnal/{{$edituser->id}}">
 			    	@csrf
 			    	<div class="row">
-			        <div class="col-sm-6">
+			        <div class="listjurnal col-sm-6">
 				        @foreach ($jurnal1 as $jur1)
-				        	@foreach ($myJurnal as $takenjur)
-				        		@continue ($takenjur->id==$jur1->id)
-			          				<input class="w3-check" type="checkbox" name="{{$jur1->name}}" value="{{$jur1->name}}" checked> {{$jur1->fullName}}<br>
-			          			@break($takenjur->id!=$jur1->id)
-				        	@endforeach
+				        	<input id="{{$jur1->id}}" class="w3-check" type="checkbox" name="{{$jur1->name}}" value="{{$jur1->name}}"> {{$jur1->fullName}}<br>
 				        @endforeach
 				    </div>
-				   	<div class="col-sm-6">
-				        @foreach ($jurnal2 as $jur2)
-				        	@foreach ($myJurnal as $takenjur)
-				        		@continue ($takenjur->id==$jur2->id)
-			          				<input class="w3-check" type="checkbox" name="{{$jur2->name}}" value="{{$jur2->name}}" checked> {{$jur2->fullName}}<br>
-			          			@break($takenjur->id!=$jur1->id)
-				        	@endforeach
+				   	<div class="listjurnal col-sm-6">
+				       	 @foreach ($jurnal2 as $jur1)
+				        	<input id="{{$jur1->id}}" class="w3-check" type="checkbox" name="{{$jur1->name}}" value="{{$jur1->name}}"> {{$jur1->fullName}}<br>
 				        @endforeach
 				   	</div>
 					</div><br>
@@ -183,6 +176,12 @@
 		// $(document).ready(function(){
 		// 	if(in)
 		// });
+		$(document).ready(function(){
+			@foreach ($myJurnal as $takenjur)
+				$('#'+'{{$takenjur->id}}').attr('checked','checked');
+			@endforeach
+		});
+
 		var modal = document.getElementById('id01');
 		window.onclick = function(event) {
 			if (event.target == modal) {

@@ -132,6 +132,7 @@
               <select class="w3-round-xlarge iconified empty form-control" name="role" value="{{ old('faculty') }}" required>
                 <option value="partisipan">Partisipan</option>
                 <option value="admin">Admin</option>
+                <option value="pustakawan">Pustakawan</option>
               </select>
             </div>
 

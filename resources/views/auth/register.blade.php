@@ -52,10 +52,10 @@
                 <form style="height: 500px;" method="POST" action="{{ route('register') }}">
                 @csrf
                 <div class="form-group">
-                    <input id="nrp" type="text" class="w3-round-xlarge iconified text form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="nrp" value="{{ old('nrp') }}" placeholder="&#xf007;     {{ __('NRP') }}" required autofocus>
-                    @if ($errors->has('name'))
+                    <input id="nrp" type="text" class="w3-round-xlarge iconified text form-control{{ $errors->has('nrp') ? ' is-invalid' : '' }}" name="nrp" value="{{ old('nrp') }}" placeholder="&#xf007;     {{ __('ID') }}" required autofocus>
+                    @if ($errors->has('nrp'))
                         <span class="invalid-feedback">
-                            <strong>{{ $errors->first('name') }}</strong>
+                            <strong>{{ $errors->first('nrp') }}</strong>
                         </span>
                     @endif
                 </div>
