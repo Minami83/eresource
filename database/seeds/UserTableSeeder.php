@@ -60,10 +60,10 @@ class UserTableSeeder extends Seeder
             $admin->jurnals()->attach($jur,['completed' => 1]);
         }
         foreach($pretest_quest as $quest){
-            $student->pretests()->attach($quest, ['answer' => 1]);
+            $admin->pretests()->attach($quest, ['answer' => 1]);
         }
         foreach($posttest_quest as $quest){
-            $student->posttests()->attach($quest, ['answer' => 1]);
+            $admin->posttests()->attach($quest, ['answer' => 1]);
         }
 
         $pustakawan = new User();
@@ -82,10 +82,10 @@ class UserTableSeeder extends Seeder
             $pustakawan->jurnals()->attach($jur,['completed' => 1]);
         }
         foreach($pretest_quest as $quest){
-            $student->pretests()->attach($quest, ['answer' => 1]);
+            $pustakawan->pretests()->attach($quest, ['answer' => 1]);
         }
         foreach($posttest_quest as $quest){
-            $student->posttests()->attach($quest, ['answer' => 1]);
+            $pustakawan->posttests()->attach($quest, ['answer' => 1]);
         }
 
     }
