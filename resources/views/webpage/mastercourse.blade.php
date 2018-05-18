@@ -177,9 +177,6 @@
 		});
 		$(document).ready(function(){
 			var elem = document.getElementById("myBar");
-		    @php
-		    	$temp=sizeof($myJurnal);
-		    @endphp
 		    var width=({{$progress}})*100;
 		    elem.style.width = width + '%';
 		    elem.innerHTML = parseFloat(width).toFixed(0) + '%';

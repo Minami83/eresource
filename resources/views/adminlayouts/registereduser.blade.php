@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+@section('title','Verifikasi User')
+
 @section('style')
   .active {
       color: #ffc410;

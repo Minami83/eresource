@@ -11,7 +11,7 @@
 		@if ($user->verified==2)
 		<div class="col-sm-3"></div>
 		<div class="col-sm-2">
-			<a id="btn1" class="homebutton w3-center w3-button w3-light-gray">Review</a>
+			<a id="btn1" href="/continue" class="homebutton w3-center w3-button w3-light-gray">Review</a>
 		</div>
 		<div class="col-sm-2">
 			<a id="btn2" href="/sertif" class="homebutton w3-center w3-button w3-light-gray">Sertif</a>

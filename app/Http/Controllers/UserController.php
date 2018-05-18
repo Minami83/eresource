@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Pretest;
+use App\Posttest;
 use App\User;
 use App\Role;
 use App\Jurnal;
@@ -107,15 +110,15 @@ class UserController extends Controller
         $test = Pretest::get();
         $preScore = 0;
         $postScore = 0;
-        for($i=0;i<$test->count();$i++){
-            if($test[$i]->right_answer==1) $truAns = $test[$i]->choice_1;
-            if($test[$i]->right_answer==2) $truAns = $test[$i]->choice_2;
-            if($test[$i]->right_answer==3) $truAns = $test[$i]->choice_3;
-            if($test[$i]->right_answer==4) $truAns = $test[$i]->choice_4;
-            if($preAns[$i]->answer==$truAns) $preScore = $preScore + 1;
-            if($postAns[$i]->answer==$truAns) $postScore = $postScore + 1;
+        for($i=0;$i<$test->count();$i++){
+            if($test[$i]->right_answer==1) $truAns[$i] = $test[$i]->choice_1;
+            if($test[$i]->right_answer==2) $truAns[$i] = $test[$i]->choice_2;
+            if($test[$i]->right_answer==3) $truAns[$i] = $test[$i]->choice_3;
+            if($test[$i]->right_answer==4) $truAns[$i] = $test[$i]->choice_4;
+            if($preAns[$i]->answer==$truAns[$i]) $preScore = $preScore + 1;
+            if($postAns[$i]->answer==$truAns[$i]) $postScore = $postScore + 1;
         }
-        return view('webpage/testScore')->with('user',$admin)->with('preAns',$preAns)->with('postAns',$postAns)->with('test',$test)->with('preScore',$preScore)->with('postScore',$postScore)->with('showeduser',$user);
+        return view('adminlayouts/userscore')->with('user',$admin)->with('preAns',$preAns)->with('postAns',$postAns)->with('test',$test)->with('preScore',$preScore)->with('postScore',$postScore)->with('truAns',$truAns)->with('showeduser',$user);
     }
 
     /**

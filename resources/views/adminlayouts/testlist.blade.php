@@ -31,7 +31,7 @@
 <div class="row" style="margin-top: 100px">
   <div class="col-sm-2"></div>
     <div class="col-sm-8 w3-center">
-      <div class="col-sm-11"><input class="empty iconified" type="text" id="myInput" onkeyup="myFunction()" placeholder="&#xf002; Search for journals.."></div>
+      <div class="col-sm-11"><input class="empty iconified" type="text" id="myInput" onkeyup="myFunction()" placeholder="&#xf002;   Cari soal.."></div>
       <div class="col-sm-1"><button class="w3-right" style="width:50px;height:50px;" onclick="document.getElementById('id01').style.display='block'"><i class="fa fa-plus"></i></button></div>
       <table id="myTable" class="w3-table">
         <tr>

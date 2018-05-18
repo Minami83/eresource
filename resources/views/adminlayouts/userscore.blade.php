@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-  Skor
+  Skor {{$showeduser->name}}
 @endsection
 
 @section('style')
@@ -31,9 +31,9 @@
 <div class="row" style="margin-top: 100px">
   <div class="col-sm-1"></div>
     <div class="col-sm-10">
-      <h3 id="preskor">PreTest : </h3>
-      <h3 id="postskor">PostTest : </h3>
-      <br>
+      <h1>{{$showeduser->name}}</h1><br>
+      <h5 id="preskor">PreTest : </h5>
+      <h5 id="postskor">PostTest : </h5>
       <table id="myTable" class="w3-table">
         <tr>
           <th onclick="sortTable(0)"># <i class="fa">&#xf0dc;</i></th>

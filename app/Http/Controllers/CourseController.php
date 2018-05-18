@@ -84,14 +84,14 @@ class CourseController extends Controller
         $preScore = 0;
         $postScore = 0;
         for($i=0;$i<$test->count();$i++){
-            if($test[$i]->right_answer==1) $truAns = $test[$i]->choice_1;
-            if($test[$i]->right_answer==2) $truAns = $test[$i]->choice_2;
-            if($test[$i]->right_answer==3) $truAns = $test[$i]->choice_3;
-            if($test[$i]->right_answer==4) $truAns = $test[$i]->choice_4;
-            if($preAns[$i]->answer==$truAns) $preScore = $preScore + 1;
-            if($postAns[$i]->answer==$truAns) $postScore = $postScore + 1;
+            if($test[$i]->right_answer==1) $truAns[$i] = $test[$i]->choice_1;
+            if($test[$i]->right_answer==2) $truAns[$i] = $test[$i]->choice_2;
+            if($test[$i]->right_answer==3) $truAns[$i] = $test[$i]->choice_3;
+            if($test[$i]->right_answer==4) $truAns[$i] = $test[$i]->choice_4;
+            if($preAns[$i]->answer==$truAns[$i]) $preScore = $preScore + 1;
+            if($postAns[$i]->answer==$truAns[$i]) $postScore = $postScore + 1;
         }
-        return view('webpage/testscore')->with('user',$user)->with('preAns',$preAns)->with('postAns',$postAns)->with('test',$test)->with('preScore',$preScore)->with('postScore',$postScore);
+        return view('webpage/testscore')->with('user',$user)->with('preAns',$preAns)->with('postAns',$postAns)->with('test',$test)->with('preScore',$preScore)->with('postScore',$postScore)->with('truAns',$truAns);
     }
 
 

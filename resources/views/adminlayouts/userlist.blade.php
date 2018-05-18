@@ -27,7 +27,7 @@
 <div class="row" style="margin-top: 100px">
   <div class="col-sm-3"></div>
     <div class="col-sm-6 w3-center">
-      <div class="col-sm-11"><input class="empty iconified" type="text" id="myInput" onkeyup="myFunction()" placeholder="&#xf002; Search for names.."></div>
+      <div class="col-sm-11"><input class="empty iconified" type="text" id="myInput" onkeyup="myFunction()" placeholder="&#xf002;   Cari user.."></div>
       <div class="col-sm-1"><button class="w3-right" style="width:50px;height:50px;" onclick="document.getElementById('id01').style.display='block'"><i class="fa fa-plus"></i></button></div>
       <table id="myTable" class="w3-table">
         <tr>
@@ -54,7 +54,10 @@
             @else
             <a href="/admin">
             @endif
-            <button><i class="fa fa-arrow-circle-right"></i></button>
+            <button><i class="fa fa-arrow-circle-right"></i></button></a>
+          </td>
+          <td style="width: 30px">
+            <a href="/admin/user/score/{{$ul->id}}"><button><i class="fa fa-file"></i></button></a>
           </td>
           <td style="width: 30px">
             <form method="POST" action="/admin/user/delete/{{$ul->id}}">
