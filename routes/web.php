@@ -47,6 +47,7 @@ Route::get('/admin/user/list', 'UserController@index')->middleware('role');
 Route::get('/admin/user/make', 'UserController@create')->middleware('role');
 Route::post('/admin/user/make', 'UserController@store')->middleware('role');
 Route::get('/admin/user/detail/{id}', 'UserController@show')->middleware('role');
+Route::get('/admin/user/score/{id}', 'UserController@showTest')->middleware('role');
 Route::get('/admin/user/edit/{id}', 'UserController@edit')->middleware('role');
 Route::post('/admin/user/edit/{id}', 'UserController@update')->middleware('role');
 Route::post('/admin/user/edit/jurnal/{id}', 'UserController@updateJurnal')->middleware('role');
