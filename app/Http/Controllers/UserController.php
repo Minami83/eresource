@@ -102,8 +102,8 @@ class UserController extends Controller
     {
         $admin = Auth()->user();
         $user = User::where('id',$id)->first();
-        $preAns = DB::table('pretest_user')->where('user_id',$user->id)->get('answer');
-        $postAns = DB::table('posttest_user')->where('user_id',$user->id)->get('answer');
+        $preAns = DB::table('pretest_user')->where('user_id',$user->id)->get();
+        $postAns = DB::table('posttest_user')->where('user_id',$user->id)->get();
         $test = Pretest::get();
         $preScore = 0;
         $postScore = 0;
@@ -112,8 +112,8 @@ class UserController extends Controller
             if($test[$i]->right_answer==2) $truAns = $test[$i]->choice_2;
             if($test[$i]->right_answer==3) $truAns = $test[$i]->choice_3;
             if($test[$i]->right_answer==4) $truAns = $test[$i]->choice_4;
-            if($preAns[$i]==$truAns) $preScore = $preScore + 1;
-            if($postAns[$i]==$truAns) $postScore = $postScore + 1;
+            if($preAns[$i]->answer==$truAns) $preScore = $preScore + 1;
+            if($postAns[$i]->answer==$truAns) $postScore = $postScore + 1;
         }
         return view('webpage/testScore')->with('user',$admin)->with('preAns',$preAns)->with('postAns',$postAns)->with('test',$test)->with('preScore',$preScore)->with('postScore',$postScore)->with('showeduser',$user);
     }

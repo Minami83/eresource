@@ -77,9 +77,10 @@ class CourseController extends Controller
     public function testscore()
     {
         $user = Auth()->user();
-        $preAns = DB::table('pretest_user')->where('user_id',$user->id)->get(['answer']);
-        $postAns = DB::table('posttest_user')->where('user_id',$user->id)->get(['answer']);
+        $preAns = DB::table('pretest_user')->where('user_id',$user->id)->get();
+        $postAns = DB::table('posttest_user')->where('user_id',$user->id)->get();
         $test = Pretest::get();
+        // dd($preAns);
         $preScore = 0;
         $postScore = 0;
         for($i=0;$i<$test->count();$i++){
@@ -87,8 +88,8 @@ class CourseController extends Controller
             if($test[$i]->right_answer==2) $truAns = $test[$i]->choice_2;
             if($test[$i]->right_answer==3) $truAns = $test[$i]->choice_3;
             if($test[$i]->right_answer==4) $truAns = $test[$i]->choice_4;
-            if($preAns[$i]==$truAns) $preScore = $preScore + 1;
-            if($postAns[$i]==$truAns) $postScore = $postScore + 1;
+            if($preAns[$i]->answer==$truAns) $preScore = $preScore + 1;
+            if($postAns[$i]->answer==$truAns) $postScore = $postScore + 1;
         }
         return view('webpage/testscore')->with('user',$user)->with('preAns',$preAns)->with('postAns',$postAns)->with('test',$test)->with('preScore',$preScore)->with('postScore',$postScore);
     }
