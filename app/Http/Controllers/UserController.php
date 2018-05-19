@@ -105,9 +105,10 @@ class UserController extends Controller
     {
         $admin = Auth()->user();
         $user = User::where('id',$id)->first();
+        if($user->verified != 2) return redirect('/admin/user/list')->with('alert','User belum mengerjakan test')->with('false_id',$user->id);
         $preAns = DB::table('pretest_user')->where('user_id',$user->id)->get();
         $postAns = DB::table('posttest_user')->where('user_id',$user->id)->get();
-        $test = Pretest::get();
+        $test = Pretest::take($preAns->count())->get();
         $preScore = 0;
         $postScore = 0;
         for($i=0;$i<$test->count();$i++){

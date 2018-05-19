@@ -35,6 +35,7 @@
           <th onclick="sortTable(1)">Nama <i class="fa">&#xf0dc;</i></th>
           <th onclick="sortTable(2)">Status <i class="fa">&#xf0dc;</i></th>
         </tr>
+
         @foreach($userList as $ul)
         <tr>
           <td style="width: 200px">{{$ul->id_number}}</td>
@@ -65,6 +66,15 @@
               {{method_field('DELETE')}}
               <button><i class="fa fa-close"></i></a></td></button>
             </form>
+            @if (session('alert'))
+              @if (session('false_id')==$ul->id)
+                <td style="width: 350px">
+                  <div class="alert alert-danger">
+                    {{ session('alert') }}
+                  </div>
+                </td>
+              @endif
+            @endif
         </tr>
         @endforeach
       </table>
