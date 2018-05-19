@@ -86,7 +86,9 @@
 		$temp1=sizeof($test);
 	@endphp
 	preskor=({{$preScore}})/{{$temp1}}*100;
+  preskor=parseFloat(preskor).toFixed(2);
 	postskor=({{$postScore}})/{{$temp1}}*100;
+  postskor=parseFloat(postskor).toFixed(2);
 	$('#preskor').append(preskor);
 	$('#postskor').append(postskor);
   });
