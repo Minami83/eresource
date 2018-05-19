@@ -42,6 +42,20 @@
 @endsection()
 @section('isi')
 <div class="container" style="margin-top: 100px">
+  <div class="row" style="margin-top: 100px">
+  <div class="col-sm-2"></div>
+    <div class="col-sm-8 w3-center">
+      <div id="alertfail">
+        {{ session('alert') }}
+      </div>
+    </div>
+  </div>
+@if (session('alert'))
+  <script type="text/javascript">
+    $("#alertfail").html('{{ session('alert') }}');
+    $("#alertfail").attr('class','alert alert-danger');
+  </script>
+@endif
 @foreach($unverified as $verif)
   <button class="accordion" id="{{$verif->id}}" onclick="accordionfunc(this.id)">{{$verif->name}}</button>
   <div class="panel">

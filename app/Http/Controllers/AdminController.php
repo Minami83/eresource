@@ -18,6 +18,9 @@ class AdminController extends Controller
     $jurnal1 = Jurnal::where('id','<=',Jurnal::count()/2)->get();
     $jurnal2 = Jurnal::where('id','>',Jurnal::count()/2)->get();
     // dd($jurnal);
+    if($unverified->count()==0){
+      return redirect('/admin/user/list')->with('alert','Tidak ada user yang belum terverifikasi');
+    }
     return view('adminlayouts/registereduser')->with('user',$data)->with('unverified',$unverified)->with('jurnal1',$jurnal1)->with('jurnal2',$jurnal2);
   }
 

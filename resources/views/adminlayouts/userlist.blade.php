@@ -38,7 +38,12 @@
           <th onclick="sortTable(1)">Nama <i class="fa">&#xf0dc;</i></th>
           <th onclick="sortTable(2)">Status <i class="fa">&#xf0dc;</i></th>
         </tr>
-
+        @if (session('alert'))
+                <script type="text/javascript">
+                  $("#alertfail").html('{{ session('alert') }}');
+                  $("#alertfail").attr('class','alert alert-danger');
+                </script>
+            @endif
         @foreach($userList as $ul)
         <tr>
           <td style="width: 200px">{{$ul->id_number}}</td>
@@ -69,16 +74,9 @@
               {{method_field('DELETE')}}
               <button><i class="fa fa-close"></i></a></td></button>
             </form>
-            @if (session('alert'))
-              @if (session('false_id')==$ul->id)
-                <script type="text/javascript">
-                  $("#alertfail").html('{{ session('alert') }}');
-                  $("#alertfail").attr('class','alert alert-danger');
-                </script>
-              @endif
-            @endif
         </tr>
         @endforeach
+        {{$userList->links()}}
       </table>
     </div>
   <div class="col-sm-3"></div>

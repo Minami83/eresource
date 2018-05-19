@@ -27,6 +27,9 @@
 <div class="row" style="margin-top: 100px">
   <div class="col-sm-2"></div>
     <div class="col-sm-8 w3-center">
+      <div id="alertfail">
+        {{ session('alert') }}
+      </div>
       <div class="col-sm-11"><input class="empty iconified" type="text" id="myInput" onkeyup="myFunction()" placeholder="&#xf002;   Cari jurnal.."></div>
       <div class="col-sm-1"><button class="w3-right" style="width:50px;height:50px;" onclick="document.getElementById('id01').style.display='block'"><i class="fa fa-plus"></i></button></div>
       <table id="myTable" class="w3-table">
@@ -34,6 +37,12 @@
           <th onclick="sortTable(0)">ID <i class="fa">&#xf0dc;</i></th>
           <th onclick="sortTable(1)">Jurnal <i class="fa">&#xf0dc;</i></th>
         </tr>
+        @if (session('alert'))
+                <script type="text/javascript">
+                  $("#alertfail").html('{{ session('alert') }}');
+                  $("#alertfail").attr('class','alert alert-danger');
+                </script>
+            @endif
         @foreach($jurnal as $jur)
         <tr>
           <td style="width: 75px">{{$jur->id}}</td>
@@ -49,6 +58,7 @@
             </form>
         </tr>
         @endforeach
+        {{$jurnal->links()}}
       </table>
     </div>
   <div class="col-sm-3"></div>

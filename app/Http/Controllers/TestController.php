@@ -15,7 +15,7 @@ class TestController extends Controller
     public function index()
     {
         //
-        $test = Pretest::get();
+        $test = Pretest::paginate(3);
         $admin = Auth()->user();
         $admin->authorizeRoles(['admin']);
         return view('adminlayouts/testlist')->with('test',$test)->with('user',$admin);

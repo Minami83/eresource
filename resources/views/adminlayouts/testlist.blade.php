@@ -61,6 +61,7 @@
           </td>
         </tr>
         @endforeach
+        {{$test->links()}}
       </table>
     </div>
   <div class="col-sm-3"></div>
@@ -140,7 +141,7 @@
         } else {
           tr[i].style.display = "none";
         }
-      }       
+      }
     }
   }
 

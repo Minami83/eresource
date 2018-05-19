@@ -14,7 +14,7 @@ class JurnalController extends Controller
     public function index()
     {
         //
-        $jurnal = Jurnal::get();
+        $jurnal = Jurnal::paginate(10);
         $admin = Auth()->user();
         $admin->authorizeRoles(['admin']);
         return view('adminlayouts/jurnallist')->with('jurnal',$jurnal)->with('user',$admin);
@@ -46,6 +46,8 @@ class JurnalController extends Controller
         $admin = Auth()->user();
         $admin->authorizeRoles(['admin']);
         $data = $request->all();
+        if(Jurnal::where('name',$data['name'])->exists())
+            return redirect('/admin/jurnal/list')->with('alert','Sudah ada jurnal dengan nama yang sama');
         $jurnal = new Jurnal();
         $jurnal->name = $data['name'];
         $jurnal->fullName = $data['fullName'];

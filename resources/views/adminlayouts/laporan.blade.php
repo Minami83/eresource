@@ -5,7 +5,7 @@
 @section('isi')
 	<div class="container" style="margin-top: 70px">
 		<h2>Laporan Pendaftaran User</h2><br>
-		<table id="testTable" class="w3-table" summary="Code page support in different versions of MS Windows." rules="groups">	
+		<table id="testTable" class="w3-table" summary="Code page support in different versions of MS Windows." rules="groups">
 	        <tr>
 	            <th style="width:250px">ID</td>
 	            <th style="width:300px">Nama</td>
@@ -15,7 +15,7 @@
 	        @foreach ($regis_user as $usr)
 	        	@foreach ($usr as $comp)
 			        <tr>
-			            <td>{{$comp->id_number}}</td>
+			            <td style='mso-number-format:"\@"'>{{$comp->id_number}}</td>
 			            <td>{{$comp->name}}</td>
 			            <td>{{$comp->department}}</td>
 			            <td>{{$comp->created_at->format('Y-m-d')}}</td>
@@ -28,7 +28,7 @@
 
 	<div class="container" style="margin-top: 60px">
 		<h2>Laporan Selesainya User</h2><br>
-		<table id="testTable2" class="w3-table" summary="Code page support in different versions of MS Windows." rules="groups">	
+		<table id="testTable2" class="w3-table" summary="Code page support in different versions of MS Windows." rules="groups">
 	        <tr>
 	            <th style="width:250px">ID</td>
 	            <th style="width:300px">Nama</td>
@@ -38,7 +38,7 @@
 	        @foreach ($compl_user as $usr)
 	        	@foreach ($usr as $comp)
 			        <tr>
-			            <td>{{$comp->id_number}}</td>
+			            <td style='mso-number-format:"\@"'>{{$comp->id_number}}</td>
 			            <td>{{$comp->name}}</td>
 			            <td>{{$comp->department}}</td>
 			            <td>{{$comp->updated_at->format('Y-m-d')}}</td>
@@ -46,9 +46,9 @@
 	        	@endforeach
 	        @endforeach
 	    </table>
-		<a href="#" id="test" onclick="fnExcelReport();"><button>Export ke Excel</button></a>
+		<a href="#" id="test2" onclick="fnExcelReport();"><button>Export ke Excel</button></a>
 	</div>
-    
+
 
     <script type="text/javascript">
 	    function fnExcelReport() {
@@ -65,10 +65,10 @@
 		    tab_text = tab_text + '</table></body></html>';
 
 		    var data_type = 'data:application/vnd.ms-excel';
-		    
+
 		    var ua = window.navigator.userAgent;
 		    var msie = ua.indexOf("MSIE ");
-		    
+
 		    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
 		        if (window.navigator.msSaveBlob) {
 		            var blob = new Blob([tab_text], {
@@ -77,8 +77,8 @@
 		            navigator.msSaveBlob(blob, 'Laporan_user_selesai.xls');
 		        }
 		    } else {
-		        $('#test').attr('href', data_type + ', ' + encodeURIComponent(tab_text));
-		        $('#test').attr('download', 'Laporan_user_selesai.xls');
+		        $('#test2').attr('href', data_type + ', ' + encodeURIComponent(tab_text));
+		        $('#test2').attr('download', 'Laporan_user_selesai.xls');
 		    }
 
 		}
@@ -97,10 +97,10 @@
 		    tab_text = tab_text + '</table></body></html>';
 
 		    var data_type = 'data:application/vnd.ms-excel';
-		    
+
 		    var ua = window.navigator.userAgent;
 		    var msie = ua.indexOf("MSIE ");
-		    
+
 		    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
 		        if (window.navigator.msSaveBlob) {
 		            var blob = new Blob([tab_text], {

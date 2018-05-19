@@ -20,7 +20,7 @@ class UserController extends Controller
     {
         //
         $admin = Auth()->user();
-        $listUser = User::where('id', '!=', $admin->id)->get();
+        $listUser = User::where('id', '!=', $admin->id)->paginate(10);
         $admin->authorizeRoles(['admin','pustakawan']);
         return view('adminlayouts/userlist')->with('userList',$listUser)->with('user',$admin);
     }
@@ -52,6 +52,8 @@ class UserController extends Controller
         $admin = Auth()->user();
         $admin->authorizeRoles(['admin']);
         $data = $request->all();
+        if(User::where('email',$data['email'])->exists())
+            return redirect('/admin/user/list')->with('alert','Email sudah terpakai');
         $user = new User();
         $user->id_number = $data['nrp'];
         $user->name = $data['name'];
