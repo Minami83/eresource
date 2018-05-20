@@ -9,15 +9,12 @@
 	<div class="w3-center container" style="margin-top: 200px">
 		<h1 class="w3-animate-opacity">E-Resource Class</h1><br>
 		@if ($user->verified==2)
-		<div class="col-sm-3"></div>
-		<div class="col-sm-2">
+		<div class="w3-center">	
 			<a id="btn1" href="/continue" class="homebutton w3-center w3-button w3-light-gray">Review</a>
-		</div>
-		<div class="col-sm-2">
+			@if ($user->roleName()=='partisipan')
 			<a id="btn2" href="/sertif" class="homebutton w3-center w3-button w3-light-gray">Sertif</a>
-		</div>
-		<div class="col-sm-2">
 			<a id="btn3" href="/testscore" class="homebutton w3-center w3-button w3-light-gray">Skor Test</a>
+			@endif
 		</div>
 		@else
 		<div class="w3-center">

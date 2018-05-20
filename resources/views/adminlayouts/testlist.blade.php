@@ -32,7 +32,9 @@
   <div class="col-sm-2"></div>
     <div class="col-sm-8 w3-center">
       <div class="col-sm-11"><input class="empty iconified" type="text" id="myInput" onkeyup="myFunction()" placeholder="&#xf002;   Cari soal.."></div>
+      @if ($user->roleName()=='admin')
       <div class="col-sm-1"><button class="w3-right" style="width:50px;height:50px;" onclick="document.getElementById('id01').style.display='block'"><i class="fa fa-plus"></i></button></div>
+      @endif
       <table id="myTable" class="w3-table">
         <tr>
           <th onclick="sortTable(0)"># <i class="fa">&#xf0dc;</i></th>
@@ -52,6 +54,7 @@
           <td style="width: 30px"><a href="/admin/test/detail/{{$tes->id}}">
             <button><i class="fa fa-arrow-circle-right"></i></button></a>
           </td>
+          @if ($user->roleName()=='admin')
           <td style="width: 30px">
             <form method="POST" action="/admin/test/delete/{{$tes->id}}">
               @csrf
@@ -59,19 +62,20 @@
               <button><i class="fa fa-close"></i></button>
             </form>
           </td>
+          @endif
         </tr>
         @endforeach
-        {{$test->links()}}
       </table>
+      {{$test->links()}}
     </div>
   <div class="col-sm-3"></div>
 </div>
 
 <div id="id01" class="w3-modal">
   <div class="w3-modal-content w3-animate-top" style="margin-top: 0px">
-    <header class="w3-container w3-teal">
+    <header class="w3-container w3-biru">
       <span onclick="document.getElementById('id01').style.display='none'"
-      class="w3-hover-teal w3-button w3-display-topright">&times;</span>
+      class="w3-hover-biru w3-button w3-display-topright">&times;</span>
       <h2>Add Question</h2>
     </header>
     <div class="w3-container">

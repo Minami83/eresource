@@ -28,7 +28,7 @@
 @endsection()
 
 @section('isi')
-<div class="row" style="margin-top: 100px">
+<div class="row" style="margin-top: 80px">
   <div class="col-sm-1"></div>
     <div class="col-sm-10">
       <h3 id="preskor">PreTest : </h3>

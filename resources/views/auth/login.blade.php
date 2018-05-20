@@ -31,9 +31,10 @@
 @endsection()
 
 @section('isi')
-    <div class="container w3-row" style="margin-top: 100px">
+    <div class="container w3-row" style="margin-top: 100px;margin-bottom: 100px">
         <div style" class="col-sm-6" id="verline1">
-                <div style="margin-top:90px;" class="w3-center">
+            <div style="margin-top:90px;margin-bottom: 90px" >
+                <div class="w3-center">
                     <img src="/image/eresourcelogo.png" style="width: 300px">
                 </div><br>
                 <div class="col-sm-2"></div>
@@ -43,13 +44,14 @@
                     <p>Cara mengakses dan memanfaatkan e-journal</p>
                     <p>Cara mengakses dan memanfaatkan ITS digital repository</p>
                 </div>
+            </div>
         </div>
     
         <div class="col-sm-6" id="verline2">
             <div class="col-sm-1"></div>
-            <div style="margin-top:43.5px;" class="col-sm-10 w3-card w3-white w3-round-large"><br>
+            <div style="margin-top:43.5px;margin-bottom: 43.5px" id="tes" class="col-sm-10 w3-card w3-white w3-round-large"><br>
                 <h1 class="text w3-center">Login</h1><br>    
-                <form style="height: 260px" action="{{ route('login') }}" method="POST">
+                <form style="height: 240px" action="{{ route('login') }}" method="POST">
                     {{ csrf_field() }}
                     <div class="form-group">
                         <input id="email" type="email" class="w3-round-xlarge iconified text form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="&#xf0e0;   {{ __('E-Mail Address') }}" required autofocus>
@@ -93,6 +95,15 @@
                 input.addClass('text');
             } else {
                 input.removeClass('text');
+            }
+        });
+
+        $(document).ready(function(){
+            var panel = document.getElementById('tes');
+            if (panel.style.maxHeight){
+              panel.style.maxHeight = null;
+            } else {
+              panel.style.height = panel.scrollHeight + "px";
             }
         });
 

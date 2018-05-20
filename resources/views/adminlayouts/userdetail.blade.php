@@ -127,16 +127,18 @@
 	    	</form>
 				<a class="btn-link profb btna" onclick="document.getElementById('id01').style.display='block'">Daftar Jurnal</a>
 	    		<button id="btncancel" style="position:absolute;display: none;bottom:0px;" class="profa editprofil btna" onclick="canceleditprofil()"><i class="fa">&#xf00d;</i> Batal</button>
+	    		@if ($user->roleName()=='admin')
 				<button id="btnubah" style="display: block" class="profb editprofil btna" onclick="editprofil()"><i class="fa">&#xf044;</i> Sunting User</button>
+	    		@endif
 		</div>
 		<div class="col-sm-3"></div>
 	</div>
 
 	<div id="id01" class="w3-modal">
 		<div class="w3-modal-content w3-animate-top" style="margin-top: -60px">
-			<header class="w3-container w3-teal">
-			  	<span onclick="document.getElementById('id01').style.display='none'" class="w3-hover-teal w3-button w3-display-topright">&times;</span>
-			  	<h2>Daftar Jurnal {{$user->name}}</h2>
+			<header class="w3-container w3-biru">
+			  	<span onclick="document.getElementById('id01').style.display='none'" class="w3-hover-biru w3-button w3-display-topright">&times;</span>
+			  	<h2>Daftar Jurnal {{$edituser->name}}</h2>
 			</header>
 			<div class="w3-container">
 			    <form method="POST" action="/admin/user/edit/jurnal/{{$edituser->id}}">
@@ -144,12 +146,20 @@
 			    	<div class="row">
 			        <div class="listjurnal col-sm-6">
 				        @foreach ($jurnal1 as $jur1)
+				        	@if ($edituser->roleName()=='partisipan')
 				        	<input id="{{$jur1->id}}" class="w3-check" type="checkbox" name="{{$jur1->name}}" value="{{$jur1->name}}"> {{$jur1->fullName}}<br>
+				        	@else
+				        	<input id="{{$jur1->id}}" class="w3-check" type="checkbox" name="{{$jur1->name}}" value="{{$jur1->name}}" disabled> {{$jur1->fullName}}<br>
+				        	@endif
 				        @endforeach
 				    </div>
 				   	<div class="listjurnal col-sm-6">
 				       	 @foreach ($jurnal2 as $jur1)
+				       	 	@if ($edituser->roleName()=='partisipan')
 				        	<input id="{{$jur1->id}}" class="w3-check" type="checkbox" name="{{$jur1->name}}" value="{{$jur1->name}}"> {{$jur1->fullName}}<br>
+				        	@else
+				        	<input id="{{$jur1->id}}" class="w3-check" type="checkbox" name="{{$jur1->name}}" value="{{$jur1->name}}" disabled> {{$jur1->fullName}}<br>
+				       	 	@endif
 				        @endforeach
 				   	</div>
 					</div><br>

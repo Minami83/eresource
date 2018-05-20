@@ -63,6 +63,8 @@ class UserController extends Controller
         $user->email = $data['email'];
         $user->progress = 0;
         $user->verified = 0;
+        $user->password = bcrypt($data['password']);
+        $user->save();
 
         if($data['role']=='admin' or $data['role']=='pustakawan'){
             $user->verified = 2;
@@ -74,8 +76,6 @@ class UserController extends Controller
             }
         }
 
-        $user->password = bcrypt($data['password']);
-        $user->save();
         $user->roles()->detach();
         $user
             ->roles()

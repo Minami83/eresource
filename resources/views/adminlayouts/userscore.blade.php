@@ -28,12 +28,13 @@
 @endsection()
 
 @section('isi')
-<div class="row" style="margin-top: 100px">
+<div class="row" style="margin-top: 80px">
   <div class="col-sm-1"></div>
     <div class="col-sm-10">
-      <h1>{{$showeduser->name}}</h1><br>
+      <h1>{{$showeduser->name}}</h1>
       <h5 id="preskor">PreTest : </h5>
       <h5 id="postskor">PostTest : </h5>
+      <br>
       <table id="myTable" class="w3-table">
         <tr>
           <th onclick="sortTable(0)"># <i class="fa">&#xf0dc;</i></th>
@@ -86,9 +87,9 @@
 		$temp1=sizeof($test);
 	@endphp
 	preskor=({{$preScore}})/{{$temp1}}*100;
-  preskor=parseFloat(preskor).toFixed(2);
+  preskor=parseFloat(preskor).toFixed(0);
 	postskor=({{$postScore}})/{{$temp1}}*100;
-  postskor=parseFloat(postskor).toFixed(2);
+  postskor=parseFloat(postskor).toFixed(0);
 	$('#preskor').append(preskor);
 	$('#postskor').append(postskor);
   });

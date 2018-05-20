@@ -41,8 +41,8 @@
 
 @endsection()
 @section('isi')
-<div class="container" style="margin-top: 100px">
-  <div class="row" style="margin-top: 100px">
+<div class="container">
+  <div class="row" style="margin-top: 80px">
   <div class="col-sm-2"></div>
     <div class="col-sm-8 w3-center">
       <div id="alertfail">
@@ -76,7 +76,6 @@
       </div><br>
       <div style="margin-top: 10px">
         <button class="w3-button w3-circle w3-red" style="height: 50px;width: 50px"><i class="fa fa-check w3-large"></i></button>
-        <button class="w3-button w3-circle w3-black" style="height:50px;width:50px"><i class="fa fa-times w3-large"></i></button>
       </div>
     </form>
   </div>
