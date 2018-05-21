@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use App\Pretest;
 use App\Posttest;
 use App\User;
@@ -48,6 +49,17 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
+
+        $validat = $request->validate([
+            'nrp' => 'required|string|max:18|min:14',
+            'name' => 'required|string|max:255',
+            'faculty' => 'required|string',
+            'department' => 'required|string',
+            'phone' => 'required|string',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
 
         $admin = Auth()->user();
         $admin->authorizeRoles(['admin']);

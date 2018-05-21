@@ -17,7 +17,7 @@ class TestController extends Controller
         //
         $test = Pretest::paginate(3);
         $admin = Auth()->user();
-        $admin->authorizeRoles(['admin']);
+        $admin->authorizeRoles(['admin','pustakawan']);
         return view('adminlayouts/testlist')->with('test',$test)->with('user',$admin);
     }
 
@@ -75,7 +75,7 @@ class TestController extends Controller
     {
         //
         $admin = Auth()->user();
-        $admin->authorizeRoles(['admin']);
+        $admin->authorizeRoles(['admin','pustakawan']);
         $test = Pretest::where('id',$id)->first();
         return view('adminlayouts/testdetail')->with('test',$test)->with('user',$admin);
     }

@@ -16,7 +16,7 @@ class JurnalController extends Controller
         //
         $jurnal = Jurnal::paginate(10);
         $admin = Auth()->user();
-        $admin->authorizeRoles(['admin']);
+        $admin->authorizeRoles(['admin','pustakawan']);
         return view('adminlayouts/jurnallist')->with('jurnal',$jurnal)->with('user',$admin);
 
     }
@@ -78,7 +78,7 @@ class JurnalController extends Controller
     {
         //
         $admin = Auth()->user();
-        $admin->authorizeRoles(['admin']);
+        $admin->authorizeRoles(['admin','pustakawan']);
         $jurnal = Jurnal::where('id',$id)->first();
         return view('adminlayouts/jurnaldetail')->with('jurnal',$jurnal)->with('user',$admin);
     }

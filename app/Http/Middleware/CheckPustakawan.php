@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class CheckRole
+class CheckPustakawan
 {
     /**
      * Handle an incoming request.
@@ -15,8 +15,7 @@ class CheckRole
      */
     public function handle($request, Closure $next)
     {
-        // dd($request->user());
-        if($request->user()->hasRole('partisipan'))
+        if($request->user()->hasRole('pustakawan'))
         {
             return redirect('error/403');
         }
