@@ -118,6 +118,11 @@
   }
 
   $(document).ready(function(){
+    $('#testnavbar').addClass('w3-dropdownnavbar');
+    $('#testnavbar').removeClass('w3-biru');
+  });
+    
+  $(document).ready(function(){
     var i=0
     @foreach ($test as $tes)
     var temp="{{$tes->right_answer}}";

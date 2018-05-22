@@ -99,6 +99,10 @@
 	</div>
 
 	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#testnavbar').addClass('w3-dropdownnavbar');
+			$('#testnavbar').removeClass('w3-biru');
+		});
 
 		function editprofil(){
 			$('.profb').css('display','none');

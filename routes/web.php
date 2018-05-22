@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/tes', function () {
-    return view('webpage.changepass');
+    return view('adminlayouts.statistic');
 });
 
 Auth::routes();

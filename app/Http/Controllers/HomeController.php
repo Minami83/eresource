@@ -29,7 +29,6 @@ class HomeController extends Controller
         $request->user()->authorizeRoles(['partisipan','admin','pustakawan']);
         $data = Auth()->user();
         $this->loginlog();
-        if($data->verified==0) return view('adminlayouts/dummy')->with('user',$data);
         $myJurnal = $data->takenJurnalList();
         // dd($data);
         // dd($data);
@@ -73,14 +72,14 @@ class HomeController extends Controller
             //         window.alert('wrong old password');
             //         window.location.href='/profile/password';
             //         </script>");
-            return redirect('/profile/password')->with('alert','password lama salah');
+            return redirect('/profile/password')->with('alert','Password lama salah');
         }
         elseif($data['newpass'] != $data['password_confirmation']){
             // echo ("<script LANGUAGE='JavaScript'>
             //         window.alert('password confirmation does not match');
             //         window.location.href='/profile/password';
             //         </script>");
-            return redirect('/profile/password')->with('alert','password baru tidak sama');
+            return redirect('/profile/password')->with('alert','Password baru tidak sama');
         }
         else{
             $user->password = bcrypt($data['newpass']);
@@ -89,7 +88,7 @@ class HomeController extends Controller
             //         window.alert('password change completed');
             //         window.location.href='/profile/password';
             //         </script>");
-            return redirect('/profile/password')->with('alert','password telah terganti');
+            return redirect('/profile/password')->with('alert','Password telah terganti');
         }
     }
 

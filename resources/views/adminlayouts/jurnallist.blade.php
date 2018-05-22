@@ -171,6 +171,11 @@
     }
   }
 
+  $(document).ready(function(){
+    $('#jurnalnavbar').addClass('w3-dropdownnavbar');
+    $('#jurnalnavbar').removeClass('w3-biru');
+  });
+
   $('#iconified').on('keyup', function() {
         var input = $(this);
         if(input.val().length === 0) {

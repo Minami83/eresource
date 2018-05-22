@@ -51,6 +51,11 @@
 
 
     <script type="text/javascript">
+    	$(document).ready(function(){
+			$('#laporannavbar').addClass('w3-dropdownnavbar');
+			$('#laporannavbar').removeClass('w3-biru');
+		});
+
 	    function fnExcelReport() {
 		    var tab_text = '<html xmlns:x="urn:schemas-microsoft-com:office:excel">';
 		    tab_text = tab_text + '<head><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet>';

@@ -94,7 +94,11 @@
 	</div>
 
 	<script type="text/javascript">
-
+		$(document).ready(function(){
+			$('#jurnalnavbar').addClass('w3-dropdownnavbar');
+			$('#jurnalnavbar').removeClass('w3-biru');
+		});
+		
 		$(document).ready(function(){
 			var temp = "{{$jurnal->video}}";
 			var temp2 = temp.replace(/ /g, "%20");

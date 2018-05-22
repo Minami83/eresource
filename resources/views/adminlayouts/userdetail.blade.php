@@ -113,7 +113,15 @@
 				<tr>
 					<th>{{ __('Role') }}</th>
 					<td>:</td>
-					<td class="profb" style="display: block;">{{$edituser->roleName()}}</td>
+					<td class="profb" style="display: block;">
+						@if ($edituser->roleName()=='admin')
+							Admin
+						@elseif($edituser->roleName()=='pustakawan')
+							Pustakawan
+						@else
+							Partisipan
+						@endif
+					</td>
 					<td class="profa" style="display: none">
 						<select id="roleoption" class="w3-round-xlarge form-control" name="role" value="{{ old('faculty') }}" required>
 	                    <option value="partisipan">Partisipan</option>
@@ -164,7 +172,11 @@
 				   	</div>
 					</div><br>
 			      	<div style="margin-top: 10px">
-				        <button class="w3-button w3-circle w3-red" style="height: 50px;width: 50px"><i class="fa fa-check w3-large"></i></button>
+			      		@if ($edituser->roleName()=='partisipan')
+				        	<button class="w3-button w3-circle w3-red" style="height: 50px;width: 50px"><i class="fa fa-check w3-large"></i></button>
+			      		@else
+			      			<button class="w3-button w3-circle w3-red" style="height: 50px;width: 50px" disabled><i class="fa fa-check w3-large"></i></button>
+			      		@endif
 			      	</div>
 	    		</form>
 	    		<br>
@@ -207,6 +219,11 @@
 			$('.profb').css('display','block');
 			$('.profa').css('display','none');
 		}
+
+		$(document).ready(function(){
+			$('#usernavbar').addClass('w3-dropdownnavbar');
+			$('#usernavbar').removeClass('w3-biru');
+		});
 
 	    $(document).ready(function(){
 	    	$('#facultyoption option[value="{{$edituser->faculty}}"]').prop('selected', 'selected');

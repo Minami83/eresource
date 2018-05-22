@@ -83,6 +83,11 @@
 </div>
 
 <script type="text/javascript">
+  $(document).ready(function(){
+    $('#verifikasinavbar').addClass('w3-dropdownnavbar');
+    $('#verifikasinavbar').removeClass('w3-biru');
+  });
+
   function accordionfunc(accordid){
     var accord=document.getElementById(accordid);
       accord.classList.toggle("active2");

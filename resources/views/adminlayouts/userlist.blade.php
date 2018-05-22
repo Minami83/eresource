@@ -251,6 +251,11 @@
     });
 
   $(document).ready(function(){
+    $('#usernavbar').addClass('w3-dropdownnavbar');
+    $('#usernavbar').removeClass('w3-biru');
+  });
+
+  $(document).ready(function(){
     $("select#facultyoption").change(function(){
       var selectedCountry = $("#facultyoption option:selected").val();
       if(selectedCountry=="FAKULTAS TEKNOLOGI INDUSTRI"){

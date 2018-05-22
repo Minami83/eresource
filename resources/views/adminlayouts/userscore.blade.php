@@ -83,6 +83,11 @@
   });
 
   $(document).ready(function(){
+    $('#usernavbar').addClass('w3-dropdownnavbar');
+    $('#usernavbar').removeClass('w3-biru');
+  });
+
+  $(document).ready(function(){
 	@php
 		$temp1=sizeof($test);
 	@endphp
