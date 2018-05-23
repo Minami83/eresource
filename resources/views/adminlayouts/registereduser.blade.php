@@ -64,13 +64,14 @@
       <input type='hidden' name='email' value={{$verif->email}}>
       <div class="row">
         <div class="col-sm-6">
+          <input id="selectall" class="w3-check" type="checkbox" name="selectall" value=""> Select All<br>
           @foreach($jurnal1 as $jur)
-          <input class="w3-check" type="checkbox" name={{$jur->name}} value={{$jur->name}}> {{$jur->fullName}}<br>
+          <input class="w3-check check" type="checkbox" name={{$jur->name}} value={{$jur->name}}> {{$jur->fullName}}<br>
           @endforeach
       </div>
       <div class="col-sm-6">
           @foreach($jurnal2 as $jur)
-          <input class="w3-check" type="checkbox" name={{$jur->name}} value={{$jur->name}}> {{$jur->fullName}}<br>
+          <input class="w3-check check" type="checkbox" name={{$jur->name}} value={{$jur->name}}> {{$jur->fullName}}<br>
           @endforeach
       </div>
       </div><br>
@@ -86,6 +87,21 @@
   $(document).ready(function(){
     $('#verifikasinavbar').addClass('w3-dropdownnavbar');
     $('#verifikasinavbar').removeClass('w3-biru');
+  });
+
+
+  $("#selectall").change(function(){  //"select all" change 
+        $(".check").prop('checked', $(this).prop("checked")); //change all ".checkbox" checked status
+    });
+  $('.check').change(function(){ 
+      //uncheck "select all", if one of the listed checkbox item is unchecked
+      if(false == $(this).prop("checked")){ //if this item is unchecked
+          $("#selectall").prop('checked', false); //change "select all" checked status to false
+      }
+      //check "select all" if all checkbox items are checked
+      if ($('.check:checked').length == $('.check').length ){
+          $("#selectall").prop('checked', true);
+      }
   });
 
   function accordionfunc(accordid){

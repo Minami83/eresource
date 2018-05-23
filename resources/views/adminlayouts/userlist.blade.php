@@ -39,6 +39,7 @@
           <th onclick="sortTable(0)">ID <i class="fa">&#xf0dc;</i></th>
           <th onclick="sortTable(1)">Nama <i class="fa">&#xf0dc;</i></th>
           <th onclick="sortTable(2)">Status <i class="fa">&#xf0dc;</i></th>
+          <th onclick="sortTable(3)">Role <i class="fa">&#xf0dc;</i></th>
         </tr>
         @if (session('alert'))
             <script type="text/javascript">
@@ -57,6 +58,15 @@
               Sedang menjalankan course
             @else
               Selesai
+            @endif
+          </td>
+          <td>
+            @if ($ul->roleName()=='admin')
+              Admin
+            @elseif($ul->roleName()=='pustakawan')
+              Pustakawan
+            @else
+              Partisipan
             @endif
           </td>
           <td style="width: 30px">

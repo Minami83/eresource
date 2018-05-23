@@ -40,10 +40,15 @@
 					<td class="profb" style="display: block">{{$edituser->id_number}}</td>
 					<td class="profa" style="display: none">
 						<input id="nrp" type="text" class="w3-round-xlarge form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="nrp" value="{{$edituser->id_number}}" autofocus>
-	                    @if ($errors->has('name'))
+	                    @if ($errors->has('nrp'))
 	                        <span class="invalid-feedback">
-	                            <strong>{{ $errors->first('name') }}</strong>
+	                            <strong>{{ $errors->first('nrp') }}</strong>
 	                        </span>
+	                        <script type="text/javascript">
+	                        	$(document).ready(function(){
+	                        		$("#btnubah").click()
+								});
+	                        </script>
 	                    @endif
                     </td>
 				</tr>
@@ -57,6 +62,11 @@
 	                        <span class="invalid-feedback">
 	                            <strong>{{ $errors->first('name') }}</strong>
 	                        </span>
+	                        <script type="text/javascript">
+	                        	$(document).ready(function(){
+	                        		$("#btnubah").click()
+								});
+	                        </script>
 	                    @endif
 					</td>
 				</tr>
@@ -99,6 +109,11 @@
 	                        <span class="invalid-feedback">
 	                            <strong>{{ $errors->first('email') }}</strong>
 	                        </span>
+	                        <script type="text/javascript">
+	                        	$(document).ready(function(){
+	                        		$("#btnubah").click()
+								});
+	                        </script>
                     	@endif
 					</td>
 				</tr>
@@ -153,20 +168,21 @@
 			    	@csrf
 			    	<div class="row">
 			        <div class="listjurnal col-sm-6">
+				        <input id="selectall" class="w3-check" type="checkbox" name="selectall" value=""> Select All<br>
 				        @foreach ($jurnal1 as $jur1)
 				        	@if ($edituser->roleName()=='partisipan')
-				        	<input id="{{$jur1->id}}" class="w3-check" type="checkbox" name="{{$jur1->name}}" value="{{$jur1->name}}"> {{$jur1->fullName}}<br>
+				        	<input id="{{$jur1->id}}" class="w3-check check" type="checkbox" name="{{$jur1->name}}" value="{{$jur1->name}}"> {{$jur1->fullName}}<br>
 				        	@else
-				        	<input id="{{$jur1->id}}" class="w3-check" type="checkbox" name="{{$jur1->name}}" value="{{$jur1->name}}" disabled> {{$jur1->fullName}}<br>
+				        	<input id="{{$jur1->id}}" class="w3-check check" type="checkbox" name="{{$jur1->name}}" value="{{$jur1->name}}" disabled> {{$jur1->fullName}}<br>
 				        	@endif
 				        @endforeach
 				    </div>
 				   	<div class="listjurnal col-sm-6">
 				       	 @foreach ($jurnal2 as $jur1)
 				       	 	@if ($edituser->roleName()=='partisipan')
-				        	<input id="{{$jur1->id}}" class="w3-check" type="checkbox" name="{{$jur1->name}}" value="{{$jur1->name}}"> {{$jur1->fullName}}<br>
+				        	<input id="{{$jur1->id}}" class="w3-check check" type="checkbox" name="{{$jur1->name}}" value="{{$jur1->name}}" style="word-wrap: break-word;"> {{$jur1->fullName}}<br>
 				        	@else
-				        	<input id="{{$jur1->id}}" class="w3-check" type="checkbox" name="{{$jur1->name}}" value="{{$jur1->name}}" disabled> {{$jur1->fullName}}<br>
+				        	<input id="{{$jur1->id}}" class="w3-check check" type="checkbox" name="{{$jur1->name}}" value="{{$jur1->name}}" style="word-wrap: break-word;" disabled> {{$jur1->fullName}}<br>
 				       	 	@endif
 				        @endforeach
 				   	</div>
@@ -198,10 +214,26 @@
 		// $(document).ready(function(){
 		// 	if(in)
 		// });
+		$("#selectall").change(function(){  //"select all" change 
+		    $(".check").prop('checked', $(this).prop("checked")); //change all ".checkbox" checked status
+		});
+
+		//".checkbox" change 
+
 		$(document).ready(function(){
 			@foreach ($myJurnal as $takenjur)
 				$('#'+'{{$takenjur->id}}').attr('checked','checked');
 			@endforeach
+			$('.check').change(function(){ 
+			    //uncheck "select all", if one of the listed checkbox item is unchecked
+			    if(false == $(this).prop("checked")){ //if this item is unchecked
+			        $("#selectall").prop('checked', false); //change "select all" checked status to false
+			    }
+			    //check "select all" if all checkbox items are checked
+			    if ($('.check:checked').length == $('.check').length ){
+			        $("#selectall").prop('checked', true);
+			    }
+			});
 		});
 
 		var modal = document.getElementById('id01');

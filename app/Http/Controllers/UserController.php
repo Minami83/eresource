@@ -166,6 +166,15 @@ class UserController extends Controller
         $admin->authorizeRoles(['admin','pustakawan']);
         $user = User::where('id',$id)->first();
         $data = $request->all();
+        $validat = $request->validate([
+            'nrp' => 'required|string|max:18|min:14',
+            'name' => 'required|string|max:255',
+            'faculty' => 'required|string',
+            'department' => 'required|string',
+            'phone' => 'required|string',
+            'email' => 'required|string|email|max:255',
+        ]);
+
         $user->id_number = $data['nrp'];
         $user->name = $data['name'];
         $user->faculty = $data['faculty'];

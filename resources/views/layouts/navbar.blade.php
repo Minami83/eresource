@@ -2,11 +2,15 @@
   <div class="w3-bar w3-large w3-biru">
     	<a href="/home" class="w3-bar-item"><img style="height: 44px" src="/image/eresourcelogo.png"></a>
       @if($user->roleName()=='admin' || $user->roleName()=='pustakawan')
+      @php
+        $i=date('Y');
+      @endphp
       <a href="/admin" id="verifikasinavbar" class="w3-padding-16 w3-hover-none w3-hover-text-amber w3-bar-item">Verifikasi User</a>
-      <a href="/admin/laporan" id="laporannavbar" class="w3-padding-16 w3-hover-none w3-hover-text-amber w3-bar-item">Laporan</a>
+      <a href="/admin/laporan/{{$i}}" id="laporannavbar" class="w3-padding-16 w3-hover-none w3-hover-text-amber w3-bar-item">Laporan</a>
       <a href="/admin/user/list" id="usernavbar" class="w3-padding-16 w3-hover-none w3-hover-text-amber w3-bar-item">User</a>
       <a href="/admin/jurnal/list" id="jurnalnavbar" class="w3-padding-16 w3-hover-none w3-hover-text-amber w3-bar-item">Jurnal</a>
       <a href="/admin/test/list" id="testnavbar" class="w3-padding-16 w3-hover-none w3-hover-text-amber w3-bar-item">Tes</a>
+      <a href="/admin/log" id="lognavbar" class="w3-padding-16 w3-hover-none w3-hover-text-amber w3-bar-item">Log</a>
       @endif
     	<div class="w3-dropdown-hover w3-right">
   	    <button class="w3-button w3-biru w3-padding-16 w3-hover-none w3-hover-text-amber">{{$user->name}}</button>

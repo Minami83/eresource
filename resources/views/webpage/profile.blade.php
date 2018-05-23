@@ -41,6 +41,11 @@
 	                        <span class="invalid-feedback">
 	                            <strong>{{ $errors->first('name') }}</strong>
 	                        </span>
+	                        <script type="text/javascript">
+	                        	$(document).ready(function(){
+	                        		$("#btnubah").click()
+								});
+	                        </script>
 	                    @endif
                     </td>
 				</tr>
@@ -54,6 +59,11 @@
 	                        <span class="invalid-feedback">
 	                            <strong>{{ $errors->first('name') }}</strong>
 	                        </span>
+	                        <script type="text/javascript">
+	                        	$(document).ready(function(){
+	                        		$("#btnubah").click()
+								});
+	                        </script>
 	                    @endif
 					</td>
 				</tr>
@@ -97,6 +107,11 @@
 	                        <span class="invalid-feedback">
 	                            <strong>{{ $errors->first('email') }}</strong>
 	                        </span>
+	                        <script type="text/javascript">
+	                        	$(document).ready(function(){
+	                        		$("#btnubah").click()
+								});
+	                        </script>
                     	@endif
 					</td>
 				</tr>
