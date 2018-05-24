@@ -89,8 +89,13 @@ class AdminController extends Controller
       $cnt = Log::whereYear('created_at',date('Y'))->whereMonth('created_at','0'.$i)->count();
       array_push($loginActivity, $cnt);
     }
-    // dd($loginActivity);
-    return view('adminlayouts/statistik')->with('user',$admin)->with('jurnalCount',$count)->with('loginCount',$loginActivity);
+    $mhsdosen = [];
+    $mhs = User::whereRaw('LENGTH(id_number) = 14')->count();
+    array_push($mhsdosen,$mhs);
+    $dosen = User::whereRaw('LENGTH(id_number) = 18')->count();
+    array_push($mhsdosen,$dosen);
+    // dd($mhsdosen);
+    return view('adminlayouts/statistik')->with('user',$admin)->with('jurnalCount',$count)->with('loginCount',$loginActivity)->with('mhsdosenCount',$mhsdosen);
   }
 
 }
