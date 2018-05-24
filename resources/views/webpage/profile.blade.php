@@ -24,7 +24,7 @@
 
 @section('isi')
 
-	<div class="w3-row" style="margin-top: 70px">
+	<div class="w3-row">
 		<div class="col-sm-3"></div>
 		<div class="col-sm-6 w3-white w3-round-large">
 			<br>

@@ -28,39 +28,42 @@
 @endsection()
 
 @section('isi')
-<div class="row" style="margin-top: 80px">
+<div class="row">
   <div class="col-sm-1"></div>
-    <div class="col-sm-10">
+  <div class="col-sm-10">
+    <div class="w3-row container">
       <h1>{{$showeduser->name}}</h1>
       <h5 id="preskor">PreTest : </h5>
       <h5 id="postskor">PostTest : </h5>
       <br>
-      <table id="myTable" class="w3-table">
-        <tr>
-          <th onclick="sortTable(0)"># <i class="fa">&#xf0dc;</i></th>
-          <th onclick="sortTable(1)">Soal <i class="fa">&#xf0dc;</i></th>
-          <th onclick="sortTable(3)">Pretes <i class="fa">&#xf0dc;</i></th>
-          <th onclick="sortTable(4)">Posttes <i class="fa">&#xf0dc;</i></th>
-          <th onclick="sortTable(2)">Jawaban <i class="fa">&#xf0dc;</i></th>
-        </tr>
-        @foreach($test as $tes)
-        <tr>
-          <td style="width: 60px">{{$tes->id}}</td>
-          <td>{{$tes->question}}</td>
-          <td>{{$preAns[$tes->id-1]->answer}}</td>
-          <td>{{$postAns[$tes->id-1]->answer}}</td>
-          <td class="kumpulanans">
-              {{-- <p id="ans1">{{$tes->choice_1}}</p>
-              <p id="ans2">{{$tes->choice_2}}</p>
-              <p id="ans3">{{$tes->choice_3}}</p>
-              <p id="ans4">{{$tes->choice_4}}</p> --}}
-              {{$truAns[$tes->id-1]}}
-          </td>
-        </tr>
-        @endforeach
-      </table>
     </div>
-  <div class="col-sm-3"></div>
+    <div class="w3-row">  
+    <table id="myTable" class="w3-table">
+      <tr>
+        <th onclick="sortTable(0)"># <i class="fa">&#xf0dc;</i></th>
+        <th onclick="sortTable(1)">Soal <i class="fa">&#xf0dc;</i></th>
+        <th onclick="sortTable(2)">Pretes <i class="fa">&#xf0dc;</i></th>
+        <th onclick="sortTable(3)">Posttes <i class="fa">&#xf0dc;</i></th>
+        <th onclick="sortTable(4)">Jawaban <i class="fa">&#xf0dc;</i></th>
+      </tr>
+      @foreach($test as $tes)
+      <tr>
+        <td>{{$tes->id}}</td>
+        <td>{{$tes->question}}</td>
+        <td>{{$preAns[$tes->id-1]->answer}}</td>
+        <td>{{$postAns[$tes->id-1]->answer}}</td>
+        <td class="kumpulanans">
+            {{-- <p id="ans1">{{$tes->choice_1}}</p>
+            <p id="ans2">{{$tes->choice_2}}</p>
+            <p id="ans3">{{$tes->choice_3}}</p>
+            <p id="ans4">{{$tes->choice_4}}</p> --}}
+            {{$truAns[$tes->id-1]}}
+        </td>
+      </tr>
+      @endforeach
+    </table>
+    </div>
+  </div>
 </div>
 
 <script type="text/javascript">
@@ -70,6 +73,16 @@
           modal.style.display = "none";
       }
   }
+
+  $(window).ready(function(){
+      if ($(window).width() >= 992) {
+        $('#myTable').css("width","100%");
+      }
+      else if($(window).width() < 992){
+        $('#myTable').css("font-size","10px");
+        $('#myTable').css("width",$(window).width());
+      }
+  });
 
   $(document).ready(function(){
 	var i=0
@@ -83,7 +96,7 @@
   });
 
   $(document).ready(function(){
-    $('#usernavbar').addClass('w3-dropdownnavbar');
+    $('#usernavbar').addClass('w3-text-amber');
     $('#usernavbar').removeClass('w3-biru');
   });
 

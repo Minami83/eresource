@@ -1,11 +1,10 @@
 @extends('layouts.master')
 
 @section('isi')
-	<br><br>
 	<div class="container">
 		<div class="col-sm-2"></div>
 		<div class="col-sm-8">
-			<br><br><h2>Post-test</h2><br>
+			<h2>Post-test</h2><br>
 			<form method="post" action="/postans">
 				@csrf
 				@foreach($posttest as $post)

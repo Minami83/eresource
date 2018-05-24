@@ -1,15 +1,9 @@
- @extends('layouts.master')
+@extends('layouts.master')
 @section('title')
 	Question {{$test->id}}
 @endsection()
 
 @section('style')
-	{{-- .empty {
-		border: none;
-		border-color: transparent;
-		border-bottom:1px solid black;
-	} --}}
-
 	.editprofil{
 		font-family: FontAwesome;
 		font-style: normal;
@@ -18,23 +12,23 @@
 	}
 
 	th{
-		width:170px;
+		width:140px;
 	}
 	.btna{
-		width:110px;
+		width:130px;
 		height:30px;
 		margin-top:10px;
 		margin-left:16px;
+		cursor:pointer;
 	}
 @endsection()
 
 @section('isi')
 
-	<div class="w3-row" style="margin-top: 70px">
+	<div class="w3-row">
 		<div class="col-sm-3">
-			<a href="/admin/test/list"><button style="float: right;margin-top: 30px"><i class="fa fa-reply"></i></button></a>
 		</div>
-		<div class="col-sm-6 w3-white w3-round-large">
+		<div class="col-sm-6">
 			<br>
 		    <form method="POST" action="/admin/test/edit/{{$test->id}}">
 		    	@csrf
@@ -100,7 +94,7 @@
 
 	<script type="text/javascript">
 		$(document).ready(function(){
-			$('#testnavbar').addClass('w3-dropdownnavbar');
+			$('#testnavbar').addClass('w3-text-amber');
 			$('#testnavbar').removeClass('w3-biru');
 		});
 

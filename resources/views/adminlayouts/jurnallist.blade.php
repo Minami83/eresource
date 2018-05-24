@@ -24,49 +24,48 @@
 @endsection()
 
 @section('isi')
-<div class="row" style="margin-top: 100px">
-  <div class="col-sm-2"></div>
-    <div class="col-sm-8 w3-center">
-      <div id="alertfail">
-        {{ session('alert') }}
-      </div>
-      <div class="col-sm-11"><input class="empty iconified" type="text" id="myInput" onkeyup="myFunction()" placeholder="&#xf002;   Cari jurnal.."></div>
+<div class="w3-row container">
+  <div id="alertfail">
+    {{ session('alert') }}
+  </div>
+  <div class="col-sm-11"><input class="empty iconified" type="text" id="myInput" onkeyup="myFunction()" placeholder="&#xf002;   Cari jurnal.."></div>
+  @if ($user->roleName()=='admin')
+  <div class="col-sm-1" style="height: 50px"><button style="height:100%;width: 100%" onclick="document.getElementById('id01').style.display='block'"><i class="fa fa-plus"></i></button></div>
+  @endif
+</div>
+
+<div class="w3-row container w3-center">
+  <table id="myTable" class="w3-table">
+    <tr>
+      <th onclick="sortTable(0)">ID <i class="fa">&#xf0dc;</i></th>
+      <th onclick="sortTable(1)">Jurnal <i class="fa">&#xf0dc;</i></th>
+    </tr>
+    @if (session('alert'))
+    <script type="text/javascript">
+      $("#alertfail").html('{{ session('alert') }}');
+      $("#alertfail").attr('class','alert alert-danger');
+    </script>
+    @endif
+    @foreach($jurnal as $jur)
+    <tr>
+      <td style="width: 75px">{{$jur->id}}</td>
+      <td>{{$jur->fullName}}</td>
+      <td style="width: 30px"><a href="/admin/jurnal/detail/{{$jur->id}}">
+        <button><i class="fa fa-arrow-circle-right"></i></button>
+      </td>
       @if ($user->roleName()=='admin')
-      <div class="col-sm-1"><button class="w3-right" style="width:50px;height:50px;" onclick="document.getElementById('id01').style.display='block'"><i class="fa fa-plus"></i></button></div>
+      <td style="width: 30px">
+        <form method="POST" action="/admin/jurnal/delete/{{$jur->id}}">
+          @csrf
+          {{method_field('DELETE')}}
+          <button><i class="fa fa-close"></i></a></td></button>
+        </form>
+      </td>
       @endif
-      <table id="myTable" class="w3-table">
-        <tr>
-          <th onclick="sortTable(0)">ID <i class="fa">&#xf0dc;</i></th>
-          <th onclick="sortTable(1)">Jurnal <i class="fa">&#xf0dc;</i></th>
-        </tr>
-        @if (session('alert'))
-                <script type="text/javascript">
-                  $("#alertfail").html('{{ session('alert') }}');
-                  $("#alertfail").attr('class','alert alert-danger');
-                </script>
-            @endif
-        @foreach($jurnal as $jur)
-        <tr>
-          <td style="width: 75px">{{$jur->id}}</td>
-          <td>{{$jur->fullName}}</td>
-          <td style="width: 30px"><a href="/admin/jurnal/detail/{{$jur->id}}">
-            <button><i class="fa fa-arrow-circle-right"></i></button>
-          </td>
-          @if ($user->roleName()=='admin')
-          <td style="width: 30px">
-            <form method="POST" action="/admin/jurnal/delete/{{$jur->id}}">
-              @csrf
-              {{method_field('DELETE')}}
-              <button><i class="fa fa-close"></i></a></td></button>
-            </form>
-          </td>
-          @endif
-        </tr>
-        @endforeach
-      </table>
-      {{$jurnal->links()}}
-    </div>
-  <div class="col-sm-3"></div>
+    </tr>
+    @endforeach
+  </table>
+  {{$jurnal->links()}}
 </div>
 
 <div id="id01" class="w3-modal">
@@ -172,7 +171,7 @@
   }
 
   $(document).ready(function(){
-    $('#jurnalnavbar').addClass('w3-dropdownnavbar');
+    $('#jurnalnavbar').addClass('w3-text-amber');
     $('#jurnalnavbar').removeClass('w3-biru');
   });
 

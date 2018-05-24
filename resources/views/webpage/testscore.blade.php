@@ -28,12 +28,15 @@
 @endsection()
 
 @section('isi')
-<div class="row" style="margin-top: 80px">
+<div class="row">
   <div class="col-sm-1"></div>
-    <div class="col-sm-10">
+  <div class="col-sm-10">
+    <div class="w3-row container">
       <h3 id="preskor">PreTest : </h3>
       <h3 id="postskor">PostTest : </h3>
       <br>
+    </div>
+    <div class="w3-row">
       <table id="myTable" class="w3-table">
         <tr>
           <th onclick="sortTable(0)"># <i class="fa">&#xf0dc;</i></th>
@@ -49,17 +52,13 @@
           <td>{{$preAns[$tes->id-1]->answer}}</td>
           <td>{{$postAns[$tes->id-1]->answer}}</td>
           <td class="kumpulanans">
-              {{-- <p id="ans1">{{$tes->choice_1}}</p>
-              <p id="ans2">{{$tes->choice_2}}</p>
-              <p id="ans3">{{$tes->choice_3}}</p>
-              <p id="ans4">{{$tes->choice_4}}</p> --}}
               {{$truAns[$tes->id-1]}}
           </td>
         </tr>
         @endforeach
       </table>
     </div>
-  <div class="col-sm-3"></div>
+  </div>
 </div>
 
 <script type="text/javascript">

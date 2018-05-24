@@ -24,79 +24,86 @@
 @endsection()
 
 @section('isi')
-<div class="row" style="margin-top: 100px">
-  <div class="col-sm-2"></div>
-    <div class="col-sm-8 w3-center">
-      <div id="alertfail">
-        {{ session('alert') }}
+<div class="w3-row container">
+  <div id="alertfail">
+    {{ session('alert') }}
+  </div>
+  <div class="col-sm-11"><input class="empty iconified" type="text" id="myInput" onkeyup="myFunction()" placeholder="&#xf002;   Cari user.."></div>
+  @if ($user->roleName()=='admin')
+  <div class="col-sm-1" style="height:50px"><button style="width:100%;height:100%;" onclick="document.getElementById('id01').style.display='block'"><i class="fa fa-plus"></i></button></div>
+  @endif
+</div>
+
+<div class="w3-row container w3-center">
+  <table id="myTable" class="w3-table">
+    <tr>
+      <div class="col-sm-1">
+        <th onclick="sortTable(0)">ID <i class="fa">&#xf0dc;</i></th>
       </div>
-      <div class="col-sm-11"><input class="empty iconified" type="text" id="myInput" onkeyup="myFunction()" placeholder="&#xf002;   Cari user.."></div>
-      @if ($user->roleName()=='admin')
-      <div class="col-sm-1"><button class="w3-right" style="width:50px;height:50px;" onclick="document.getElementById('id01').style.display='block'"><i class="fa fa-plus"></i></button></div>
-      @endif
-      <table id="myTable" class="w3-table">
-        <tr>
-          <th onclick="sortTable(0)">ID <i class="fa">&#xf0dc;</i></th>
-          <th onclick="sortTable(1)">Nama <i class="fa">&#xf0dc;</i></th>
-          <th onclick="sortTable(2)">Status <i class="fa">&#xf0dc;</i></th>
-          <th onclick="sortTable(3)">Role <i class="fa">&#xf0dc;</i></th>
-        </tr>
-        @if (session('alert'))
-            <script type="text/javascript">
-              $("#alertfail").html('{{ session('alert') }}');
-              $("#alertfail").attr('class','alert alert-danger');
-            </script>
-        @endif
-        @foreach($userList as $ul)
-        <tr>
-          <td style="width: 200px">{{$ul->id_number}}</td>
-          <td>{{$ul->name}}</td>
-          <td>
-            @if ($ul->verified==0)
-              Belum terverifikasi
-            @elseif($ul->verified==1)
-              Sedang menjalankan course
-            @else
-              Selesai
-            @endif
-          </td>
-          <td>
-            @if ($ul->roleName()=='admin')
-              Admin
-            @elseif($ul->roleName()=='pustakawan')
-              Pustakawan
-            @else
-              Partisipan
-            @endif
-          </td>
-          <td style="width: 30px">
-            @if($ul->verified>0 )
-            <a href="/admin/user/detail/{{$ul->id}}">
-            @else
-            <a href="/admin">
-            @endif
-            <button><i class="fa fa-arrow-circle-right"></i></button></a>
-          </td>
-          <td style="width: 30px">
+      <div class="col-sm-1">
+        <th onclick="sortTable(1)">Nama <i class="fa">&#xf0dc;</i></th>
+      </div>
+      <div class="col-sm-1">
+        <th onclick="sortTable(2)">Status <i class="fa">&#xf0dc;</i></th>
+      </div>
+      <div class="col-sm-1">
+        <th onclick="sortTable(3)">Role <i class="fa">&#xf0dc;</i></th>
+      </div>
+    </tr>
+    @if (session('alert'))
+        <script type="text/javascript">
+          $("#alertfail").html('{{ session('alert') }}');
+          $("#alertfail").attr('class','alert alert-danger');
+        </script>
+    @endif
+    @foreach($userList as $ul)
+    <tr>
+      <div>
+        <td class="tes">{{$ul->id_number}}</td>
+        <td class="tes">{{$ul->name}}</td>
+        <td class="tes">
+          @if ($ul->verified==0)
+            Belum terverifikasi
+          @elseif($ul->verified==1)
+            Sedang menjalankan course
+          @else
+            Selesai
+          @endif
+        </td>
+        <td class="tes">
+          @if ($ul->roleName()=='admin')
+            Admin
+          @elseif($ul->roleName()=='pustakawan')
+            Pustakawan
+          @else
+            Partisipan
+          @endif
+        </td>
+      </div>
+      <div id="tes2">
+        <td>
+          @if($ul->verified>0 )
+          <a href="/admin/user/detail/{{$ul->id}}">
+          @else
+          <a href="/admin">
+          @endif
+          <button><i class="fa fa-arrow-circle-right"></i></button></a>
           @if ($ul->roleName()=='partisipan')
             <a href="/admin/user/score/{{$ul->id}}"><button><i class="fa fa-file"></i></button></a>
           @endif
-          </td>
           @if ($user->roleName()=='admin')
-          <td style="width: 30px">
             <form method="POST" action="/admin/user/delete/{{$ul->id}}">
               @csrf
               {{method_field('DELETE')}}
               <button><i class="fa fa-close"></i></a></td></button>
             </form>
-          </td>
           @endif
-        </tr>
-        @endforeach
-      </table>
-      {{$userList->links()}}
-    </div>
-  <div class="col-sm-3"></div>
+        </td>
+      </div>
+    </tr>
+    @endforeach
+  </table>
+  {{$userList->links()}}
 </div>
 
 <div id="id01" class="w3-modal">
@@ -194,7 +201,15 @@
           modal.style.display = "none";
       }
   }
-
+  $(window).ready(function(){
+      if ($(window).width() >= 992) {
+        $('#myTable').css("width","100%");
+      }
+      else if($(window).width() < 992){
+        $('#myTable').css("font-size","10px");
+        $('#myTable').css("width",$(window).width()-11);
+      }
+  });
   function myFunction() {
     var input, filter, table, tr, td, i;
     input = document.getElementById("myInput");
@@ -261,7 +276,7 @@
     });
 
   $(document).ready(function(){
-    $('#usernavbar').addClass('w3-dropdownnavbar');
+    $('#usernavbar').addClass('w3-text-amber');
     $('#usernavbar').removeClass('w3-biru');
   });
 

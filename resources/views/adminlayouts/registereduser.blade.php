@@ -42,7 +42,7 @@
 @endsection()
 @section('isi')
 <div class="container">
-  <div class="row" style="margin-top: 80px">
+  <div class="row">
   <div class="col-sm-2"></div>
     <div class="col-sm-8 w3-center">
       <div id="alertfail">
@@ -85,7 +85,7 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
-    $('#verifikasinavbar').addClass('w3-dropdownnavbar');
+    $('#verifikasinavbar').addClass('w3-text-amber');
     $('#verifikasinavbar').removeClass('w3-biru');
   });
 

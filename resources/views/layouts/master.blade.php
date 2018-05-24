@@ -20,12 +20,33 @@
 </head>
 <body>
 	<div class="w3-overlay w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
-	<div id="navbar">
+	<div>
 		@include('layouts.navbar')
 	</div>
 
 	<div id="main">
 		@yield('isi')
 	</div>
+
+	<script type="text/javascript">
+		$(window).ready(function(){
+			if ($(window).width() >= 992) {
+		 		$('#eresourcelogo').css("height","59px");
+		 		$('#eresourcelogo').css("width","190px");
+				var height = $('#navbar').height();
+				document.getElementById("main").style.marginTop = 100+"px";
+			}
+			else if($(window).width() < 992){
+			@if ($user->roleName()=='partisipan')
+				document.getElementById("main").style.marginTop = 100+"px";
+			@else
+				$('#eresourcelogo').css("width","100%");
+				$('#eresourcelogo').css("height","100%");
+				document.getElementById("main").style.marginTop = 215 +"px";	
+			@endif
+			}
+		});
+
+	</script>
 </body>
 </html>

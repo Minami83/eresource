@@ -28,47 +28,49 @@
 @endsection()
 
 @section('isi')
-<div class="row" style="margin-top: 100px">
-  <div class="col-sm-2"></div>
-    <div class="col-sm-8 w3-center">
-      <div class="col-sm-11"><input class="empty iconified" type="text" id="myInput" onkeyup="myFunction()" placeholder="&#xf002;   Cari soal.."></div>
+<div class="w3-row container">
+  <div id="alertfail">
+    {{ session('alert') }}
+  </div>
+  <div class="col-sm-11"><input class="empty iconified" type="text" id="myInput" onkeyup="myFunction()" placeholder="&#xf002;   Cari soal.."></div>
+  @if ($user->roleName()=='admin')
+  <div class="col-sm-1" style="height:50px"><button style="width:100%;height:100%;" onclick="document.getElementById('id01').style.display='block'"><i class="fa fa-plus"></i></button></div>
+  @endif
+</div>
+
+<div class="w3-row container w3-center">
+  <table id="myTable" class="w3-table">
+    <tr>
+      <th onclick="sortTable(0)"># <i class="fa">&#xf0dc;</i></th>
+      <th onclick="sortTable(1)">Soal <i class="fa">&#xf0dc;</i></th>
+      <th onclick="sortTable(2)">Jawaban <i class="fa">&#xf0dc;</i></th>
+    </tr>
+    @foreach($test as $tes)
+    <tr>
+      <td style="width: 60px">{{$tes->id}}</td>
+      <td>{{$tes->question}}</td>
+      <td class="kumpulanans">
+          <p id="ans1">{{$tes->choice_1}}</p>
+          <p id="ans2">{{$tes->choice_2}}</p>
+          <p id="ans3">{{$tes->choice_3}}</p>
+          <p id="ans4">{{$tes->choice_4}}</p>
+      </td>
+      <td style="width: 30px"><a href="/admin/test/detail/{{$tes->id}}">
+        <button><i class="fa fa-arrow-circle-right"></i></button></a>
+      </td>
       @if ($user->roleName()=='admin')
-      <div class="col-sm-1"><button class="w3-right" style="width:50px;height:50px;" onclick="document.getElementById('id01').style.display='block'"><i class="fa fa-plus"></i></button></div>
+      <td style="width: 30px">
+        <form method="POST" action="/admin/test/delete/{{$tes->id}}">
+          @csrf
+          {{method_field('DELETE')}}
+          <button><i class="fa fa-close"></i></button>
+        </form>
+      </td>
       @endif
-      <table id="myTable" class="w3-table">
-        <tr>
-          <th onclick="sortTable(0)"># <i class="fa">&#xf0dc;</i></th>
-          <th onclick="sortTable(1)">Soal <i class="fa">&#xf0dc;</i></th>
-          <th onclick="sortTable(2)">Jawaban <i class="fa">&#xf0dc;</i></th>
-        </tr>
-        @foreach($test as $tes)
-        <tr>
-          <td style="width: 60px">{{$tes->id}}</td>
-          <td>{{$tes->question}}</td>
-          <td class="kumpulanans">
-              <p id="ans1">{{$tes->choice_1}}</p>
-              <p id="ans2">{{$tes->choice_2}}</p>
-              <p id="ans3">{{$tes->choice_3}}</p>
-              <p id="ans4">{{$tes->choice_4}}</p>
-          </td>
-          <td style="width: 30px"><a href="/admin/test/detail/{{$tes->id}}">
-            <button><i class="fa fa-arrow-circle-right"></i></button></a>
-          </td>
-          @if ($user->roleName()=='admin')
-          <td style="width: 30px">
-            <form method="POST" action="/admin/test/delete/{{$tes->id}}">
-              @csrf
-              {{method_field('DELETE')}}
-              <button><i class="fa fa-close"></i></button>
-            </form>
-          </td>
-          @endif
-        </tr>
-        @endforeach
-      </table>
-      {{$test->links()}}
-    </div>
-  <div class="col-sm-3"></div>
+    </tr>
+    @endforeach
+  </table>
+  {{$test->links()}}
 </div>
 
 <div id="id01" class="w3-modal">
@@ -118,7 +120,7 @@
   }
 
   $(document).ready(function(){
-    $('#testnavbar').addClass('w3-dropdownnavbar');
+    $('#testnavbar').addClass('w3-text-amber');
     $('#testnavbar').removeClass('w3-biru');
   });
     

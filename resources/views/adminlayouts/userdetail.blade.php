@@ -1,4 +1,4 @@
- @extends('layouts.master')
+@extends('layouts.master')
 @section('title')
 	{{$edituser->name}}
 @endsection()
@@ -12,7 +12,7 @@
 	}
 
 	th{
-		width:170px;
+		width:140px;
 	}
 	.btna{
 		width:130px;
@@ -25,9 +25,8 @@
 
 @section('isi')
 
-	<div class="w3-row" style="margin-top: 70px">
+	<div class="w3-row">
 		<div class="col-sm-3">
-			<a href="/admin/user/list"><button style="float: right;margin-top: 30px"><i class="fa fa-reply"></i></button></a>
 		</div>
 		<div class="col-sm-6">
 			<br>
@@ -158,7 +157,7 @@
 	</div>
 
 	<div id="id01" class="w3-modal">
-		<div class="w3-modal-content w3-animate-top" style="margin-top: -60px">
+		<div class="w3-modal-content w3-animate-top">
 			<header class="w3-container w3-biru">
 			  	<span onclick="document.getElementById('id01').style.display='none'" class="w3-hover-biru w3-button w3-display-topright">&times;</span>
 			  	<h2>Daftar Jurnal {{$edituser->name}}</h2>
@@ -253,7 +252,7 @@
 		}
 
 		$(document).ready(function(){
-			$('#usernavbar').addClass('w3-dropdownnavbar');
+			$('#usernavbar').addClass('w3-text-amber');
 			$('#usernavbar').removeClass('w3-biru');
 		});
 
