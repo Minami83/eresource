@@ -43,6 +43,8 @@ Route::get('/continue', 'CourseController@continue');
 Route::get('/admin', 'AdminController@Index')->middleware('role');
 Route::post('/admin', 'AdminController@verify')->middleware('role');
 Route::get('/admin/laporan/{year}', 'AdminController@recap')->middleware('role');
+Route::get('/admin/logreport', 'AdminController@logReport')->middleware('role');
+Route::get('admin/statistik', 'AdminController@statistik')->middleware('role');
 
 Route::get('/admin/user/list', 'UserController@index')->middleware('role');
 Route::get('/admin/user/make', 'UserController@create')->middleware('role');

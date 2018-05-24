@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Jurnal;
+use App\Log;
 use Illuminate\Support\Facades\File;
 class AdminController extends Controller
 {
@@ -50,29 +51,46 @@ class AdminController extends Controller
     $regUser = ['01'=>[],'02'=>[],'03'=>[],'04'=>[],'05'=>[],'06'=>[],'07'=>[],'08'=>[],'09'=>[],'10'=>[],'11'=>[],'12'=>[]];
     $compUser = ['01'=>[],'02'=>[],'03'=>[],'04'=>[],'05'=>[],'06'=>[],'07'=>[],'08'=>[],'09'=>[],'10'=>[],'11'=>[],'12'=>[]];
 
-    
+
     foreach($users as $user){
       $month = $user->created_at->format('m');
       array_push($regUser[$month],$user);
     }
-    $i = 1;
 
-    // fclose($reg);
-
-    // dd($regUser);
-    
     foreach($users as $user){
       if($user->verified != 2) continue;
       $month = $user->updated_at->format('m');
       array_push($compUser[$month],$user);
     }
 
-    
-
-    // fclose($compl);
-
-    // dd($compUser);
     return view('adminlayouts/laporan')->with('user',$admin)->with('regis_user',$regUser)->with('compl_user',$compUser);
+  }
+
+  public function logReport()
+  {
+    $admin = Auth()->user();
+    $log = Log::get();
+    // dd($log);
+    return view('adminlayouts/logreport')->with('user',$admin)->with('logReport',$log);
+  }
+
+  public function statistik()
+  {
+    $admin = Auth()->user();
+    $users = User::get();
+    $count = []; //jumlah jurnal yang diambil orang"
+    $jurnals = Jurnal::get();
+    foreach($jurnals as $jurnal){
+      $cnt = DB::table('jurnal_user')->where('jurnal_id',$jurnal->id)->count();
+      array_push($count,$cnt);
+    }
+    $loginActivity = [];
+    for($i=1; $i<=12 ; $i++){
+      $cnt = Log::whereYear('created_at',date('Y'))->whereMonth('created_at','0'.$i)->count();
+      array_push($loginActivity, $cnt);
+    }
+    // dd($loginActivity);
+    return view('adminlayouts/statistik')->with('user',$admin)->with('jurnalCount',$count)->with('loginCount',$loginActivity);
   }
 
 }
