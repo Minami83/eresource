@@ -17,6 +17,7 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->flag = 0;
     }
 
     /**
@@ -28,7 +29,10 @@ class HomeController extends Controller
     {
         $request->user()->authorizeRoles(['partisipan','admin','pustakawan']);
         $data = Auth()->user();
-        $this->loginlog();
+        if($this->flag==0){
+            $this->flag=1;
+            $this->loginlog();
+        }
         $myJurnal = $data->takenJurnalList();
         // dd($data);
         // dd($data);

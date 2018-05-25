@@ -7,8 +7,8 @@
 		cursor:pointer;
 	}
   	.w3-table{
-  		width:70%; 
-	    margin-left:15%; 
+  		width:70%;
+	    margin-left:15%;
 	    margin-right:15%;
 	}
 @endsection()
@@ -21,18 +21,19 @@
 		 		<table id="myTable" class="w3-table w3-bordered">
 					<tr>
 						<th onclick="sortTable(0)"># <i class="fa">&#xf0dc;</i></th>
-						<th onclick="sortTable(1)">Soal <i class="fa">&#xf0dc;</i></th>
-						<th onclick="sortTable(3)">Pretes <i class="fa">&#xf0dc;</i></th>
-						<th onclick="sortTable(3)">Pretes <i class="fa">&#xf0dc;</i></th>
+						<th onclick="sortTable(1)">Nama User <i class="fa">&#xf0dc;</i></th>
+						<th onclick="sortTable(3)">Posisi <i class="fa">&#xf0dc;</i></th>
+						<th onclick="sortTable(3)">Kegiatan <i class="fa">&#xf0dc;</i></th>
 					</tr>
 					@foreach($logReport as $log)
 					<tr>
 						<td>{{$log->id}}</td>
-						<td>{{$log->user_id}}</td>
-						<td>{{$log->jurnal_id}}</td>
+						<td>{{$log->userName()}}</td>
+						<td>{{$log->jurnalName()}}</td>
 						<td>{{$log->activity}}</td>
 					</tr>
 					@endforeach
+					{{$logReport->links()}}
 				</table>
 			</div>
 		</div>

@@ -69,7 +69,7 @@ class AdminController extends Controller
   public function logReport()
   {
     $admin = Auth()->user();
-    $log = Log::get();
+    $log = Log::paginate(30);
     // dd($log);
     return view('adminlayouts/logreport')->with('user',$admin)->with('logReport',$log);
   }

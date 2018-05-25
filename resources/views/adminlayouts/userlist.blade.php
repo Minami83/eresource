@@ -126,6 +126,11 @@
                         <span class="invalid-feedback">
                             <strong>{{ $errors->first('id_number') }}</strong>
                         </span>
+                        <script type="text/javascript">
+                          $(document).ready(function(){
+                            document.getElementById('id01').style.display="block"
+                          });
+                        </script>
                     @endif
             </div>
             <div class="form-group">
@@ -134,6 +139,11 @@
                         <span class="invalid-feedback">
                             <strong>{{ $errors->first('name') }}</strong>
                         </span>
+                        <script type="text/javascript">
+                          $(document).ready(function(){
+                            document.getElementById('id01').style.display="block"
+                          });
+                        </script>
                     @endif
             </div>
             <div class="form-group">
@@ -165,6 +175,11 @@
                     <span class="invalid-feedback">
                         <strong>{{ $errors->first('email') }}</strong>
                     </span>
+                    <script type="text/javascript">
+                          $(document).ready(function(){
+                            document.getElementById('id01').style.display="block"
+                          });
+                        </script>
                 @endif
             </div>
             <div class="form-group">
@@ -182,6 +197,11 @@
                     <span class="invalid-feedback">
                         <strong>{{ $errors->first('password') }}</strong>
                     </span>
+                    <script type="text/javascript">
+                          $(document).ready(function(){
+                            document.getElementById('id01').style.display="block"
+                          });
+                        </script>
                 @endif
             </div>
 
