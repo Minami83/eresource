@@ -17,10 +17,10 @@
 
 	<div class="col-sm-12">
 		 <div class="row">
-		 	<div class="w3-responsive">
+		 	<div class="w3-responsive w3-center">
 		 		<table id="myTable" class="w3-table w3-bordered">
 					<tr>
-						<th onclick="sortTable(0)"># <i class="fa">&#xf0dc;</i></th>
+						<th onclick="sortTable(0)" style="min-width: 60px"># <i class="fa">&#xf0dc;</i></th>
 						<th onclick="sortTable(1)">Nama User <i class="fa">&#xf0dc;</i></th>
 						<th onclick="sortTable(3)">Posisi <i class="fa">&#xf0dc;</i></th>
 						<th onclick="sortTable(3)">Kegiatan <i class="fa">&#xf0dc;</i></th>
@@ -33,8 +33,8 @@
 						<td>{{$log->activity}}</td>
 					</tr>
 					@endforeach
-					{{$logReport->links()}}
 				</table>
+				{{$logReport->links()}}
 			</div>
 		</div>
 	</div>

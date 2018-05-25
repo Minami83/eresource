@@ -51,11 +51,11 @@ class UserController extends Controller
         //
 
         $validat = $request->validate([
-            'nrp' => 'required|string|max:18|min:14',
+            'id_number' => 'required|string|max:18|min:14|unique:users',
             'name' => 'required|string|max:255',
             'faculty' => 'required|string',
             'department' => 'required|string',
-            'phone' => 'required|string',
+            'phone' => 'required|string|min:11',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
@@ -67,7 +67,7 @@ class UserController extends Controller
         if(User::where('email',$data['email'])->exists())
             return redirect('/admin/user/list')->with('alert','Email sudah terpakai');
         $user = new User();
-        $user->id_number = $data['nrp'];
+        $user->id_number = $data['id_number'];
         $user->name = $data['name'];
         $user->faculty = $data['faculty'];
         $user->department = $data['department'];
@@ -167,15 +167,15 @@ class UserController extends Controller
         $user = User::where('id',$id)->first();
         $data = $request->all();
         $validat = $request->validate([
-            'nrp' => 'required|string|max:18|min:14',
+            'id_number' => 'required|string|max:18|min:14|unique:users',
             'name' => 'required|string|max:255',
             'faculty' => 'required|string',
             'department' => 'required|string',
-            'phone' => 'required|string',
+            'phone' => 'required|string|min:11',
             'email' => 'required|string|email|max:255',
         ]);
 
-        $user->id_number = $data['nrp'];
+        $user->id_number = $data['id_number'];
         $user->name = $data['name'];
         $user->faculty = $data['faculty'];
         $user->department = $data['department'];

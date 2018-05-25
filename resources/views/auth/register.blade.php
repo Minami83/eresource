@@ -53,10 +53,10 @@
                 <form style="height: 500px;" method="POST" action="{{ route('register') }}">
                 @csrf
                 <div class="form-group">
-                    <input id="nrp" type="text" class="w3-round-xlarge iconified text form-control{{ $errors->has('nrp') ? ' is-invalid' : '' }}" name="nrp" value="{{ old('nrp') }}" placeholder="&#xf007;     {{ __('ID') }}" required autofocus>
-                    @if ($errors->has('nrp'))
+                    <input id="id_number" type="text" class="w3-round-xlarge iconified text form-control{{ $errors->has('id_number') ? ' is-invalid' : '' }}" name="id_number" value="{{ old('id_number') }}" placeholder="&#xf007;     {{ __('ID') }}" required autofocus>
+                    @if ($errors->has('id_number'))
                         <span class="invalid-feedback">
-                            <strong>{{ $errors->first('nrp') }}</strong>
+                            <strong>{{ $errors->first('id_number') }}</strong>
                         </span>
                     @endif
                 </div>
@@ -69,7 +69,7 @@
                     @endif
                 </div>
                 <div class="form-group">
-                    <select class="w3-round-xlarge iconified text form-control" name="faculty" id="facultyoption" required>
+                    <select class="w3-round-xlarge iconified text form-control" name="faculty" id="facultyoption" value="{{ old('faculty') }}" required>
                     <option disabled="true" selected>-- Fakultas --</option>
                     <option value="FAKULTAS TEKNOLOGI INDUSTRI">FAKULTAS TEKNOLOGI INDUSTRI</option>
                     <option value="FAKULTAS TEKNOLOGI KELAUTAN">FAKULTAS TEKNOLOGI KELAUTAN</option>
@@ -82,20 +82,35 @@
                     <option value="FAKULTAS VOKASI">FAKULTAS VOKASI</option>
                     <option value="FAKULTAS BISNIS DAN MANAJEMEN TEKNOLOGI">FAKULTAS BISNIS DAN MANAJEMEN TEKNOLOGI</option>
                     </select>
+                    @if ($errors->has('faculty'))
+                        <span class="invalid-feedback">
+                            <strong>{{ $errors->first('faculty') }}</strong>
+                        </span>
+                    @endif
                 </div>
                 <div class="form-group">
-                    <select class="w3-round-xlarge iconified text form-control" name="department" id="departoption" required>
+                    <select class="w3-round-xlarge iconified text form-control" name="department" value="{{ old('department') }}" id="departoption" required>
                         <option disabled="true" selected>-- Departemen --</option>
                     </select>
-                </div>
-                <div class="form-group">
-                    <input type="text" id="phone" class="w3-round-xlarge iconified text form-control" value="{{ old('phone') }}" name="phone" placeholder="&#xf095;    {{ __('Nomor Telepon') }}" required>
+                    @if ($errors->has('department'))
+                        <span class="invalid-feedback">
+                            <strong>{{ $errors->first('department') }}</strong>
+                        </span>
+                    @endif
                 </div>
                 <div class="form-group">
                     <input name="email" input id="email" type="email" class="w3-round-xlarge iconified text form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="&#xf0e0;   {{ __('Email') }}" required>
                     @if ($errors->has('email'))
                         <span class="invalid-feedback">
                             <strong>{{ $errors->first('email') }}</strong>
+                        </span>
+                    @endif
+                </div>
+                <div class="form-group">
+                    <input type="text" id="phone" class="w3-round-xlarge iconified text form-control" value="{{ old('phone') }}" name="phone" placeholder="&#xf095;    {{ __('Nomor Telepon') }}" required>
+                    @if ($errors->has('phone'))
+                        <span class="invalid-feedback">
+                            <strong>{{ $errors->first('phone') }}</strong>
                         </span>
                     @endif
                 </div>

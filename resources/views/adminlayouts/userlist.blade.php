@@ -121,66 +121,96 @@
         <form method="POST" action="/admin/user/make">
           @csrf
             <div class="form-group">
-                <input id="nrp" type="text" class="w3-round-xlarge iconified empty form-control{{ $errors->has('id_number') ? ' is-invalid' : '' }}" name="nrp" value="{{ old('id_number') }}" placeholder="&#xf007;     {{ __('ID') }}" required autofocus>
-                    @if ($errors->has('id_number'))
-                        <span class="invalid-feedback">
-                            <strong>{{ $errors->first('id_number') }}</strong>
-                        </span>
-                        <script type="text/javascript">
-                          $(document).ready(function(){
-                            document.getElementById('id01').style.display="block"
-                          });
-                        </script>
-                    @endif
+              <input id="id_number" type="text" class="w3-round-xlarge iconified empty form-control{{ $errors->has('id_number') ? ' is-invalid' : '' }}" name="id_number" value="{{ old('id_number') }}" placeholder="&#xf007;     {{ __('ID') }}" required autofocus>
+              @if ($errors->has('id_number'))
+                  <span class="invalid-feedback">
+                      <strong>{{ $errors->first('id_number') }}</strong>
+                  </span>
+                  <script type="text/javascript">
+                    $(document).ready(function(){
+                      document.getElementById('id01').style.display="block"
+                    });
+                  </script>
+              @endif
             </div>
             <div class="form-group">
-                <input id="name" type="text" class="w3-round-xlarge iconified empty form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" placeholder="&#xf2b9;    {{ __('Nama') }}" required autofocus>
-                    @if ($errors->has('name'))
-                        <span class="invalid-feedback">
-                            <strong>{{ $errors->first('name') }}</strong>
-                        </span>
-                        <script type="text/javascript">
-                          $(document).ready(function(){
-                            document.getElementById('id01').style.display="block"
-                          });
-                        </script>
-                    @endif
+              <input id="name" type="text" class="w3-round-xlarge iconified empty form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" placeholder="&#xf2b9;    {{ __('Nama') }}" required autofocus>
+              @if ($errors->has('name'))
+                  <span class="invalid-feedback">
+                      <strong>{{ $errors->first('name') }}</strong>
+                  </span>
+                  <script type="text/javascript">
+                    $(document).ready(function(){
+                      document.getElementById('id01').style.display="block"
+                    });
+                  </script>
+              @endif
             </div>
             <div class="form-group">
-                    <select class="w3-round-xlarge iconified empty form-control" name="faculty" id="facultyoption" required>
-                    <option disabled="true" selected>-- Fakultas --</option>
-                    <option value="FAKULTAS TEKNOLOGI INDUSTRI">FAKULTAS TEKNOLOGI INDUSTRI</option>
-                    <option value="FAKULTAS TEKNOLOGI KELAUTAN">FAKULTAS TEKNOLOGI KELAUTAN</option>
-                    <option value="FAKULTAS TEKNOLOGI ELEKTRO">FAKULTAS TEKNOLOGI ELEKTRO</option>
-                    <option value="FAKULTAS TEKNIK SIPIL, LINGKUNGAN, DAN KEBUMIAN">FAKULTAS TEKNIK SIPIL, LINGKUNGAN, DAN KEBUMIAN</option>
-                    <option value="FAKULTAS TEKNOLOGI INFORMASI DAN KOMUNIKASI">FAKULTAS TEKNOLOGI INFORMASI DAN KOMUNIKASI</option>
-                    <option value="FAKULTAS ARSITEKTUR, DESAIN, DAN PERENCANAAN">FAKULTAS ARSITEKTUR, DESAIN, DAN PERENCANAAN</option>
-                    <option value="FAKULTAS SAINS">FAKULTAS SAINS</option>
-                    <option value="FAKULTAS MATEMATIKA, KOMPUTASI, DAN SAINS DATA">FAKULTAS MATEMATIKA, KOMPUTASI, DAN SAINS DATA</option>
-                    <option value="FAKULTAS VOKASI">FAKULTAS VOKASI</option>
-                    <option value="FAKULTAS BISNIS DAN MANAJEMEN TEKNOLOGI">FAKULTAS BISNIS DAN MANAJEMEN TEKNOLOGI</option>
-                    </select>
+              <select class="w3-round-xlarge iconified empty form-control" name="faculty" id="facultyoption" value="{{ old('faculty') }}" required>
+              <option disabled="true" selected>-- Fakultas --</option>
+              <option value="FAKULTAS TEKNOLOGI INDUSTRI">FAKULTAS TEKNOLOGI INDUSTRI</option>
+              <option value="FAKULTAS TEKNOLOGI KELAUTAN">FAKULTAS TEKNOLOGI KELAUTAN</option>
+              <option value="FAKULTAS TEKNOLOGI ELEKTRO">FAKULTAS TEKNOLOGI ELEKTRO</option>
+              <option value="FAKULTAS TEKNIK SIPIL, LINGKUNGAN, DAN KEBUMIAN">FAKULTAS TEKNIK SIPIL, LINGKUNGAN, DAN KEBUMIAN</option>
+              <option value="FAKULTAS TEKNOLOGI INFORMASI DAN KOMUNIKASI">FAKULTAS TEKNOLOGI INFORMASI DAN KOMUNIKASI</option>
+              <option value="FAKULTAS ARSITEKTUR, DESAIN, DAN PERENCANAAN">FAKULTAS ARSITEKTUR, DESAIN, DAN PERENCANAAN</option>
+              <option value="FAKULTAS SAINS">FAKULTAS SAINS</option>
+              <option value="FAKULTAS MATEMATIKA, KOMPUTASI, DAN SAINS DATA">FAKULTAS MATEMATIKA, KOMPUTASI, DAN SAINS DATA</option>
+              <option value="FAKULTAS VOKASI">FAKULTAS VOKASI</option>
+              <option value="FAKULTAS BISNIS DAN MANAJEMEN TEKNOLOGI">FAKULTAS BISNIS DAN MANAJEMEN TEKNOLOGI</option>
+              </select>
+              @if ($errors->has('faculty'))
+                  <span class="invalid-feedback">
+                      <strong>{{ $errors->first('faculty') }}</strong>
+                  </span>
+                  <script type="text/javascript">
+                    $(document).ready(function(){
+                      document.getElementById('id01').style.display="block"
+                    });
+                  </script>
+              @endif
             </div>
             <div class="form-group">
-                <select class="w3-round-xlarge iconified empty form-control" name="department" id="departoption" required>
-                  <option disabled="true" selected>-- Departemen --</option>
-                </select>
+              <select class="w3-round-xlarge iconified empty form-control" name="department" id="departoption" value="{{ old('department') }}" required>
+                <option disabled="true" selected>-- Departemen --</option>
+              </select>
+              @if ($errors->has('department'))
+                  <span class="invalid-feedback">
+                      <strong>{{ $errors->first('department') }}</strong>
+                  </span>
+                  <script type="text/javascript">
+                    $(document).ready(function(){
+                      document.getElementById('id01').style.display="block"
+                    });
+                  </script>
+              @endif
             </div>
             <div class="form-group">
-                <input type="text" id="phone" class="w3-round-xlarge iconified empty form-control" value="{{ old('phone') }}" name="phone" placeholder="&#xf095;    {{ __('Nomor Telepon') }}" required>
+              <input name="email" input id="email" type="email" class="w3-round-xlarge iconified empty form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="&#xf0e0;   {{ __('Email') }}" required>
+              @if ($errors->has('email'))
+                  <span class="invalid-feedback">
+                      <strong>{{ $errors->first('email') }}</strong>
+                  </span>
+                  <script type="text/javascript">
+                    $(document).ready(function(){
+                      document.getElementById('id01').style.display="block"
+                    });
+                  </script>
+              @endif
             </div>
             <div class="form-group">
-                <input name="email" input id="email" type="email" class="w3-round-xlarge iconified empty form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="&#xf0e0;   {{ __('Email') }}" required>
-                @if ($errors->has('email'))
-                    <span class="invalid-feedback">
-                        <strong>{{ $errors->first('email') }}</strong>
-                    </span>
-                    <script type="text/javascript">
-                          $(document).ready(function(){
-                            document.getElementById('id01').style.display="block"
-                          });
-                        </script>
-                @endif
+              <input type="text" id="phone" class="w3-round-xlarge iconified empty form-control" value="{{ old('phone') }}" name="phone" placeholder="&#xf095;    {{ __('Nomor Telepon') }}" required>
+              @if ($errors->has('phone'))
+                <span class="invalid-feedback">
+                    <strong>{{ $errors->first('phone') }}</strong>
+                </span>
+                <script type="text/javascript">
+                  $(document).ready(function(){
+                    document.getElementById('id01').style.display="block"
+                  });
+                </script>
+              @endif
             </div>
             <div class="form-group">
               <select class="w3-round-xlarge iconified empty form-control" name="role" value="{{ old('faculty') }}" required>

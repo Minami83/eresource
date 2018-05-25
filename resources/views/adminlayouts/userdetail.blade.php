@@ -38,10 +38,10 @@
 					<td>:</td>
 					<td class="profb" style="display: block">{{$edituser->id_number}}</td>
 					<td class="profa" style="display: none">
-						<input id="nrp" type="text" class="w3-round-xlarge form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="nrp" value="{{$edituser->id_number}}" autofocus>
-	                    @if ($errors->has('nrp'))
+						<input id="id_number" type="text" class="w3-round-xlarge form-control{{ $errors->has('id_number') ? ' is-invalid' : '' }}" name="id_number" value="{{$edituser->id_number}}" autofocus>
+	                    @if ($errors->has('id_number'))
 	                        <span class="invalid-feedback">
-	                            <strong>{{ $errors->first('nrp') }}</strong>
+	                            <strong>{{ $errors->first('id_number') }}</strong>
 	                        </span>
 	                        <script type="text/javascript">
 	                        	$(document).ready(function(){
@@ -86,6 +86,16 @@
 	                    <option value="FAKULTAS VOKASI">FAKULTAS VOKASI</option>
 	                    <option value="FAKULTAS BISNIS DAN MANAJEMEN TEKNOLOGI">FAKULTAS BISNIS DAN MANAJEMEN TEKNOLOGI</option>
 	                    </select>
+	                    @if ($errors->has('faculty'))
+	                        <span class="invalid-feedback">
+	                            <strong>{{ $errors->first('faculty') }}</strong>
+	                        </span>
+	                        <script type="text/javascript">
+	                        	$(document).ready(function(){
+	                        		$("#btnubah").click()
+								});
+	                        </script>
+	                    @endif
 					</td>
 				</tr>
 				<tr>
@@ -96,6 +106,16 @@
 						<select class="w3-round-xlarge form-control" name="department" id="departoption">
 	                    	<option selected>{{$edituser->department}}</option>
 	                    </select>
+	                    @if ($errors->has('department'))
+	                        <span class="invalid-feedback">
+	                            <strong>{{ $errors->first('department') }}</strong>
+	                        </span>
+	                        <script type="text/javascript">
+	                        	$(document).ready(function(){
+	                        		$("#btnubah").click()
+								});
+	                        </script>
+	                    @endif
 					</td>
 				</tr>
 				<tr>
@@ -122,6 +142,16 @@
 					<td class="profb" style="display: block;">{{$edituser->phone}}</td>
 					<td class="profa" style="display: none;">
 						<input type="text" id="phone" class="w3-round-xlarge form-control" value="{{$edituser->phone}}" name="phone">
+						@if ($errors->has('phone'))
+	                        <span class="invalid-feedback">
+	                            <strong>{{ $errors->first('phone') }}</strong>
+	                        </span>
+	                        <script type="text/javascript">
+	                        	$(document).ready(function(){
+	                        		$("#btnubah").click()
+								});
+	                        </script>
+	                    @endif
 					</td>
 				</tr>
 				<tr>
