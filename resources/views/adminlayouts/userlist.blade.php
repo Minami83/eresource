@@ -34,76 +34,78 @@
   @endif
 </div>
 
-<div class="w3-row container w3-center">
-  <table id="myTable" class="w3-table">
-    <tr>
-      <div class="col-sm-1">
-        <th onclick="sortTable(0)">ID <i class="fa">&#xf0dc;</i></th>
-      </div>
-      <div class="col-sm-1">
-        <th onclick="sortTable(1)">Nama <i class="fa">&#xf0dc;</i></th>
-      </div>
-      <div class="col-sm-1">
-        <th onclick="sortTable(2)">Status <i class="fa">&#xf0dc;</i></th>
-      </div>
-      <div class="col-sm-1">
-        <th onclick="sortTable(3)">Role <i class="fa">&#xf0dc;</i></th>
-      </div>
-    </tr>
-    @if (session('alert'))
-        <script type="text/javascript">
-          $("#alertfail").html('{{ session('alert') }}');
-          $("#alertfail").attr('class','alert alert-danger');
-        </script>
-    @endif
-    @foreach($userList as $ul)
-    <tr>
-      <div>
-        <td class="tes">{{$ul->id_number}}</td>
-        <td class="tes">{{$ul->name}}</td>
-        <td class="tes">
-          @if ($ul->verified==0)
-            Belum terverifikasi
-          @elseif($ul->verified==1)
-            Sedang menjalankan course
-          @else
-            Selesai
-          @endif
-        </td>
-        <td class="tes">
-          @if ($ul->roleName()=='admin')
-            Admin
-          @elseif($ul->roleName()=='pustakawan')
-            Pustakawan
-          @else
-            Partisipan
-          @endif
-        </td>
-      </div>
-      <div id="tes2">
-        <td>
-          @if($ul->verified>0 )
-          <a href="/admin/user/detail/{{$ul->id}}">
-          @else
-          <a href="/admin">
-          @endif
-          <button><i class="fa fa-arrow-circle-right"></i></button></a>
-          @if ($ul->roleName()=='partisipan')
-            <a href="/admin/user/score/{{$ul->id}}"><button><i class="fa fa-file"></i></button></a>
-          @endif
-          @if ($user->roleName()=='admin')
-            <form method="POST" action="/admin/user/delete/{{$ul->id}}">
-              @csrf
-              {{method_field('DELETE')}}
-              <button><i class="fa fa-close"></i></a></td></button>
-            </form>
-          @endif
-        </td>
-      </div>
-    </tr>
-    @endforeach
-  </table>
+<div class="w3-row container w3-center" style="overflow: auto;">
+  <div class="w3-responsive">
+    <table id="myTable" class="w3-table w3-bordered">
+      <tr>
+        <div class="col-sm-1">
+          <th onclick="sortTable(0)">ID <i class="fa">&#xf0dc;</i></th>
+        </div>
+        <div class="col-sm-1">
+          <th onclick="sortTable(1)">Nama <i class="fa">&#xf0dc;</i></th>
+        </div>
+        <div class="col-sm-1">
+          <th onclick="sortTable(2)">Status <i class="fa">&#xf0dc;</i></th>
+        </div>
+        <div class="col-sm-1">
+          <th onclick="sortTable(3)">Role <i class="fa">&#xf0dc;</i></th>
+        </div>
+      </tr>
+      @if (session('alert'))
+          <script type="text/javascript">
+            $("#alertfail").html('{{ session('alert') }}');
+            $("#alertfail").attr('class','alert alert-danger');
+          </script>
+      @endif
+      @foreach($userList as $ul)
+      <tr>
+        <div>
+          <td class="tes">{{$ul->id_number}}</td>
+          <td class="tes">{{$ul->name}}</td>
+          <td class="tes">
+            @if ($ul->verified==0)
+              Belum terverifikasi
+            @elseif($ul->verified==1)
+              Sedang menjalankan course
+            @else
+              Selesai
+            @endif
+          </td>
+          <td class="tes">
+            @if ($ul->roleName()=='admin')
+              Admin
+            @elseif($ul->roleName()=='pustakawan')
+              Pustakawan
+            @else
+              Partisipan
+            @endif
+          </td>
+        </div>
+        <div id="tes2">
+          <td>
+            @if($ul->verified>0 )
+            <a href="/admin/user/detail/{{$ul->id}}">
+            @else
+            <a href="/admin">
+            @endif
+            <button><i class="fa fa-arrow-circle-right"></i></button></a>
+            @if ($ul->roleName()=='partisipan')
+              <a href="/admin/user/score/{{$ul->id}}"><button><i class="fa fa-file"></i></button></a>
+            @endif
+            @if ($user->roleName()=='admin')
+              <form method="POST" action="/admin/user/delete/{{$ul->id}}">
+                @csrf
+                {{method_field('DELETE')}}
+                <button><i class="fa fa-close"></i></a></td></button>
+              </form>
+            @endif
+          </td>
+        </div>
+      </tr>
+      @endforeach
+    </table>
   {{$userList->links()}}
+  </div>
 </div>
 
 <div id="id01" class="w3-modal">
@@ -206,7 +208,14 @@
         $('#myTable').css("width","100%");
       }
       else if($(window).width() < 992){
-        $('#myTable').css("font-size","10px");
+        $('#myTable').css("width",$(window).width()-11);
+      }
+  });
+  $(window).resize(function(){
+      if ($(window).width() >= 992) {
+        $('#myTable').css("width","100%");
+      }
+      else if($(window).width() < 992){
         $('#myTable').css("width",$(window).width()-11);
       }
   });

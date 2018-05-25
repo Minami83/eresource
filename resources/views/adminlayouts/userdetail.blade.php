@@ -154,6 +154,7 @@
 	    		@endif
 		</div>
 		<div class="col-sm-3"></div>
+		<br>
 	</div>
 
 	<div id="id01" class="w3-modal">

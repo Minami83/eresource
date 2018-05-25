@@ -5,95 +5,45 @@
 @endsection
 
 @section('style')
-  p:nth-child(odd){
-    background-color: #f2f2f2;
-  }
-
   th{
     cursor:pointer;
-  }
-  .empty {
-    font-family: FontAwesome;
-    font-style: normal;
-    font-weight: normal;
-    text-decoration: inherit;
-  }
-  #myInput {
-    width: 100%;
-    font-size: 16px;
-    padding: 12px 20px 12px 15px;
-    border: 1px solid #ddd;
-    margin-bottom: 12px;
   }
 @endsection()
 
 @section('isi')
-<div class="row">
-  <div class="col-sm-1"></div>
-  <div class="col-sm-10">
-    <div class="w3-row container">
-      <h1>{{$showeduser->name}}</h1>
-      <h5 id="preskor">PreTest : </h5>
-      <h5 id="postskor">PostTest : </h5>
-      <br>
-    </div>
-    <div class="w3-row">  
-    <table id="myTable" class="w3-table">
-      <tr>
-        <th onclick="sortTable(0)"># <i class="fa">&#xf0dc;</i></th>
-        <th onclick="sortTable(1)">Soal <i class="fa">&#xf0dc;</i></th>
-        <th onclick="sortTable(2)">Pretes <i class="fa">&#xf0dc;</i></th>
-        <th onclick="sortTable(3)">Posttes <i class="fa">&#xf0dc;</i></th>
-        <th onclick="sortTable(4)">Jawaban <i class="fa">&#xf0dc;</i></th>
-      </tr>
-      @foreach($test as $tes)
-      <tr>
-        <td>{{$tes->id}}</td>
-        <td>{{$tes->question}}</td>
-        <td>{{$preAns[$tes->id-1]->answer}}</td>
-        <td>{{$postAns[$tes->id-1]->answer}}</td>
-        <td class="kumpulanans">
-            {{-- <p id="ans1">{{$tes->choice_1}}</p>
-            <p id="ans2">{{$tes->choice_2}}</p>
-            <p id="ans3">{{$tes->choice_3}}</p>
-            <p id="ans4">{{$tes->choice_4}}</p> --}}
-            {{$truAns[$tes->id-1]}}
-        </td>
-      </tr>
-      @endforeach
-    </table>
+<div class="col-sm-12">
+  <div class="row container">
+    <h1>{{$showeduser->name}}</h1>
+    <h5 id="preskor">PreTest : </h5>
+    <h5 id="postskor">PostTest : </h5>
+    <br>
+  </div>
+
+  <div class="row">
+    <div class="w3-responsive">
+      <table id="myTable" class="w3-table w3-bordered">
+        <tr>
+          <th onclick="sortTable(0)"># <i class="fa">&#xf0dc;</i></th>
+          <th onclick="sortTable(1)">Soal <i class="fa">&#xf0dc;</i></th>
+          <th onclick="sortTable(2)">Pretes <i class="fa">&#xf0dc;</i></th>
+          <th onclick="sortTable(3)">Posttes <i class="fa">&#xf0dc;</i></th>
+          <th onclick="sortTable(4)">Jawaban <i class="fa">&#xf0dc;</i></th>
+        </tr>
+        @foreach($test as $tes)
+        <tr>
+          <td>{{$tes->id}}</td>
+          <td>{{$tes->question}}</td>
+          <td>{{$preAns[$tes->id-1]->answer}}</td>
+          <td>{{$postAns[$tes->id-1]->answer}}</td>
+          <td>{{$truAns[$tes->id-1]}} </td>
+        </tr>
+        @endforeach
+      </table>
     </div>
   </div>
 </div>
 
 <script type="text/javascript">
-  var modal = document.getElementById('id01');
-  window.onclick = function(event) {
-      if (event.target == modal) {
-          modal.style.display = "none";
-      }
-  }
-
-  $(window).ready(function(){
-      if ($(window).width() >= 992) {
-        $('#myTable').css("width","100%");
-      }
-      else if($(window).width() < 992){
-        $('#myTable').css("font-size","10px");
-        $('#myTable').css("width",$(window).width());
-      }
-  });
-
-  $(document).ready(function(){
-	var i=0
-	@foreach ($test as $tes)
-		var temp="{{$tes->right_answer}}";
-		var header = document.getElementById("myTable");
-		var p = header.getElementsByTagName("P");
-		p[temp-1+i].style.color = "red";
-		i+=4
-	@endforeach
-  });
 
   $(document).ready(function(){
     $('#usernavbar').addClass('w3-text-amber');
@@ -101,15 +51,15 @@
   });
 
   $(document).ready(function(){
-	@php
-		$temp1=sizeof($test);
-	@endphp
-	preskor=({{$preScore}})/{{$temp1}}*100;
-  preskor=parseFloat(preskor).toFixed(0);
-	postskor=({{$postScore}})/{{$temp1}}*100;
-  postskor=parseFloat(postskor).toFixed(0);
-	$('#preskor').append(preskor);
-	$('#postskor').append(postskor);
+  	@php
+  		$temp1=sizeof($test);
+  	@endphp
+  	preskor=({{$preScore}})/{{$temp1}}*100;
+    preskor=parseFloat(preskor).toFixed(0);
+  	postskor=({{$postScore}})/{{$temp1}}*100;
+    postskor=parseFloat(postskor).toFixed(0);
+  	$('#preskor').append(preskor);
+  	$('#postskor').append(postskor);
   });
 
   function sortTable(n) {
@@ -148,15 +98,6 @@
       }
     }
   }
-
-  $('#iconified').on('keyup', function() {
-        var input = $(this);
-        if(input.val().length === 0) {
-            input.addClass('empty');
-        } else {
-            input.removeClass('empty');
-        }
-    });
 
 </script>
 

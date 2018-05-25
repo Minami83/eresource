@@ -148,6 +148,16 @@
                     $('#verline2').css("border-left","none");
                 }
         });
+        $(window).resize(function(){
+                if ($(window).width() >= 992) {
+                    $('#verline1').css("display","block");
+                    $('#verline2').css("border-left","1px solid white");
+                }
+                else if($(window).width() < 992){
+                    $('#verline1').css("display","none");
+                    $('#verline2').css("border-left","none");
+                }
+        });
 
         $(document).ready(function(){
             $("select#facultyoption").change(function(){

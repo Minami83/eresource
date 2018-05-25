@@ -71,11 +71,11 @@
                         @endif
                     </div>
                     <div class="checkbox">
-                        <label style="float: left">
+                        <label>
                             <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> {{ __('Remember Me') }}
                         </label>
                     </div>
-                    <a style="float: right" class="btn-link" href="{{ route('password.request') }}">{{ __('Forgot Your Password?') }}</a>
+                    <a class="btn-link" href="{{ route('password.request') }}">{{ __('Forgot Your Password?') }}</a>
                     <br><br>
                     <div>
                         <button style="width: 100%" class="btn waves-effect waves-light" type="submit"> {{ __('Login') }}
@@ -108,6 +108,16 @@
         });
 
         $(window).ready(function(){
+            if ($(window).width() >= 992) {
+                $('#verline1').css("display","block");
+                $('#verline2').css("border-left","1px solid white");
+            }
+            else if($(window).width() < 992){
+                $('#verline1').css("display","none");
+                $('#verline2').css("border-left","none");
+            }
+        });
+        $(window).resize(function(){
             if ($(window).width() >= 992) {
                 $('#verline1').css("display","block");
                 $('#verline2').css("border-left","1px solid white");

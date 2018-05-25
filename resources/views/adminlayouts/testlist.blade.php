@@ -38,39 +38,41 @@
   @endif
 </div>
 
-<div class="w3-row container w3-center">
-  <table id="myTable" class="w3-table">
-    <tr>
-      <th onclick="sortTable(0)"># <i class="fa">&#xf0dc;</i></th>
-      <th onclick="sortTable(1)">Soal <i class="fa">&#xf0dc;</i></th>
-      <th onclick="sortTable(2)">Jawaban <i class="fa">&#xf0dc;</i></th>
-    </tr>
-    @foreach($test as $tes)
-    <tr>
-      <td style="width: 60px">{{$tes->id}}</td>
-      <td>{{$tes->question}}</td>
-      <td class="kumpulanans">
-          <p id="ans1">{{$tes->choice_1}}</p>
-          <p id="ans2">{{$tes->choice_2}}</p>
-          <p id="ans3">{{$tes->choice_3}}</p>
-          <p id="ans4">{{$tes->choice_4}}</p>
-      </td>
-      <td style="width: 30px"><a href="/admin/test/detail/{{$tes->id}}">
-        <button><i class="fa fa-arrow-circle-right"></i></button></a>
-      </td>
-      @if ($user->roleName()=='admin')
-      <td style="width: 30px">
-        <form method="POST" action="/admin/test/delete/{{$tes->id}}">
-          @csrf
-          {{method_field('DELETE')}}
-          <button><i class="fa fa-close"></i></button>
-        </form>
-      </td>
-      @endif
-    </tr>
-    @endforeach
-  </table>
-  {{$test->links()}}
+<div class="w3-row container w3-center" style="overflow: auto;">
+  <div class="w3-resposive">
+    <table id="myTable" class="w3-table w3-bordered">
+      <tr>
+        <th onclick="sortTable(0)"># <i class="fa">&#xf0dc;</i></th>
+        <th onclick="sortTable(1)">Soal <i class="fa">&#xf0dc;</i></th>
+        <th onclick="sortTable(2)">Jawaban <i class="fa">&#xf0dc;</i></th>
+      </tr>
+      @foreach($test as $tes)
+      <tr>
+        <td style="width: 60px">{{$tes->id}}</td>
+        <td>{{$tes->question}}</td>
+        <td class="kumpulanans">
+            <p id="ans1">{{$tes->choice_1}}</p>
+            <p id="ans2">{{$tes->choice_2}}</p>
+            <p id="ans3">{{$tes->choice_3}}</p>
+            <p id="ans4">{{$tes->choice_4}}</p>
+        </td>
+        <td style="width: 30px"><a href="/admin/test/detail/{{$tes->id}}">
+          <button><i class="fa fa-arrow-circle-right"></i></button></a>
+        </td>
+        @if ($user->roleName()=='admin')
+        <td style="width: 30px">
+          <form method="POST" action="/admin/test/delete/{{$tes->id}}">
+            @csrf
+            {{method_field('DELETE')}}
+            <button><i class="fa fa-close"></i></button>
+          </form>
+        </td>
+        @endif
+      </tr>
+      @endforeach
+    </table>
+    {{$test->links()}}
+  </div>
 </div>
 
 <div id="id01" class="w3-modal">

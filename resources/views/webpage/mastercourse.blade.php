@@ -93,7 +93,7 @@
 		</div>
 		<button class="accordion" id="accord2" onclick="accordionfunc(this.id)">Video</button>
 		<div class="panel">
-			<video width="320" height="240" controls id="vid1">
+			<video width="100%" height="100%" controls id="vid1">
 				<source src="{{$myJurnal[$index]->video}}" type="video/mp4">
 			</video>
 	  		{{-- @yield('video') --}}
@@ -129,7 +129,7 @@
 			if ($(window).width() >= 992) {
 				w3_close();
 				$('#mySidebar').css("top","60px");
-		 		$('#mySidebar').css("height","100%");
+		 		$('#mySidebar').css("height","calc(100% - 60px)");
 			}
 			else if($(window).width() < 992){
 				$('#mySidebar').css("top","0px");

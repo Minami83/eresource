@@ -98,6 +98,14 @@
 			$('#testTable').css("font-size","5px");
 			}
 		});
+		$(window).resize(function(){
+			if ($(window).width() >= 992) {
+			$('#testTable').css("width","100%");
+			}
+			else if($(window).width() < 992){
+			$('#testTable').css("font-size","5px");
+			}
+		});
     </script>
 
 @endsection()

@@ -1,6 +1,6 @@
 <div class="w3-top" id="navbar">
-  <div class="w3-bar w3-large w3-biru">
-    	<a href="/home" class="w3-bar-item"><img id="eresourcelogo" style="height:59px;" src="/image/eresourcelogo.png"></a>
+  <div class="w3-bar w3-large w3-biru" style="width: 100%">
+    	<a href="/home" class="w3-bar-item"><img id="eresourcelogo" src="/image/eresourcelogo.png"></a>
       @if($user->roleName()=='admin' || $user->roleName()=='pustakawan')
       @php
         $i=date('Y');
@@ -18,7 +18,8 @@
         <button class="w3-button w3-biru w3-padding-16 w3-hover-none w3-hover-text-amber">Rekap</button>
         <div class="w3-dropdown-content w3-bar-block w3-border w3-card-4">
           <a href="/admin/laporan/{{$i}}" id="laporannavbar" class="w3-padding-16 w3-hover-none w3-hover-text-amber w3-bar-item">Laporan</a>
-          <a href="/admin/log" id="lognavbar" class="w3-padding-16 w3-hover-none w3-hover-text-amber w3-bar-item">Log</a>
+          <a href="/admin/logreport" id="lognavbar" class="w3-padding-16 w3-hover-none w3-hover-text-amber w3-bar-item">Log</a>
+          <a href="/admin/statistik" id="lognavbar" class="w3-padding-16 w3-hover-none w3-hover-text-amber w3-bar-item">Statistik</a>
         </div>
       </div>
       @endif

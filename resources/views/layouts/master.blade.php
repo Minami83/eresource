@@ -15,12 +15,27 @@
   		a,a:hover,a:visited,a:link,a:active{
   			text-decoration: none;
   		}
+  		@media (max-width:992px){
+  			#eresourcelogo{
+  				height: 100%;
+  				width: 100%;
+  			}
+  			body{
+  				font-size: 0.8em
+  			}
+  		}
+  		@media (min-width:992px){
+  			#eresourcelogo{
+  				height: 59px;
+  				width: 190px;
+  			}
+  		}
   		@yield('style')
   	</style>
 </head>
 <body>
 	<div class="w3-overlay w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
-	<div>
+	<div id="navbardiv">
 		@include('layouts.navbar')
 	</div>
 
@@ -31,22 +46,28 @@
 	<script type="text/javascript">
 		$(window).ready(function(){
 			if ($(window).width() >= 992) {
-		 		$('#eresourcelogo').css("height","59px");
-		 		$('#eresourcelogo').css("width","190px");
-				var height = $('#navbar').height();
-				document.getElementById("main").style.marginTop = 100+"px";
+		 		var height = $('#navbar').height();
+			 	height+=30;
+				document.getElementById("main").style.marginTop = height+"px";
 			}
 			else if($(window).width() < 992){
-			@if ($user->roleName()=='partisipan')
-				document.getElementById("main").style.marginTop = 100+"px";
-			@else
-				$('#eresourcelogo').css("width","100%");
-				$('#eresourcelogo').css("height","100%");
-				document.getElementById("main").style.marginTop = 215 +"px";	
-			@endif
+				var height = $('#navbar').height();
+			 	height+=15;
+				document.getElementById("main").style.marginTop = height+"px";
 			}
 		});
-
+		$(window).resize(function(){
+			if ($(window).width() >= 992) {
+		 		var height = $('#navbar').height();
+			 	height+=30;
+				document.getElementById("main").style.marginTop = height+"px";
+			}
+			else if($(window).width() < 992){
+				var height = $('#navbar').height();
+			 	height+=15;
+				document.getElementById("main").style.marginTop = height+"px";
+			}
+		});
 	</script>
 </body>
 </html>
