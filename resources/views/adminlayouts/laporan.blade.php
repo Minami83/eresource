@@ -40,6 +40,11 @@
 
     <script type="text/javascript">
     	$(document).ready(function(){
+			$('#laporannavbar').addClass('w3-text-amber');
+			$('#laporannavbar').removeClass('w3-biru');
+		});
+
+    	$(document).ready(function(){
     		n =  new Date();
 			y = n.getFullYear();
     		$("#filter option:selected").val()==y;

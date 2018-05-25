@@ -58,7 +58,7 @@
 		      		<div class="w3-dropdown-content w3-bar-block w3-border w3-card-4">
 				        <a href="/admin/laporan/{{$i}}" id="laporannavbar" class="w3-padding-16 w3-hover-none w3-hover-text-amber w3-bar-item">Laporan</a>
 			          	<a href="/admin/logreport" id="lognavbar" class="w3-padding-16 w3-hover-none w3-hover-text-amber w3-bar-item">Log</a>
-			          	<a href="/admin/statistik" id="lognavbar" class="w3-padding-16 w3-hover-none w3-hover-text-amber w3-bar-item">Statistik</a>
+			          	<a href="/admin/statistik" id="statistiknavbar" class="w3-padding-16 w3-hover-none w3-hover-text-amber w3-bar-item">Statistik</a>
 		      		</div>
 		    	</div>
 		    	@endif
@@ -177,6 +177,11 @@
 
 
 	    <script type="text/javascript">
+	    	$(document).ready(function(){
+				$('#statistiknavbar').addClass('w3-text-amber');
+				$('#statistiknavbar').removeClass('w3-biru');
+			});
+
 	    	$(document).ready(function(){
 	    		$('#mhsdosencount').css('height','500px');
 	    		$('#logincount').css('height','500px');

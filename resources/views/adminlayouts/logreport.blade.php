@@ -40,6 +40,11 @@
 
 	<script type="text/javascript">
 
+		$(document).ready(function(){
+			$('#lognavbar').addClass('w3-text-amber');
+			$('#lognavbar').removeClass('w3-biru');
+		});
+
 		function sortTable(n) {
 			var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
 			table = document.getElementById("myTable");
