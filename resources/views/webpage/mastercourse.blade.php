@@ -77,7 +77,7 @@
 	<div class="w3-main" style="margin-left:300px; margin-top: 60px">
 		<br>
 		<div class="w3-light-grey w3-round-xlarge" style="margin-left: 30px; margin-right: 30px">
-			<div id="myBar" class="w3-container w3-dropdownnavbar w3-round-xlarge w3-center" ></div>
+			<div id="myBar" class="w3-container w3-biru w3-round-xlarge w3-center" ></div>
 		</div>
 		<br>
 		<h2 style="padding: 0px 18px">{{$myJurnal[$index]->fullName}}</h2><br>
