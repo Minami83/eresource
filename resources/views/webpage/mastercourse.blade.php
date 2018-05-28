@@ -93,8 +93,8 @@
 		</div>
 		<button class="accordion" id="accord2" onclick="accordionfunc(this.id)">Video</button>
 		<div class="panel">
-			<video width="100%" height="100%" controls id="vid1">
-				<source src="{{$myJurnal[$index]->video}}" type="video/mp4">
+			<video controls id="vid1">
+				<source src="{{$myJurnal[$index]->video}}" type="video/mp4,video/x-m4v,video/*">
 			</video>
 	  		{{-- @yield('video') --}}
 		</div>
@@ -125,15 +125,34 @@
 		    $("#formstatistik").submit();
 		    return false;
 	    });
+		$(window).ready(function(){
+			if ($(window).width() >= 992) {
+				w3_close();
+				$('#mySidebar').css("top","60px");
+		 		$('#mySidebar').css("height","calc(100% - 60px)");
+		 		$('#vid1').attr("height","480");
+		    	$('#vid1').attr("width","640");
+			}
+			else if($(window).width() < 992){
+				$('#mySidebar').css("top","0px");
+		    	$('#mySidebar').css("height","100%");
+		    	$('#vid1').attr("height","100%");
+		    	$('#vid1').attr("width","100%");
+			}
+		});
 		$(window).resize(function(){
 			if ($(window).width() >= 992) {
 				w3_close();
 				$('#mySidebar').css("top","60px");
 		 		$('#mySidebar').css("height","calc(100% - 60px)");
+		 		$('#vid1').attr("height","480");
+		    	$('#vid1').attr("width","640");
 			}
-			else if($(window).width() < 992){
+			else if($(window).width() < 500){
 				$('#mySidebar').css("top","0px");
 		    	$('#mySidebar').css("height","100%");
+		    	$('#vid1').attr("height","100%");
+		    	$('#vid1').attr("width","100%");
 			}
 		});
 

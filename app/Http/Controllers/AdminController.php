@@ -95,7 +95,7 @@ class AdminController extends Controller
     $dosen = User::whereRaw('LENGTH(id_number) = 18')->count();
     array_push($mhsdosen,$dosen);
     // dd($mhsdosen);
-    return view('adminlayouts/statistic')->with('user',$admin)->with('jurnalCount',$count)->with('loginCount',$loginActivity)->with('mhsdosenCount',$mhsdosen);
+    return view('adminlayouts/statistic')->with('user',$admin)->with('jurnal',$jurnals)->with('jurnalCount',$count)->with('loginCount',$loginActivity)->with('mhsdosenCount',$mhsdosen);
   }
 
 }

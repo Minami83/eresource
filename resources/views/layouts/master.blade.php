@@ -15,7 +15,7 @@
   		a,a:hover,a:visited,a:link,a:active{
   			text-decoration: none;
   		}
-  		@media (max-width:992px){
+  		@media (max-width:500px){
   			#eresourcelogo{
   				height: 100%;
   				width: 100%;
@@ -24,7 +24,7 @@
   				font-size: 0.8em
   			}
   		}
-  		@media (min-width:992px){
+  		@media (min-width:500px){
   			#eresourcelogo{
   				height: 59px;
   				width: 190px;

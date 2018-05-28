@@ -15,7 +15,11 @@
   		a,a:hover,a:visited,a:link,a:active{
   			text-decoration: none;
   		}
-  		@media (max-width:992px){
+  		@media (max-width:500px){
+  			#test2{
+  				height: 100%;
+  				width: calc(100% - 50px);
+  			}
   			#eresourcelogo{
   				height: 100%;
   				width: 100%;
@@ -24,7 +28,7 @@
   				font-size: 0.8em
   			}
   		}
-  		@media (min-width:992px){
+  		@media (min-width:500px){
   			#eresourcelogo{
   				height: 59px;
   				width: 190px;
@@ -38,8 +42,8 @@
 	<div id="navbardiv">
 		<div class="w3-top" id="navbar">
 			<div class="w3-bar w3-large w3-biru">
-		  		<a href="/home" class="w3-bar-item"><img id="eresourcelogo" src="/image/eresourcelogo.png"></a>
 		    	<button class="w3-button w3-hover-none w3-hover-text-amber w3-hide-large w3-left w3-padding-16" style="height: 75px" onclick="w3_open()">&#9776;</button>
+		  		<a href="/home" class="w3-bar-item" id="test2"><img id="eresourcelogo" src="/image/eresourcelogo.png"></a>
 		    	@if($user->roleName()=='admin' || $user->roleName()=='pustakawan')
 			    @php
 			      $i=date('Y');
@@ -142,25 +146,9 @@
 		    	function drawChart3() {
 		    		var data = google.visualization.arrayToDataTable([
 		    			['Jurnal', 'Jumlah'],
-		          		['ASCE', {{$jurnalCount[0]}}],
-		          		['ASME', {{$jurnalCount[1]}}],
-		          		['MELP', {{$jurnalCount[2]}}],
-		          		['TNA RINA', {{$jurnalCount[3]}}],
-		          		['SBID RINA', {{$jurnalCount[4]}}],
-		          		['SMD RINA', {{$jurnalCount[5]}}],
-		          		['IJME', {{$jurnalCount[6]}}],
-		          		['IJSCT', {{$jurnalCount[7]}}],
-		          		['JSPD', {{$jurnalCount[8]}}],
-		          		['JSR', {{$jurnalCount[9]}}],
-		          		['Marine', {{$jurnalCount[10]}}],
-		          		['Springerlink', {{$jurnalCount[11]}}],
-		          		['Emerald', {{$jurnalCount[12]}}],
-		          		['GALE', {{$jurnalCount[13]}}],
-		          		['IEEE', {{$jurnalCount[14]}}],
-		          		['EBSCO', {{$jurnalCount[15]}}],
-		          		['ProQuest', {{$jurnalCount[16]}}],
-			         	['Sciencedir', {{$jurnalCount[17]}}],
-		          		['Nature', {{$jurnalCount[18]}}],
+		    			@for (	$i = 0; $i < sizeof($jurnal); 	$i++)
+		          			['{{$jurnal[$i]->name}}', {{$jurnalCount[$i]}}],
+		    			@endfor
 		        	]);
 
 		        	var options = {
