@@ -29,8 +29,8 @@
 			            <td>{{$comp->phone}}</td>
 			            <td>{{$comp->faculty}}</td>
 			            <td>{{$comp->department}}</td>
-			            <td>{{$comp->created_at->format('Y-m-d')}}</td>
-			            <td>{{$comp->updated_at->format('Y-m-d')}}</td>
+			            <td style="min-width: 120px;">{{$comp->created_at->format('d-m-Y')}}</td>
+			            <td style="min-width: 120px;">{{$comp->updated_at->format('d-m-Y')}}</td>
 			        </tr>
 	        	@endforeach
 	        @endforeach

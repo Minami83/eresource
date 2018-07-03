@@ -24,11 +24,11 @@ class UserTableSeeder extends Seeder
         $posttest_quest = Posttest::get();
 
         $student = new User();
-        $student->id_number = '51151000555';
+        $student->id_number = '05111540000001';
         $student->name = 'Budi';
-        $student->faculty = 'Fakultas Teknologi Informasi dan Komunikasi';
+        $student->faculty = 'FAKULTAS TEKNOLOGI INFORMASI DAN KOMUNIKASI';
         $student->department = 'Informatika';
-        $student->phone = '08122467882';
+        $student->phone = '087854856373';
         $student->email = 'budi@gmail.com';
         $student->password = bcrypt('budibudi');
         $student->progress = 4;
@@ -45,11 +45,11 @@ class UserTableSeeder extends Seeder
         }
 
         $admin = new User();
-        $admin->id_number = '51151000556';
+        $admin->id_number = '05111540000010';
         $admin->name = 'Badu';
-        $admin->faculty = 'Fakultas Teknologi Informasi dan Komunikasi';
+        $admin->faculty = 'FAKULTAS TEKNOLOGI INFORMASI DAN KOMUNIKASI';
         $admin->department = 'Informatika';
-        $admin->phone = '08122446882';
+        $admin->phone = '089645015618';
         $admin->email = 'badu@gmail.com';
         $admin->password = bcrypt('badubadu');
         $admin->progress = 20;
@@ -67,11 +67,11 @@ class UserTableSeeder extends Seeder
         }
 
         $pustakawan = new User();
-        $pustakawan->id_number = '51151000559';
+        $pustakawan->id_number = '05111540000100';
         $pustakawan->name = 'Badi';
-        $pustakawan->faculty = 'Fakultas Teknologi Informasi dan Komunikasi';
+        $pustakawan->faculty = 'FAKULTAS TEKNOLOGI INFORMASI DAN KOMUNIKASI';
         $pustakawan->department = 'Informatika';
-        $pustakawan->phone = '08122446888';
+        $pustakawan->phone = '081255680241';
         $pustakawan->email = 'badi@gmail.com';
         $pustakawan->password = bcrypt('badibadi');
         $pustakawan->progress = 20;

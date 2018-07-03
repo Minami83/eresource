@@ -196,7 +196,11 @@
 			    	@csrf
 			    	<div class="row">
 			        <div class="listjurnal col-sm-6">
-				        <input id="selectall" class="w3-check" type="checkbox" name="selectall" value=""> Select All<br>
+			        	@if ($edituser->roleName()=='partisipan')
+				        	<input id="selectall" class="w3-check" type="checkbox" name="selectall" value=""> Select All<br>
+				        	@else
+				        	<input id="selectall" class="w3-check" type="checkbox" name="selectall" value="" disabled> Select All<br>
+				        	@endif
 				        @foreach ($jurnal1 as $jur1)
 				        	@if ($edituser->roleName()=='partisipan')
 				        	<input id="{{$jur1->id}}" class="w3-check check" type="checkbox" name="{{$jur1->name}}" value="{{$jur1->name}}"> {{$jur1->fullName}}<br>
