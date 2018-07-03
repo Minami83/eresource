@@ -180,12 +180,10 @@
 				<a class="btn-link profb btna" onclick="document.getElementById('id01').style.display='block'">Daftar Jurnal</a>
 	    		<button id="btncancel" style="position:absolute;display: none;bottom:0px;" class="profa editprofil btna" onclick="canceleditprofil()"><i class="fa">&#xf00d;</i> Batal</button>
 	    		@if ($user->roleName()=='admin')
-				<button id="btnubah" style="display: block" class="profb editprofil btna" onclick="editprofil()"><i class="fa">&#xf044;</i> Sunting User</button>
+				<button id="btnubah" style="display: block" class="profb editprofil btna" onclick="editprofil()"><i class="fa">&#xf044;</i> Edit User</button>
 	    		@endif
 		</div>
-		<div class="col-sm-3"></div>
-		<br>
-	</div>
+	</div><br><br>
 
 	<div id="id01" class="w3-modal">
 		<div class="w3-modal-content w3-animate-top">

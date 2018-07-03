@@ -62,7 +62,7 @@
 					<td>:</td>
 					<td class="profb" style="display: block">{{$jurnal->video}}</td>
 					<td class="profa" style="display: none">
-						<input style="width:100%" type="file" accept="video/mp4,video/x-m4v,video/*" name="video">
+						<input style="width:100%" type="file" accept="video/mp4" name="video">
 					</td>
 				</tr>
 				</table>
@@ -71,16 +71,14 @@
 						<source id="myVid" src="{{$jurnal->video}}" type="video/mp4">
 					</video>
 				</div>
-				<button id="btnsubmit" class="profa editprofil btna" style="display: none;margin-left: 130px" type="submit" name="action"><i class="fa">&#xf1d8;</i> Submit</button>	
+				<button id="btnsubmit" class="profa editprofil btna" style="display: none;margin-left: 150px" type="submit" name="action"><i class="fa">&#xf1d8;</i> Submit</button>	
 	    	</form>
 	    		<button id="btncancel" style="position:absolute;display: none;bottom:0px;" class="profa editprofil btna" onclick="canceleditprofil()"><i class="fa">&#xf00d;</i> Cancel</button>
 	    		@if ($user->roleName()=='admin')
-				<button id="btnubah" style="display: block" class="profb editprofil btna" onclick="editprofil()"><i class="fa">&#xf044;</i> Edit Test</button>
+				<button id="btnubah" style="display: block" class="profb editprofil btna" onclick="editprofil()"><i class="fa">&#xf044;</i> Edit Jurnal</button>
 	    		@endif
 		</div>
-		<div class="col-sm-3"></div>
-		<br>
-	</div>
+	</div><br><br>
 
 	<script type="text/javascript">
 		function editprofil(){

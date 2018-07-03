@@ -94,20 +94,20 @@
 		<button class="accordion" id="accord2" onclick="accordionfunc(this.id)">Video</button>
 		<div class="panel">
 			<video controls id="vid1">
-				<source src="{{$myJurnal[$index]->video}}" type="video/mp4,video/x-m4v,video/*">
+				<source src="{{$myJurnal[$index]->video}}" type="video/mp4">
 			</video>
 	  		{{-- @yield('video') --}}
-		</div>
+		</div>{{-- 
 		<button class="accordion" id="accord3" onclick="accordionfunc(this.id)">Tutorial</button>
 		<div class="panel">
 	  		@yield('tutorial')
-		</div>
+		</div> --}}
 		<br><br>
 		<form id="formstatistik" method="post" action="/next">
 			@csrf
 			<input id="accord1input" type="hidden" name="accord1input" value="0">
 			<input id="accord2input" type="hidden" name="accord2input" value="0">
-			<input id="accord3input" type="hidden" name="accord3input" value="0">
+			{{-- <input id="accord3input" type="hidden" name="accord3input" value="0"> --}}
 			<input name="url" value="{{substr(Request::path(),7)}}" type="hidden">
 			<div class="w3-border w3-round" style="margin-right:30px;margin-left:30px;">
 				<a id="btnprev" class="w3-button">&#10094; Previous</a>

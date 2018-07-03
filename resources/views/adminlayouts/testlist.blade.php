@@ -40,11 +40,11 @@
 
 <div class="w3-row container w3-center" style="overflow: auto;">
   <div class="w3-resposive">
-    <table id="myTable" class="w3-table w3-bordered">
+    <table id="myTable" class="w3-table">
       <tr>
-        <th onclick="sortTable(0)"># <i class="fa">&#xf0dc;</i></th>
+        <th>#</th>
         <th onclick="sortTable(1)">Soal <i class="fa">&#xf0dc;</i></th>
-        <th onclick="sortTable(2)">Jawaban <i class="fa">&#xf0dc;</i></th>
+        <th>Jawaban</th>
       </tr>
       @foreach($test as $tes)
       <tr>

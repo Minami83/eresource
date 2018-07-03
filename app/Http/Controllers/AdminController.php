@@ -86,7 +86,7 @@ class AdminController extends Controller
     }
     $loginActivity = [];
     for($i=1; $i<=12 ; $i++){
-      $cnt = Log::whereYear('created_at',date('Y'))->whereMonth('created_at','0'.$i)->count();
+      $cnt = Log::whereYear('created_at',date('Y'))->whereMonth('created_at','0'.$i)->where('activity','Login')->count();
       array_push($loginActivity, $cnt);
     }
     $mhsdosen = [];

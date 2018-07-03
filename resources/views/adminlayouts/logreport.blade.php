@@ -20,9 +20,9 @@
 		 	<div class="w3-responsive w3-center">
 		 		<table id="myTable" class="w3-table w3-bordered">
 					<tr>
-						<th onclick="sortTable(0)" style="min-width: 60px"># <i class="fa">&#xf0dc;</i></th>
-						<th onclick="sortTable(1)">Nama User <i class="fa">&#xf0dc;</i></th>
-						<th onclick="sortTable(3)">Posisi <i class="fa">&#xf0dc;</i></th>
+						<th>#</th>
+						<th onclick="sortTable(1)" style="min-width: 150px">Nama User <i class="fa">&#xf0dc;</i></th>
+						<th onclick="sortTable(2)">Posisi <i class="fa">&#xf0dc;</i></th>
 						<th onclick="sortTable(3)">Kegiatan <i class="fa">&#xf0dc;</i></th>
 					</tr>
 					@foreach($logReport as $log)
@@ -36,7 +36,7 @@
 				</table>
 				{{$logReport->links()}}
 			</div>
-		</div>
+		</div><br><br>
 	</div>
 
 	<script type="text/javascript">

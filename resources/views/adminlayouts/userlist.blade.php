@@ -21,6 +21,9 @@
     border: 1px solid #ddd;
     margin-bottom: 12px;
   }
+  .menu{
+    width:1%;
+  }
 @endsection()
 
 @section('isi')
@@ -36,7 +39,7 @@
 
 <div class="w3-row container w3-center" style="overflow: auto;">
   <div class="w3-responsive">
-    <table id="myTable" class="w3-table w3-bordered">
+    <table id="myTable" class="w3-table">
       <tr>
         <div class="col-sm-1">
           <th onclick="sortTable(0)">ID <i class="fa">&#xf0dc;</i></th>
@@ -80,23 +83,25 @@
               Partisipan
             @endif
           </td>
-        </div>
-        <div id="tes2">
-          <td>
-            @if($ul->verified>0 )
-            <a href="/admin/user/detail/{{$ul->id}}">
-            @else
-            <a href="/admin">
-            @endif
-            <button><i class="fa fa-arrow-circle-right"></i></button></a>
+          <td class="menu">
             @if ($ul->roleName()=='partisipan')
               <a href="/admin/user/score/{{$ul->id}}"><button><i class="fa fa-file"></i></button></a>
             @endif
+          </td>
+          <td class="menu">
+            @if($ul->verified>0 )
+              <a href="/admin/user/detail/{{$ul->id}}">
+            @else
+              <a href="/admin">
+            @endif
+            <button><i class="fa fa-arrow-circle-right"></i></button></a>
+          </td>
+          <td class="menu">
             @if ($user->roleName()=='admin')
               <form method="POST" action="/admin/user/delete/{{$ul->id}}">
                 @csrf
                 {{method_field('DELETE')}}
-                <button><i class="fa fa-close"></i></a></td></button>
+                <button><i class="fa fa-close"></i></button>
               </form>
             @endif
           </td>

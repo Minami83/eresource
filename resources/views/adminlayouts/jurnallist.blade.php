@@ -38,7 +38,7 @@
   <div class="w3-responsive">
     <table id="myTable" class="w3-table">
       <tr>
-        <th onclick="sortTable(0)">ID <i class="fa">&#xf0dc;</i></th>
+        <th>ID</th>
         <th onclick="sortTable(1)">Jurnal <i class="fa">&#xf0dc;</i></th>
       </tr>
       @if (session('alert'))
@@ -54,15 +54,15 @@
         <td style="width: 30px"><a href="/admin/jurnal/detail/{{$jur->id}}">
           <button><i class="fa fa-arrow-circle-right"></i></button>
         </td>
-        @if ($user->roleName()=='admin')
         <td style="width: 30px">
+        @if ($user->roleName()=='admin')
           <form method="POST" action="/admin/jurnal/delete/{{$jur->id}}">
             @csrf
             {{method_field('DELETE')}}
-            <button><i class="fa fa-close"></i></a></td></button>
+            <button><i class="fa fa-close"></i></button>
           </form>
-        </td>
         @endif
+        </td>
       </tr>
       @endforeach
     </table>
