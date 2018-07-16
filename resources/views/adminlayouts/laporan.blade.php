@@ -4,7 +4,7 @@
 
 @section('isi')
 	<div class="container">
-		<h2>Laporan Pendaftaran User</h2><br>
+		<h2>Laporan User</h2><br>
 	    <select id="filter" class="text">
 	    </select>
 	    <a href="" id="testfilter"><button>Filter</button></a>

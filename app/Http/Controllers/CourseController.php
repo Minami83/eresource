@@ -175,7 +175,8 @@ class CourseController extends Controller
         $myJurnal = $user->takenJurnalList();
 
 
-        $this->incAction(request('accord1input'),request('accord2input'),request('accord3input'),$user, $callerJurnal);
+        // $this->incAction(request('accord1input'),request('accord2input'),request('accord3input'),$user, $callerJurnal);
+        $this->incAction(request('accord1input'),request('accord2input'),$user, $callerJurnal);
 
         $currentProgress = $myJurnal->pluck('name')->search(request('url'));
         $user->jurnals()->updateExistingPivot($myJurnal[$currentProgress],array('completed' => 1),false);
@@ -226,7 +227,8 @@ class CourseController extends Controller
         return redirect($url)->with('user',$user)->with('myJurnal',$myJurnal)->with('howto_text',$text)->with('jurnal',$jurnal)->with('index',$index);
     }
 
-    public function incAction(int $howto, int $video, int $tutorial, $user, $jurnal)
+    // public function incAction(int $howto, int $video, int $tutorial, $user, $jurnal)
+    public function incAction(int $howto, int $video, $user, $jurnal)
     {
         if($howto==1){
             $log = new Log();
@@ -242,12 +244,12 @@ class CourseController extends Controller
             $log->activity = 'Video';
             $log->save();
         }
-        if($tutorial==1){
-            $log = new Log();
-            $log->user_id = $user->id;
-            $log->jurnal_id = $jurnal->id;
-            $log->activity = 'Tutorial';
-            $log->save();
-        }
+        // if($tutorial==1){
+        //     $log = new Log();
+        //     $log->user_id = $user->id;
+        //     $log->jurnal_id = $jurnal->id;
+        //     $log->activity = 'Tutorial';
+        //     $log->save();
+        // }
     }
 }

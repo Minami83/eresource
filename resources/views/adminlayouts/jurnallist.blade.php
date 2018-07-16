@@ -75,7 +75,7 @@
     <header class="w3-container w3-biru">
       <span onclick="document.getElementById('id01').style.display='none'"
       class="w3-button w3-hover-biru w3-display-topright">&times;</span>
-      <h2>Add Journal</h2>
+      <h2>Tambah Jurnal</h2>
     </header>
     <div class="w3-container">
       <div class="w3-white w3-round-large">
