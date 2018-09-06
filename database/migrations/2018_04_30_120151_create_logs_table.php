@@ -17,6 +17,7 @@ class CreateLogsTable extends Migration
             $table->increments('id');
             $table->integer('jurnal_id');
             $table->integer('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('activity');
             $table->timestamps();
         });
