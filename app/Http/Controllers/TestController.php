@@ -46,6 +46,9 @@ class TestController extends Controller
         $admin = Auth()->user();
         $admin->authorizeRoles(['admin']);
         $data = $request->all();
+        $validat = $request->validate([
+            'right_answer' => 'required|integer|max:4|min:1',
+        ]);
         $pretest = new Pretest();
         $pretest->question = $data['question'];
         $pretest->choice_1 = $data['choice_1'];
@@ -108,6 +111,9 @@ class TestController extends Controller
         $admin = Auth()->user();
         $admin->authorizeRoles(['admin']);
         $data = $request->all();
+        $validat = $request->validate([
+            'right_answer' => 'required|integer|between:1,4',
+        ]);
         $pretest = Pretest::where('id',$id)->first();
         $pretest->question = $data['question'];
         $pretest->choice_1 = $data['choice_1'];

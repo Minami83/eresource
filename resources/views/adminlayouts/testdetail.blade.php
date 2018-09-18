@@ -79,6 +79,16 @@
 					<td class="profb" style="display: block">{{$test->right_answer}}</td>
 					<td class="profa" style="display: none">
 						<input id="name" type="text" class="w3-round-xlarge empty form-control" name="right_answer" value="{{$test->right_answer}}" required autofocus>
+						@if ($errors->has('right_answer'))
+							<span class="invalid-feedback">
+									<strong>{{ $errors->first('right_answer') }}</strong>
+							</span>
+							<script type="text/javascript">
+								$(document).ready(function(){
+									$("#btnubah").click()
+								});
+							</script>
+						@endif
 					</td>
 				</tr>
 				</table>

@@ -112,6 +112,26 @@ class JurnalController extends Controller
         $admin->authorizeRoles(['admin']);
         $data = $request->all();
         $jurnal = Jurnal::where('id',$id)->first();
+        if($data['name'] !== $jurnal->name){
+            $validat_name = $request->validate([
+                'name' => 'required|unique:jurnals'
+            ]);
+        }
+        else {
+            $validat_name = $request->validate([
+                'name' => 'required'
+            ]);
+        }
+        if($data['fullName'] !== $jurnal->fullName){
+            $validat_fullNamee = $request->validate([
+                'fullName' => 'required|unique:jurnals'
+            ]);
+        }
+        else {
+            $validat_fullName = $request->validate([
+                'fullName' => 'required'
+            ]);
+        }
         $jurnal->name = $data['name'];
         $jurnal->fullName = $data['fullName'];
         $howto = $request->file('howto');

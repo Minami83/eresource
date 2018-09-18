@@ -30,7 +30,7 @@
 		</div>
 		<div class="col-sm-6">
 			<br>
-		    <form method="POST" action="/admin/jurnal/edit/{{$jurnal->id}}">
+		    <form method="POST" action="/admin/jurnal/edit/{{$jurnal->id}}" enctype="multipart/form-data">
 		    	@csrf
 		    	<table class="w3-table">
 				<tr>
@@ -39,7 +39,17 @@
 					<td class="profb" style="display: block">{{$jurnal->fullName}}</td>
 					<td class="profa" style="display: none">
 						<input id="fullName" type="text" class="w3-round-xlarge empty form-control" name="fullName" value="{{$jurnal->fullName}}" required autofocus>
-                    </td>
+						@if ($errors->has('fullName'))
+						<span class="invalid-feedback">
+								<strong>{{ $errors->first('fullName') }}</strong>
+						</span>
+						<script type="text/javascript">
+							$(document).ready(function(){
+								$("#btnubah").click()
+							});
+						</script>
+						@endif
+					</td>
 				</tr>
 				<tr>
 					<th>{{ __('Alias') }}</th>
@@ -47,6 +57,16 @@
 					<td class="profb" style="display: block">{{$jurnal->name}}</td>
 					<td class="profa" style="display: none">
 						<input id="name" type="text" class="w3-round-xlarge empty form-control" name="name" value="{{$jurnal->name}}" required autofocus>
+					@if ($errors->has('name'))
+						<span class="invalid-feedback">
+								<strong>{{ $errors->first('name') }}</strong>
+						</span>
+						<script type="text/javascript">
+							$(document).ready(function(){
+								$("#btnubah").click()
+							});
+						</script>
+					@endif
 					</td>
 				</tr>
 				<tr>
@@ -54,7 +74,7 @@
 					<td>:</td>
 					<td class="profb" style="display: block">{{$jurnal->howto}}</td>
 					<td class="profa" style="display: none">
-						<input style="width:100%" type="file" accept="text/plain" value="{{$jurnal->howto}}" name="howto">
+						<input style="width:100%" type="file" accept="text/plain" name="howto">
 					</td>
 				</tr>
 				<tr>
