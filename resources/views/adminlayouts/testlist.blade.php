@@ -92,6 +92,16 @@
             </div>
             <div class="form-group">
                 <input id="answer" type="text" class="w3-round-xlarge iconified empty form-control" name="right_answer" placeholder="&#xf00c;    {{ __('Jawaban') }}" required autofocus>
+                @if ($errors->has('right_answer'))
+                <span class="invalid-feedback">
+                    <strong>{{ $errors->first('right_answer') }}</strong>
+                </span>
+                <script type="text/javascript">
+                  $(document).ready(function(){
+                    document.getElementById('id01').style.display="block"
+                  });
+                </script>
+                @endif
             </div>
             <div class="form-group">
                 <input id="choice_1" type="text" class="w3-round-xlarge iconified empty form-control" name="choice_1" placeholder="&#xf00c;    {{ __('Pilihan 1') }}" required autofocus>

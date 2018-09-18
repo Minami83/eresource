@@ -47,7 +47,7 @@ class TestController extends Controller
         $admin->authorizeRoles(['admin']);
         $data = $request->all();
         $validat = $request->validate([
-            'right_answer' => 'required|integer|max:4|min:1',
+            'right_answer' => 'required|integer|between:1,4',
         ]);
         $pretest = new Pretest();
         $pretest->question = $data['question'];

@@ -46,8 +46,12 @@ class JurnalController extends Controller
         $admin = Auth()->user();
         $admin->authorizeRoles(['admin']);
         $data = $request->all();
-        if(Jurnal::where('name',$data['name'])->exists())
-            return redirect('/admin/jurnal/list')->with('alert','Sudah ada jurnal dengan nama yang sama');
+        // if(Jurnal::where('name',$data['name'])->exists())
+        //     return redirect('/admin/jurnal/list')->with('alert','Sudah ada jurnal dengan nama yang sama');
+        $validat = $request->validate([
+            'name' => 'required|unique:jurnals',
+            'fullName' => 'required|unique:jurnals'
+        ]);
         $jurnal = new Jurnal();
         $jurnal->name = $data['name'];
         $jurnal->fullName = $data['fullName'];

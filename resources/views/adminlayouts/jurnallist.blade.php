@@ -84,9 +84,29 @@
           @csrf
             <div class="form-group">
                 <input id="fullName" type="text" class="w3-round-xlarge iconified empty form-control" name="fullName" placeholder="&#xf007;     {{ __('Nama Jurnal') }}" required autofocus>
+                @if ($errors->has('fullName'))
+                <span class="invalid-feedback">
+                    <strong>{{ $errors->first('fullName') }}</strong>
+                </span>
+                <script type="text/javascript">
+                  $(document).ready(function(){
+                    document.getElementById('id01').style.display="block"
+                  });
+                </script>
+                @endif
             </div>
             <div class="form-group">
                 <input id="name" type="text" class="w3-round-xlarge iconified empty form-control" name="name" placeholder="&#xf2b9;    {{ __('Alias') }}" required autofocus>
+                @if ($errors->has('name'))
+                <span class="invalid-feedback">
+                    <strong>{{ $errors->first('name') }}</strong>
+                </span>
+                <script type="text/javascript">
+                  $(document).ready(function(){
+                    document.getElementById('id01').style.display="block"
+                  });
+                </script>
+                @endif
             </div>
             <div class="form-group">
                 <label>How to:</label>
