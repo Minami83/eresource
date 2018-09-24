@@ -196,13 +196,13 @@
 			    	@csrf
 			    	<div class="row">
 			        <div class="listjurnal col-sm-6">
-			        	@if ($edituser->roleName()=='partisipan')
+			        	@if ($edituser->roleName()=='partisipan' and $edituser->verified!=2)
 				        	<input id="selectall" class="w3-check" type="checkbox" name="selectall" value=""> Select All<br>
-				        	@else
+				        @else
 				        	<input id="selectall" class="w3-check" type="checkbox" name="selectall" value="" disabled> Select All<br>
-				        	@endif
+				        @endif
 				        @foreach ($jurnal1 as $jur1)
-				        	@if ($edituser->roleName()=='partisipan')
+				        	@if ($edituser->roleName()=='partisipan' and $edituser->verified!=2)
 				        	<input id="{{$jur1->id}}" class="w3-check check" type="checkbox" name="{{$jur1->name}}" value="{{$jur1->name}}"> {{$jur1->fullName}}<br>
 				        	@else
 				        	<input id="{{$jur1->id}}" class="w3-check check" type="checkbox" name="{{$jur1->name}}" value="{{$jur1->name}}" disabled> {{$jur1->fullName}}<br>
@@ -211,7 +211,7 @@
 				    </div>
 				   	<div class="listjurnal col-sm-6">
 				       	 @foreach ($jurnal2 as $jur1)
-				       	 	@if ($edituser->roleName()=='partisipan')
+				       	 	@if ($edituser->roleName()=='partisipan' and $edituser->verified!=2)
 				        	<input id="{{$jur1->id}}" class="w3-check check" type="checkbox" name="{{$jur1->name}}" value="{{$jur1->name}}" style="word-wrap: break-word;"> {{$jur1->fullName}}<br>
 				        	@else
 				        	<input id="{{$jur1->id}}" class="w3-check check" type="checkbox" name="{{$jur1->name}}" value="{{$jur1->name}}" style="word-wrap: break-word;" disabled> {{$jur1->fullName}}<br>
@@ -220,7 +220,7 @@
 				   	</div>
 					</div><br>
 			      	<div style="margin-top: 10px">
-			      		@if ($edituser->roleName()=='partisipan')
+			      		@if ($edituser->roleName()=='partisipan' and $edituser->verified!=2)
 				        	<button class="w3-button w3-circle w3-red" style="height: 50px;width: 50px"><i class="fa fa-check w3-large"></i></button>
 			      		@else
 			      			<button class="w3-button w3-circle w3-red" style="height: 50px;width: 50px" disabled><i class="fa fa-check w3-large"></i></button>
@@ -234,34 +234,18 @@
 
 
 	<script type="text/javascript">
-		// $('#iconified').on('keyup', function() {
-		//     var input = $(this);
-		//     if(input.val().length === 0) {
-		//         input.addClass('empty');
-		//     } else {
-		//         input.removeClass('empty');
-		//     }
-		// });
-
-		// $(document).ready(function(){
-		// 	if(in)
-		// });
-		$("#selectall").change(function(){  //"select all" change 
-		    $(".check").prop('checked', $(this).prop("checked")); //change all ".checkbox" checked status
+		$("#selectall").change(function(){
+		    $(".check").prop('checked', $(this).prop("checked"));
 		});
-
-		//".checkbox" change 
 
 		$(document).ready(function(){
 			@foreach ($myJurnal as $takenjur)
 				$('#'+'{{$takenjur->id}}').attr('checked','checked');
 			@endforeach
 			$('.check').change(function(){ 
-			    //uncheck "select all", if one of the listed checkbox item is unchecked
-			    if(false == $(this).prop("checked")){ //if this item is unchecked
-			        $("#selectall").prop('checked', false); //change "select all" checked status to false
+			    if(false == $(this).prop("checked")){
+			        $("#selectall").prop('checked', false);
 			    }
-			    //check "select all" if all checkbox items are checked
 			    if ($('.check:checked').length == $('.check').length ){
 			        $("#selectall").prop('checked', true);
 			    }

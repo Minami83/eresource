@@ -42,13 +42,13 @@
   <div class="w3-resposive">
     <table id="myTable" class="w3-table">
       <tr>
-        <th>#</th>
+        <th></th>
         <th onclick="sortTable(1)">Soal <i class="fa">&#xf0dc;</i></th>
         <th>Jawaban</th>
       </tr>
       @foreach($test as $tes)
       <tr>
-        <td style="width: 60px">{{$tes->id}}</td>
+        <td style="width: 60px">{{$loop->iteration}}</td>
         <td>{{$tes->question}}</td>
         <td class="kumpulanans">
             <p id="ans1">{{$tes->choice_1}}</p>

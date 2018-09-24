@@ -122,7 +122,12 @@ class UserController extends Controller
         if($user->verified != 2) return redirect('/admin/user/list')->with('alert','User belum mengerjakan test')->with('false_id',$user->id);
         $preAns = DB::table('pretest_user')->where('user_id',$user->id)->get();
         $postAns = DB::table('posttest_user')->where('user_id',$user->id)->get();
-        $test = Pretest::take($preAns->count())->get();
+        $quest_list = [];
+        foreach($preAns as &$pa) {
+            array_push($quest_list,$pa->pretest_id);
+        }
+        $test = Pretest::whereIn('id',$quest_list)->get();
+        // dd($test);
         $preScore = 0;
         $postScore = 0;
         for($i=0;$i<$test->count();$i++){
@@ -226,6 +231,9 @@ class UserController extends Controller
             if($jurn==null) continue;
             $user->jurnals()->attach($jurn,['completed' => 0]);
         }
+        if($user->progress==0) $user->progress=0;
+        else $user->progress=1;
+        $user->save();
         return redirect()->back();
     }
 

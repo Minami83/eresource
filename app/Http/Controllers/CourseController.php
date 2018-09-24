@@ -79,7 +79,11 @@ class CourseController extends Controller
         $user = Auth()->user();
         $preAns = DB::table('pretest_user')->where('user_id',$user->id)->get();
         $postAns = DB::table('posttest_user')->where('user_id',$user->id)->get();
-        $test = Pretest::get();
+        $quest_list = [];
+        foreach($preAns as &$pa) {
+            array_push($quest_list,$pa->pretest_id);
+        }
+        $test = Pretest::whereIn('id',$quest_list)->get();
         // dd($preAns);
         $preScore = 0;
         $postScore = 0;
@@ -100,16 +104,16 @@ class CourseController extends Controller
         $user = Auth()->user();
         if($user->verified != 2 && $user->progress < $user->takenJurnalList()->count()) return redirect('/home');
         $date = date('d-m-y');
-        $path = public_path().'/image/dummySertif.jpg';
+        $path = 'image/dummySertif.jpg';
         $image = imagecreatefromjpeg($path);
         // bikin warna text r g b format
         $color = imagecolorallocate($image, 0, 0, 0);
         $string = $user->name;
         $string1 = "atas partisipasinya dalam menyelesaikan";
         $string2 = "E-Resource Class";
-        $font = public_path().'/font/Certificate.ttf';
-        $font1 = public_path().'/font/CALIFR.TTF';
-        $font2 = public_path().'/font/timesbi.ttf';
+        $font = 'font/Certificate.ttf';
+        $font1 = 'font/CALIFR.TTF';
+        $font2 = 'font/timesbi.ttf';
         $box=imageftbbox(40, 0, $font, $string);
         $box1=imageftbbox(20, 0, $font1, $string1);
         $box2=imageftbbox(30, 0, $font2, $string2);
@@ -127,8 +131,8 @@ class CourseController extends Controller
         imagettftext($image, 30, 0, $x2, $y2, $color, $font2, $string2);
         imagettftext($image, 20, 0, $x3, $y3, $color, $font, $date);
         // save the image
-        $img = '/image/'.$user->name.'.jpg';
-        imagejpeg($image,  $fileName = public_path().$img, $quality = 100);
+        $img = 'image/'.$user->name.'.jpg';
+        imagejpeg($image,  $fileName = $img, $quality = 100);
         // return redirect('/home');
         return view('webpage/sertifikat')->with('user',$user)->with('date',$date)->with('img_url',$img);
     }

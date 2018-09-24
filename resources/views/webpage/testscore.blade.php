@@ -30,12 +30,12 @@
         </tr>
         @foreach($test as $tes)
         <tr>
-          <td>{{$tes->id}}</td>
+          <td>{{$loop->iteration}}</td>
           <td>{{$tes->question}}</td>
-          <td>{{$preAns[$tes->id-1]->answer}}</td>
-          <td>{{$postAns[$tes->id-1]->answer}}</td>
+          <td>{{$preAns[$loop->iteration-1]->answer}}</td>
+          <td>{{$postAns[$loop->iteration-1]->answer}}</td>
           <td class="kumpulanans">
-              {{$truAns[$tes->id-1]}}
+              {{$truAns[$loop->iteration-1]}}
           </td>
         </tr>
         @endforeach

@@ -38,7 +38,7 @@
   <div class="w3-responsive">
     <table id="myTable" class="w3-table">
       <tr>
-        <th>ID</th>
+        <th></th>
         <th onclick="sortTable(1)">Jurnal <i class="fa">&#xf0dc;</i></th>
       </tr>
       @if (session('alert'))
@@ -49,7 +49,7 @@
       @endif
       @foreach($jurnal as $jur)
       <tr>
-        <td style="width: 75px">{{$jur->id}}</td>
+        <td style="width: 75px">{{$loop->iteration}}</td>
         <td>{{$jur->fullName}}</td>
         <td style="width: 30px"><a href="/admin/jurnal/detail/{{$jur->id}}">
           <button><i class="fa fa-arrow-circle-right"></i></button>

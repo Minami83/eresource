@@ -31,7 +31,7 @@
         </tr>
         @foreach($test as $tes)
         <tr>
-          <td>{{$tes->id}}</td>
+          <td>{{$loop->iteration}}</td>
           <td>{{$tes->question}}</td>
           <td>{{$preAns[$loop->iteration-1]->answer}}</td>
           <td>{{$postAns[$loop->iteration-1]->answer}}</td>
