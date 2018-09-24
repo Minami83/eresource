@@ -33,9 +33,9 @@
         <tr>
           <td>{{$tes->id}}</td>
           <td>{{$tes->question}}</td>
-          <td>{{$preAns[$tes->id-1]->answer}}</td>
-          <td>{{$postAns[$tes->id-1]->answer}}</td>
-          <td>{{$truAns[$tes->id-1]}} </td>
+          <td>{{$preAns[$loop->iteration-1]->answer}}</td>
+          <td>{{$postAns[$loop->iteration-1]->answer}}</td>
+          <td>{{$truAns[$loop->iteration-1]}} </td>
         </tr>
         @endforeach
       </table>
