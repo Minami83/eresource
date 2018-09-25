@@ -147,7 +147,7 @@ class JurnalController extends Controller
         }
         $video = $request->file('video');
         if($video != null){
-            $filename = $howto->getClientOriginalName();
+            $filename = $video->getClientOriginalName();
             $destination = public_path().'/video';
             $video->move($destination,$filename);
             $jurnal->video = '/video/'.$filename;
