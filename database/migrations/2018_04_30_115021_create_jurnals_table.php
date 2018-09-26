@@ -19,6 +19,7 @@ class CreateJurnalsTable extends Migration
             $table->string('fullName');
             $table->string('howto');
             $table->string('video');
+            $table->text('description');
             $table->timestamps();
         });
     }

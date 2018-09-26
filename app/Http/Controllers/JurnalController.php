@@ -67,6 +67,10 @@ class JurnalController extends Controller
         $destination = 'video';
         $video->move($destination,$filename);
         $jurnal->video = '/video/'.$filename;
+        if($data['description'] === null){
+            $jurnal->description = 'tidak ada deskripsi'; 
+        }
+        $jurnal->description = $data['description'];
         $jurnal->save();
         return redirect('/admin/jurnal/list')->with('user',$admin);
 
@@ -152,6 +156,10 @@ class JurnalController extends Controller
             $video->move($destination,$filename);
             $jurnal->video = '/video/'.$filename;
         }
+        if($data['description'] === null){
+            $jurnal->description = 'tidak ada deskripsi'; 
+        }
+        $jurnal->description = $data['description'];
         $jurnal->save();
         $url = '/admin/jurnal/detail/'.$id;
         return redirect($url)->with('jurnal',$jurnal)->with('user',$admin);

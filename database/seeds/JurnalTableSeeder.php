@@ -38,6 +38,7 @@ class JurnalTableSeeder extends Seeder
           $jurnal->fullName = $jurnalName[1];
           $jurnal->howto = 'howto/sample.txt';
           $jurnal->video = '/video/vid1.mp4';
+          $jurnal->description = 'Ini seharusnya berisi deskripsi dari tiap jurnal, dan deskripsi berupa deskripsi singkat yang dapat mencakup cukup banyak text';
           $jurnal->save();
       }
     }
