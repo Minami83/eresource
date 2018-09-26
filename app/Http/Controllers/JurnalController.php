@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Jurnal;
+use App\User;
 class JurnalController extends Controller
 {
     /**
@@ -72,6 +73,15 @@ class JurnalController extends Controller
         }
         $jurnal->description = $data['description'];
         $jurnal->save();
+        // add the newly created jurnal to all user with role admin and pustakawan
+        $users = User::get();
+        foreach($users as $user){
+          if($user->hasAnyRole(['admin','pustakawan'])){
+            $user->progress = $user->progress + 1;
+            $user->jurnals()->attach($jurnal,['completed'=>1]);
+            $user->save();  
+          }
+        }
         return redirect('/admin/jurnal/list')->with('user',$admin);
 
     }
