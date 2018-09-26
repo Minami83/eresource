@@ -16,10 +16,6 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/tes', function () {
-    return view('adminlayouts.statistic');
-});
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

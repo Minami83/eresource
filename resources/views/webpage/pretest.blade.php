@@ -8,7 +8,7 @@
 			<form method="post" action="/preans">
 				@csrf
 				@foreach($pretest as $pre)
-				<label>{{$pre->id}}. {{$pre->question}}</label><br>
+				<label>{{$loop->iteration}}. {{$pre->question}}</label><br>
 					<input class="w3-radio" type="radio" name="{{$pre->id}}" value="{{$pre->choice_1}}">{{$pre->choice_1}}<br>
 					<input class="w3-radio" type="radio" name="{{$pre->id}}" value="{{$pre->choice_2}}">{{$pre->choice_2}}<br>
 					<input class="w3-radio" type="radio" name="{{$pre->id}}" value="{{$pre->choice_3}}">{{$pre->choice_3}}<br>

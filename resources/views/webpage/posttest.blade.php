@@ -8,7 +8,7 @@
 			<form method="post" action="/postans">
 				@csrf
 				@foreach($posttest as $post)
-				<label>{{$post->id}}. {{$post->question}}</label><br>
+				<label>{{$loop->iteration}}. {{$post->question}}</label><br>
 					<input class="w3-radio" type="radio" name="{{$post->id}}" value="{{$post->choice_1}}">{{$post->choice_1}}<br>
 					<input class="w3-radio" type="radio" name="{{$post->id}}" value="{{$post->choice_2}}">{{$post->choice_2}}<br>
 					<input class="w3-radio" type="radio" name="{{$post->id}}" value="{{$post->choice_3}}">{{$post->choice_3}}<br>

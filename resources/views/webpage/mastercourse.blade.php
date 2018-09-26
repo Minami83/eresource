@@ -167,7 +167,11 @@
 			        $(this).css("background-color", "white");
 			    });
 			    $("#btnprev").css("color", "white");
-				$("#btnnext").html("{{$myJurnal[$index+1]->name}} &#10095;");
+			    @if(sizeof($myJurnal)==1)
+			        $("#btnnext").html("Posttest &#10095;");
+			    @else
+				    $("#btnnext").html("{{$myJurnal[$index+1]->name}} &#10095;");
+				@endif
 			@elseif ($index==sizeof($myJurnal)-1)
 				$("#btnprev").html("&#10094; {{$myJurnal[$index-1]->name}}");
 				$("#btnprev").attr("href","{{$myJurnal[$index-1]->name}}");
