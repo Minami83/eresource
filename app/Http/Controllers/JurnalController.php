@@ -59,12 +59,12 @@ class JurnalController extends Controller
         $howto = $request->file('howto');
         // dd($howto);
         $filename = $howto->getClientOriginalName();
-        $destination = public_path().'/howto';
+        $destination = 'howto';
         $howto->move($destination,$filename);
-        $jurnal->howto = '/howto/'.$filename;
+        $jurnal->howto = 'howto/'.$filename;
         $video = $request->file('video');
         $filename = $video->getClientOriginalName();
-        $destination = public_path().'/video';
+        $destination = 'video';
         $video->move($destination,$filename);
         $jurnal->video = '/video/'.$filename;
         $jurnal->save();
@@ -141,14 +141,14 @@ class JurnalController extends Controller
         $howto = $request->file('howto');
         if($howto != null){
             $filename = $howto->getClientOriginalName();
-            $destination = public_path().'/howto';
+            $destination = 'howto';
             $howto->move($destination,$filename);
-            $jurnal->howto = '/howto/'.$filename;
+            $jurnal->howto = 'howto/'.$filename;
         }
         $video = $request->file('video');
         if($video != null){
-            $filename = $howto->getClientOriginalName();
-            $destination = public_path().'/video';
+            $filename = $video->getClientOriginalName();
+            $destination = 'video';
             $video->move($destination,$filename);
             $jurnal->video = '/video/'.$filename;
         }

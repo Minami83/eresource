@@ -152,7 +152,7 @@ class CourseController extends Controller
         $index = ($user->progress>$nowProgress)?$nowProgress:$user->progress-1;
         if($nowProgress===false) $index = $user->progress-1;
         // dd($index);
-        $text = file(public_path().$myJurnal[$index]->howto);
+        $text = file($myJurnal[$index]->howto);
         if($nowProgress === false || $nowProgress>$user->progress){
             $url = 'course/'.$myJurnal[$index]->name;
             return redirect($url)->with('index',$index);
@@ -194,7 +194,7 @@ class CourseController extends Controller
                 return $this->posttest();
             }
             $user->save();
-            $text = file(public_path().$myJurnal[$currentProgress+1]->howto);
+            $text = file($myJurnal[$currentProgress+1]->howto);
             $url = 'course/'.$myJurnal[$currentProgress+1]->name;
             $index = $currentProgress+1;
         }
@@ -204,7 +204,7 @@ class CourseController extends Controller
             // dd($currentProgress);
             if($currentProgress >= $myJurnal->count()) return $this->posttest();
             $url = 'course/'.$myJurnal[$currentProgress]->name;
-            $text = file(public_path().$myJurnal[$currentProgress]->howto);
+            $text = file($myJurnal[$currentProgress]->howto);
             $index = $currentProgress;
         }
         // dd($url);
@@ -226,7 +226,7 @@ class CourseController extends Controller
         $index = DB::table('jurnal_user')->where('user_id',$user->id)->where('completed',1)->count()-1;
         if($index<0) $index=0;
         $url = 'course/'.$myJurnal[$index]->name;
-        $text = file(public_path().$myJurnal[$index]->howto);
+        $text = file($myJurnal[$index]->howto);
         $jurnal = Jurnal::get();
         return redirect($url)->with('user',$user)->with('myJurnal',$myJurnal)->with('howto_text',$text)->with('jurnal',$jurnal)->with('index',$index);
     }

@@ -36,7 +36,7 @@ class JurnalTableSeeder extends Seeder
           $jurnal = new Jurnal();
           $jurnal->name = $jurnalName[0];
           $jurnal->fullName = $jurnalName[1];
-          $jurnal->howto = '/howto/sample.txt';
+          $jurnal->howto = 'howto/sample.txt';
           $jurnal->video = '/video/vid1.mp4';
           $jurnal->save();
       }

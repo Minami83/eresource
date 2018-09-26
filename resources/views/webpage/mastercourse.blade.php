@@ -84,7 +84,7 @@
 		<button class="accordion" id="accord1" onclick="accordionfunc(this.id)">How to:</button>
 		<div class="panel">
 			@php
-				$text = file(public_path().$myJurnal[$index]->howto);
+				$text = file($myJurnal[$index]->howto);
 			@endphp
 	  		@foreach ($text as $txt)
 				<p>{{$txt}}</p>
