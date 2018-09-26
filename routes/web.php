@@ -11,9 +11,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Route::get('/', function () {
+// 	if(Auth::check())
+//     	return redirect('/home');
+//     else
+//     	return view('auth.login');
+// });
 
 Route::get('/', function () {
-    return view('auth.login');
+    return redirect('/home');
 });
 
 Auth::routes();
