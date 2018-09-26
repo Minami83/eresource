@@ -38,8 +38,9 @@
   <div class="w3-responsive">
     <table id="myTable" class="w3-table">
       <tr>
-        <th></th>
+        <th onclick="sortTable(0)"></th>
         <th onclick="sortTable(1)">Jurnal <i class="fa">&#xf0dc;</i></th>
+        <th onclick="sortTable(2)">Deskripsi <i class="fa">&#xf0dc;</i></th>
       </tr>
       @if (session('alert'))
       <script type="text/javascript">
@@ -51,6 +52,7 @@
       <tr>
         <td style="width: 75px">{{$loop->iteration}}</td>
         <td>{{$jur->fullName}}</td>
+        <td>{{$jur->description}}</td>
         <td style="width: 30px"><a href="/admin/jurnal/detail/{{$jur->id}}">
           <button><i class="fa fa-arrow-circle-right"></i></button>
         </td>
@@ -87,6 +89,19 @@
                 @if ($errors->has('fullName'))
                 <span class="invalid-feedback">
                     <strong>{{ $errors->first('fullName') }}</strong>
+                </span>
+                <script type="text/javascript">
+                  $(document).ready(function(){
+                    document.getElementById('id01').style.display="block"
+                  });
+                </script>
+                @endif
+            </div>
+            <div class="form-group">
+                <input id="description" type="text" class="w3-round-xlarge iconified empty form-control" name="description" placeholder="&#xf007;     {{ __('Deskripsi') }}" required autofocus>
+                @if ($errors->has('description'))
+                <span class="invalid-feedback">
+                    <strong>{{ $errors->first('description') }}</strong>
                 </span>
                 <script type="text/javascript">
                   $(document).ready(function(){

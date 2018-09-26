@@ -70,6 +70,24 @@
 					</td>
 				</tr>
 				<tr>
+					<th>{{ __('Deskripsi') }}</th>
+					<td>:</td>
+					<td class="profb" style="display: block">{{$jurnal->description}}</td>
+					<td class="profa" style="display: none">
+						<input id="name" type="text" class="w3-round-xlarge empty form-control" name="description" value="{{$jurnal->description}}" required autofocus>
+					@if ($errors->has('description'))
+						<span class="invalid-feedback">
+								<strong>{{ $errors->first('description') }}</strong>
+						</span>
+						<script type="text/javascript">
+							$(document).ready(function(){
+								$("#btnubah").click()
+							});
+						</script>
+					@endif
+					</td>
+				</tr>
+				<tr>
 					<th>{{ __('How to') }}</th>
 					<td>:</td>
 					<td class="profb" style="display: block">{{$jurnal->howto}}</td>

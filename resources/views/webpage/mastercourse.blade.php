@@ -81,6 +81,7 @@
 		</div>
 		<br>
 		<h2 style="padding: 0px 18px">{{$myJurnal[$index]->fullName}}</h2><br>
+		<h5 style="padding: 0px 18px">{{$myJurnal[$index]->description}}</h5><br>
 		<button class="accordion" id="accord1" onclick="accordionfunc(this.id)">How to:</button>
 		<div class="panel">
 			@php
