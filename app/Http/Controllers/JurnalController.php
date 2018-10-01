@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Jurnal;
 use App\User;
+use App\Log;
 class JurnalController extends Controller
 {
     /**
@@ -186,6 +187,10 @@ class JurnalController extends Controller
         //
         $jurnal = Jurnal::where('id',$id)->first();
         $jurnal->delete();
+        $logs = Log::where('jurnal_id',$id)->get();
+        foreach($logs as &$log){
+            $log->delete();
+        }
         return redirect('/admin/jurnal/list');
     }
 }
